@@ -12,6 +12,7 @@
  *
  * todo and ideas:
  *  make language strings options
+ *  add more Version and branch related data
  */
 (function( $, undefined ) {
 
@@ -20,11 +21,11 @@ $.widget( "fn.typo3VersionChart", {
 	defaultElement: "<div>",
 	options: {
 		ajax: {
+			dataType: 'json',
 			// TYPO3 version json URL
-			// url: "./data/typo3.json",
+			// url: "./data/typo3.json"
 			// using YQL for cross domain AJAX request
-			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new',
-			dataType: 'json'
+			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new'
 		},		
 		// additional data to merge with the original json
 		typo3data: {
@@ -102,7 +103,9 @@ $.widget( "fn.typo3VersionChart", {
 				that._initIsotope();
 				that._drawButtons();
 				that._initEvents();
-				that.refresh();
+				that._delay( function(){
+					that.refresh();
+				}, 1000);
 			},
 			error: function( xhr,err ) {
 				that._showMsg( "Could not load JSON data!" );
