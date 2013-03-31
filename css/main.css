@@ -118,8 +118,9 @@ a:hover {
 /* =Nav
 -----------------------------------------------------------------------------*/
 #buttons {
-	margin: 2em 0;
+	margin: 2em 1em;
 }
+
 /* =Misc
 -----------------------------------------------------------------------------*/
 
@@ -134,7 +135,7 @@ a:hover {
 
 #buttons .ui-buttonset  {
 	float: left;
-	margin: 0 2em 1em 0;
+	margin: 0 1em 1em 1em;
 }
 #buttons .ui-button  {
     font-size: 0.9em;

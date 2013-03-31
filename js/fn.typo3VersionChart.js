@@ -123,7 +123,7 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_renderItem: function( branchIndex, content, css ) {
-		return '<div data-branch="' + this._convertVersion( branchIndex, "sort" ) + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
+		return '<div data-branch="' + this._convertVersion( branchIndex ) + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
 	},
 
 	_renderTags: function( releaseData, branchIndex ){
@@ -217,9 +217,6 @@ $.widget( "ui.typo3VersionChart", {
 	_convertVersion: function( version, key ) {
 		var value = version.replace(/\./g, "");
 
-		if ( key == "sort" && value < 40) {
-			value = 3;
-		}
 		if ( key == "major" ) {
 			value = value.slice( 0, -1 )
 		}

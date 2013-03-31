@@ -59,33 +59,37 @@
 <script src="data/fn.typo3VersionChart.typo3data.js"></script>
 <script>
 $(function() {
-	var info = $("#info-content")
-		.hide()
-		.dialog({
-			title: "TYPO3 Version Chart",
-			width: 500,
-			modal: true,
-			open: function() {
-				$('.ui-widget-overlay').bind('click', function() {
-					info.dialog('close');
-				});
+	var chart,
+		info = $("#info-content").hide();
+			
+	info.dialog({
+		title: "TYPO3 Version Chart",
+		width: 500,
+		modal: true,
+		open: function() {
+			$('.ui-widget-overlay').bind('click', function() {
+				info.dialog('close');
+			});
+		},
+		buttons: {
+			"Report issue": function() {
+				window.open( "https://github.com/fnagel/TYPO3-version-chart/issues/new", '_newtab' );
 			},
-			buttons: {
-				"Report issue": function() {
-					window.open( "https://github.com/fnagel/TYPO3-version-chart/issues/new", '_newtab' );
-				},
-				"Fork me on GitHub": function() {
-					window.open( "https://github.com/fnagel/TYPO3-version-chart", '_newtab' );
-				}
+			"Fork me on GitHub": function() {
+				window.open( "https://github.com/fnagel/TYPO3-version-chart", '_newtab' );
 			}
-		});
+		},
+		close: function() {
+			chart.typo3VersionChart( "refreshDefaults" );		
+		}
+	});
 		
 	$("#info a").click( function(){
 		info.dialog();
 		return false;
 	});
 	
-	$("#chart").typo3VersionChart();
+	chart = $("#chart").typo3VersionChart();
 });
 </script>
 

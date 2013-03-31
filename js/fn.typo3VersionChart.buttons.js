@@ -11,53 +11,71 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	_start: function() {
-		this._super();
-		
 		this._drawButtons();
-		this._delay( function(){
-			this.checkNonOutdatedBranches();
-			this.checkVersionTypes( ["release", "regular", "security"] );
-			this.refreshFromButtons();
-		}, 1000);		
+		this._super();
 	},
 
-	checkVersionTypes: function( types ){	
-		var buttonset = this.buttons.find( ".typo3-type.ui-buttonset" );			
-		
-		$.each( types, function( index, data ) {	
-			console.log(buttonset.find( "input.typo3-type-" + data ));
-			buttonset.find( "input.typo3-type-" + data ).prop( 'checked', true );		
-		});		
+	checkVersionTypes: function( types ){
+		var buttonset = this.buttons.find( ".typo3-type.ui-buttonset" ),
+			buttons =  buttonset.find( "input");
+
+		buttons.prop( 'checked', false );
+		$.each( types, function( index, data ) {
+			buttons.filter( "input.typo3-type-" + data ).prop( 'checked', true );
+		});
 		buttonset.buttonset( "refresh" );
 	},
-	
-	checkNonOutdatedBranches: function(){	
+
+	checkMajor: function( version ){
 		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
 			buttons =  buttonset.find( "input");
-		
-		buttons.prop( 'checked', false );		
+
+		buttons.prop( 'checked', false );
 		buttons.each( function() {
 			var button = $( this );
 				branch = button.attr( "data-filter" );
-				
+
+			if ( branch.slice( 0, -1 ) == version ) {
+				button.prop( 'checked', true );
+			}
+		});
+		buttonset.buttonset( "refresh" );
+	},
+
+	checkNonOutdatedBranches: function() {
+		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
+			buttons =  buttonset.find( "input");
+
+		buttons.prop( 'checked', false );
+		buttons.each( function() {
+			var button = $( this );
+				branch = button.attr( "data-filter" );
+
 			if ( branch >= 45 ) {
 				button.prop( 'checked', true );
 			}
-		});		
+		});
 		buttonset.buttonset( "refresh" );
 	},
-	
+
+	refreshDefaults: function() {
+		this.checkNonOutdatedBranches();
+		this.checkVersionTypes( ["release", "regular", "security"] );
+		this.refreshFromButtons();
+	},
+
 	refreshFromButtons: function( filter ) {
 		this.refresh( this._processForm() );
 	},
 
 	_initEvents: function() {
 		var that = this;
-		
+
 		// add event to buttons
 		this._on( this.buttons, {
 			click: function( event ){
 				if ( $( event.target ).is( "input" ) ) {
+					that.refreshFromButtons();
 				}
 			}
 		});
@@ -68,8 +86,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	_drawButtons: function() {
 		this.buttons = $( '<form id="buttons" class="ui-helper-clearfix">' ).prependTo( this.element );
 
-		this._drawBranchesButtons();
-		this._drawReleaseTypeButtons();
+		this._drawMajorButtons();
+		this._drawBranchesBoxes();
+		this._drawTypeBoxes();
 		this._drawControlButtons();
 	},
 
@@ -79,7 +98,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			branches = [],
 			selector = [];
 
-		$.each( that.buttons.find( "input:checked" ), function(){
+		$.each( that.buttons.find( "input:checked" ), function() {
 			var button = $( this ),
 				buttonset = button.parent( ".ui-buttonset" );
 
@@ -106,9 +125,8 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 
 	_drawControlButtons: function() {
-		var that = this;
-
-		var buttonSet = $( "<div>", {
+		var that = this,
+			buttonSet = $( "<div>", {
 				"class": "controls"
 			});
 
@@ -136,10 +154,50 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		.appendTo( buttonSet )
 		.button();
 
+		$( "<buttton>", {
+			title: "Show all non-dev versions of all maintained branches",
+			text: "reset",
+			click: function( event ) {
+				that.refreshDefaults();
+				event.preventDefault();
+			}
+		})
+		.appendTo( buttonSet )
+		.button();
+
 		buttonSet.buttonset().appendTo( this.buttons );
 	},
 
-	_drawBranchesButtons: function() {
+	_drawMajorButtons: function() {
+		var that = this,
+			major = {},
+			buttonSet = $( "<div>", {
+				"class": "typo3-major"
+			});
+
+		$.each( this.typo3.versions, function( branchIndex, branchData ){
+			var majorSort = that._convertVersion( branchIndex, "major" );
+
+			if ( !major [ majorSort ] ) {
+				major[ majorSort ] = true;
+
+				$( "<buttton>", {
+					text: majorSort + ".0",
+					click: function( event ) {
+						that.checkMajor( majorSort );
+						that.refresh( that._processForm() );
+						event.preventDefault();
+					}
+				})
+				.appendTo( buttonSet )
+				.button();
+			}
+		});
+
+		buttonSet.buttonset().appendTo( this.buttons );
+	},
+
+	_drawBranchesBoxes: function() {
 		var that = this,
 			branches = {};
 
@@ -163,7 +221,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		this._renderCheckboxGroup( branches , "typo3-branch" );
 	},
 
-	_drawReleaseTypeButtons: function() {
+	_drawTypeBoxes: function() {
 		this._renderCheckboxGroup( {
 			development: {
 				name: "Development",
