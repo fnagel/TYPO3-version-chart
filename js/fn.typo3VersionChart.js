@@ -12,78 +12,23 @@
  *
  * todo and ideas:
  *  make language strings options
+ *  add more Version and branch related data
  */
 (function( $, undefined ) {
 
-$.widget( "fn.typo3VersionChart", {
+$.widget( "ui.typo3VersionChart", {
 	version: "@VERSION",
 	defaultElement: "<div>",
 	options: {
 		ajax: {
+			dataType: 'json',
 			// TYPO3 version json URL
-			// url: "./data/typo3.json",
+			// url: "./data/typo3.json"
 			// using YQL for cross domain AJAX request
-			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new',
-			dataType: 'json'
+			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new'
 		},		
 		// additional data to merge with the original json
-		typo3data: {
-			"4.4": {
-				"releases": {
-					"4.4.0": {
-						breaking_changes: true
-					},
-					"4.4.1": {
-						breaking_changes: true
-					},
-					"4.4.5": {
-						breaking_changes: true
-					},
-					"4.4.9": {
-						breaking_changes: true
-					},
-					"4.4.14": {
-						breaking_changes: true
-					}
-				}
-			},
-			"4.5": {
-				"releases": {
-					"4.5.0": {
-						breaking_changes: true
-					},
-					"4.5.1": {
-						breaking_changes: true
-					},
-					"4.5.4": {
-						breaking_changes: true
-					},
-					"4.5.14": {
-						breaking_changes: true
-					},
-					"4.5.24": {
-						breaking_changes: true
-					}
-				}
-			},
-			"4.7": {
-				"releases": {
-					"4.7.0": {
-						breaking_changes: true
-					},
-					"4.7.9": {
-						breaking_changes: true
-					}
-				}
-			},
-			"6.0": {
-				"releases": {
-					"6.0.3": {
-						breaking_changes: true
-					}
-				}
-			}
-		}
+		typo3data: {}
 	},
 	
 	_create: function() {
@@ -102,7 +47,9 @@ $.widget( "fn.typo3VersionChart", {
 				that._initIsotope();
 				that._drawButtons();
 				that._initEvents();
-				that.refresh();
+				that._delay( function(){
+					that.refresh();
+				}, 1000);
 			},
 			error: function( xhr,err ) {
 				that._showMsg( "Could not load JSON data!" );
@@ -121,7 +68,7 @@ $.widget( "fn.typo3VersionChart", {
 		}
 	
 		$.extend( true, data, this.options.typo3data );
-
+		
 		this.typo3 = {
 			meta: {
 				latest_stable: data.latest_stable,
