@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>TYPO3 Version Chart - a TYPO3 version visualization</title>
+	<link href="css/typo3-version-chart/jquery-ui-1.10.1.custom.css" rel="stylesheet">
+	<link href="css/kube.css" rel="stylesheet">
+	<link href="css/isotope.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div id="top-gradient"></div>
+
+<div id="page">
+
+	<h1>
+		<img src="img/typo3-logo.png" alt="TYPO3" title="TYPO3 is the leading Enterprise Open Source CMS." /> 
+		Version Chart
+	</h1>	
+	
+	<p>
+		This is a version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>. <a href="#info-content" id="info">More info</a>
+	</p>
+	<p>
+		<noscript>Please enable Java-Script!</noscript>
+	</p>
+	<p id="info-content" class="ui-helper-hidden-accessible">
+		This Java-Script application is powered by <a href="http://jquery.com">jQuery</a> and <a href="http://jqueryui.com">jQuery UI</a>.<br />
+		The used data (<a href="http://get.typo3.org/json">link to json file</a>) is provided by the <a href="http://typo3.org/teams/server-team/">TYPO3 server team</a> 
+		and queried via <a href="http://developer.yahoo.com/yql/" title="Yahoo Query Language">YQL</a>. <em>Thanks for providing such great tools and services!</em><br />
+		<br />
+		Please report bugs via <a href="https://github.com/fnagel/TYPO3-version-chart/issues">GitHub's Bugtracker</a> (<em>Issues</em>) or make a patch and send an pull request.<br />
+		Any additional information regarding specific TYPO3 version will be added, so please feel free to add feature requests!<br />
+		<br />
+		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the <a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>.
+	</p>
+	
+	<p id="info" class="ui-helper-hidden">
+		
+	</p>
+
+	<div id="chart"></div>
+
+</div>
+	
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery-ui-1.10.1.custom.js"></script>
+<script src="js/jquery.isotope.js"></script>
+<script src="js/fn.typo3VersionChart.js"></script>
+<script>
+$(function() {
+	$("#chart").typo3VersionChart();
+	$("#info").click( function(){
+		$("#info-content").dialog({
+			title: "TYPO3 Version Chart",
+			width: 500,
+			buttons: {
+				"Report issue": function() {
+					window.open( "https://github.com/fnagel/TYPO3-version-chart/issues/new", '_newtab' );
+				},
+				"Fork me on GitHub": function() {
+					window.open( "https://github.com/fnagel/TYPO3-version-chart", '_newtab' );
+				}
+			}
+		});
+		return false;
+	});
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* =Typography
+-----------------------------------------------------------------------------*/
+body {
+}
+
+h1 {
+	font-size: 2.5em;
+	font-weight: normal;
+}
+p {
+	font-size: 0.9em;
+	line-height: 1.5em;
+	margin: 0;
+}
+
+/* =Links
+-----------------------------------------------------------------------------*/
+a,
+.ui-widget-content a{
+	color: #FF8700;
+	text-decoration: none;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+a:hover {
+  color: black;
+}
+
+
+/* =Layout
+-----------------------------------------------------------------------------*/
+#top-gradient {
+	width: 100%;
+	height: 20em;
+	position: absolute;
+	top: 0;
+	background-image: linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -o-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -moz-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -webkit-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -ms-linear-gradient(bottom, white 33%, #EDEDED 100%);
+}
+
+#page {
+	width: 98%;
+	margin: 2em auto;
+	position: relative;
+}
+#chart {
+  /* either of these will work for horizontal Isotope layouts */
+  height: 80%;
+}
+
+#chart .item {
+	height: 4.5em;
+	float: left;
+	margin: 0.25em;
+	padding: 0.25em;
+	cursor: pointer;
+}
+
+#chart .item.major {
+	min-width: 0;
+	cursor: default;
+}
+
+#chart .item strong {
+	color: #FF8700;
+}
+
+#chart .item  .tags{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+#chart .item  .tags>span{
+	float: right;
+	font-size: 0.8em;
+	font-weight: normal;
+	border: 0;
+	margin: 0;
+	padding: 0.05em 0.2em;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+#chart .item  .tags span.ui-icon-lightbulb {
+    background-position: -128px -128px;
+}
+#chart .item  .tags span.ui-icon-alert {
+    background-position: 0 -144px;
+}
+#chart .item  .tags span.ui-icon-trash {
+    background-position: -176px -96px;
+}
+#chart .item  .tags span.ui-icon-clock {
+    background-position: -80px -112px;
+}
+#chart .item  .tags span.ui-icon-check {
+    background-position: -64px -144px;
+}
+
+/* =Header
+-----------------------------------------------------------------------------*/
+
+
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+#buttons {
+	margin: 2em 0;
+}
+/* =Misc
+-----------------------------------------------------------------------------*/
+
+.ui-dialog  {
+	-webkit-box-shadow: 0 0 30px gray; /* webkit browser*/ 
+	-moz-box-shadow: 0 0 30px gray; /* firefox */ 
+	box-shadow: 0 0 30px gray;
+}
+.ui-dialog .ui-dialog-titlebar {
+    padding: 0.2em 1em;
+}
+
+#buttons .ui-buttonset  {
+	float: left;
+	margin: 0 2em 1em 0;
+}
+#buttons .ui-button  {
+    font-size: 0.9em;
+}
+#buttons .ui-button  .ui-icon {
+	margin-top: -10px;
+}
+
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+
+
+
+/* =Helper
+-----------------------------------------------------------------------------*/

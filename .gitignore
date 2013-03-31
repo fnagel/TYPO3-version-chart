@@ -1,0 +1,8 @@
+*~
+*.diff
+*.patch
+Thumbs.db
+.DS_Store
+*.session
+
+/.htaccess
