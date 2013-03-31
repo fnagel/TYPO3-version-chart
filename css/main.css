@@ -15,10 +15,8 @@ p {
 
 /* =Links
 -----------------------------------------------------------------------------*/
-a,
-.ui-widget-content a{
-	color: #FF8700;
-	text-decoration: none;
+a{
+	color: black;
 	-o-transition:.5s;
 	-ms-transition:.5s;
 	-moz-transition:.5s;
@@ -26,7 +24,7 @@ a,
 	transition:.5s;
 }
 a:hover {
-  color: black;
+  color: #FF8700;
 }
 
 
@@ -104,6 +102,12 @@ a:hover {
 }
 #chart .item  .tags span.ui-icon-check {
     background-position: -64px -144px;
+}
+
+#info {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 /* =Header
