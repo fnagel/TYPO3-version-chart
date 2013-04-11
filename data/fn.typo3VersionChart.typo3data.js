@@ -1,5 +1,5 @@
 /*!
- * jQuery TYPO3 Version Chart - TYPO3 data addition
+ * jQuery TYPO3 Version Chart - TYPO3 additional data addition
  * http://www.felixnagel.com/typo3-version-chart
  *
  * Copyright 2013 Felix Nagel

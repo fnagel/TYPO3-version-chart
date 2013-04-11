@@ -1,6 +1,6 @@
 /*!
- * jQuery TYPO3 Version Chart - Button state
- * http://www.felixnagel.com/typo3-version-chart
+ * jQuery TYPO3 Version Chart - Button creation and functionality
+ * http://typo3-version-chart.felixnagel.com/
  *
  * Copyright 2013 Felix Nagel
  */
