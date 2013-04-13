@@ -233,7 +233,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			regular: {
 				name: "Regular",
-				icon: "wrench",
+				icon: "calendar",
 			},
 			security: {
 				name: "Security",
