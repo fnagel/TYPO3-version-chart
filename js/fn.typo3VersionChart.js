@@ -64,9 +64,11 @@ $.widget( "ui.typo3VersionChart", {
 	
 		$.extend( true, data, this.options.typo3data );
 		
+		// todo: rework this to a for loop checking for all non integers
 		this.typo3 = {
 			meta: {
 				latest_stable: data.latest_stable,
+				latest_old_stable: data.latest_old_stable,
 				latest_lts: data.latest_lts,
 				latest_deprecated: data.latest_deprecated,
 				major_versions: {},
@@ -76,6 +78,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		// remove latest version related items
 		delete data.latest_stable;
+		delete data.latest_old_stable;
 		delete data.latest_lts;
 		delete data.latest_deprecated;
 		
@@ -132,6 +135,9 @@ $.widget( "ui.typo3VersionChart", {
 		// tag latest versions
 		if ( releaseData.version ==  this.typo3.meta.latest_stable) {
 			tags.push( this._renderTag( "check", "", "", "Latest stable release" ) );
+		}
+		if ( releaseData.version ==  this.typo3.meta.latest_old_stable) {
+			tags.push( this._renderTag( "check", "", "", "Latest old stable release" ) );
 		}
 		if ( releaseData.version ==  this.typo3.meta.latest_lts) {
 			tags.push( this._renderTag( "check", "", "", "The latest stable LTS release (for old projects)" ) );
