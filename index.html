@@ -60,12 +60,14 @@
 <script>
 $(function() {
 	var chart,
-		info = $("#info-content").hide();
+		info = $("#info-content").hide(),
+		openDialog = (window.location.search.match(/[\?&]disable-dialog\b/)) ? 0 : 1;
 			
 	info.dialog({
 		title: "TYPO3 Version Chart",
 		width: 500,
 		modal: true,
+		autoOpen: openDialog,
 		open: function() {
 			$('.ui-widget-overlay').bind('click', function() {
 				info.dialog('close');
