@@ -12,6 +12,21 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		typo3data: {
 			"4.4": {
 				"releases": {
+					"4.4.14": {
+						breaking_changes: true
+					},
+					"4.4.9": {
+						breaking_changes: true
+					},
+					"4.4.5": {
+						breaking_changes: true
+					},
+					"4.4.1": {
+						breaking_changes: true
+					},
+					"4.4.0": {
+						breaking_changes: true
+					},
 					"4.4.0RC2": {
 						"version": "4.4.0RC2",
 						"date": "2010-06-20 14:37:20 UTC",
@@ -74,26 +89,23 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha1.zip",
 							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha1.tar.gz"
 						}
-					},
-					"4.4.0": {
-						breaking_changes: true
-					},
-					"4.4.1": {
-						breaking_changes: true
-					},
-					"4.4.5": {
-						breaking_changes: true
-					},
-					"4.4.9": {
-						breaking_changes: true
-					},
-					"4.4.14": {
-						breaking_changes: true
 					}
 				}
 			},
 			"4.5": {
 				"releases": {
+					"4.5.24": {
+						breaking_changes: true
+					},
+					"4.5.14": {
+						breaking_changes: true
+					},
+					"4.5.4": {
+						breaking_changes: true
+					},
+					"4.5.1": {
+						breaking_changes: true
+					},
 					"4.5.0": {
 						breaking_changes: true
 					},
@@ -186,27 +198,15 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha1.zip",
 							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha1.tar.gz"
 						}
-					},
-					"4.5.1": {
-						breaking_changes: true
-					},
-					"4.5.4": {
-						breaking_changes: true
-					},
-					"4.5.14": {
-						breaking_changes: true
-					},
-					"4.5.24": {
-						breaking_changes: true
 					}
 				}
 			},
 			"4.7": {
 				"releases": {
-					"4.7.0": {
+					"4.7.9": {
 						breaking_changes: true
 					},
-					"4.7.9": {
+					"4.7.0": {
 						breaking_changes: true
 					}
 				}
