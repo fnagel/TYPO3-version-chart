@@ -10,6 +10,290 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
 		// additional data to merge with the original json
 		typo3data: {
+			"6.0": {
+				"releases": {
+					"6.0.3": {
+						breaking_changes: true
+					}
+				}
+			},
+			"4.7": {
+				"releases": {
+					"4.7.9": {
+						breaking_changes: true
+					},
+					"4.7.0": {
+						breaking_changes: true
+					}
+				}
+			},
+			"4.5": {
+				"releases": {
+					"4.5.24": {
+						breaking_changes: true
+					},
+					"4.5.14": {
+						breaking_changes: true
+					},
+					"4.5.4": {
+						breaking_changes: true
+					},
+					"4.5.1": {
+						breaking_changes: true
+					},
+					"4.5.0": {
+						breaking_changes: true
+					},
+					"4.5.0rc3": {
+						"version": "4.5.0rc3",
+						"date": "2011-01-25 17:24:55 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc3.tar.gz"
+						}
+					},
+					"4.5.0rc2": {
+						"version": "4.5.0rc2",
+						"date": "2011-01-25 02:25:20 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc2.tar.gz"
+						}
+					},
+					"4.5.0rc1": {
+						"version": "4.5.0rc1",
+						"date": "2011-01-22 13:36:13 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc1.tar.gz"
+						}
+					},
+					"4.5.0beta4": {
+						"version": "4.5.0beta4",
+						"date": "2011-01-12 17:44:04 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta4.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta4.tar.gz"
+						}
+					},
+					"4.5.0beta3": {
+						"version": "4.5.0beta3",
+						"date": "2010-12-28 09:39:26 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta3.tar.gz"
+						}
+					},
+					"4.5.0beta2": {
+						"version": "4.5.0beta2",
+						"date": "2010-12-01 16:57:36 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta2.tar.gz"
+						}
+					},
+					"4.5.0beta1": {
+						"version": "4.5.0beta1",
+						"date": "2010-11-17 19:24:21 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta1.tar.gz"
+						}
+					},
+					"4.5.0alpha3": {
+						"version": "4.5.0alpha3",
+						"date": "2010-10-20 02:39:31 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha3.tar.gz"
+						}
+					},
+					"4.5.0alpha2": {
+						"version": "4.5.0alpha2",
+						"date": "2010-09-22 01:55:23 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha2.tar.gz"
+						}
+					},
+					"4.5.0alpha1": {
+						"version": "4.5.0alpha1",
+						"date": "2010-08-24 07:41:55 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha1.tar.gz"
+						}
+					}
+				}
+			},
+			"4.4": {
+				"releases": {
+					"4.4.14": {
+						breaking_changes: true
+					},
+					"4.4.9": {
+						breaking_changes: true
+					},
+					"4.4.5": {
+						breaking_changes: true
+					},
+					"4.4.1": {
+						breaking_changes: true
+					},
+					"4.4.0": {
+						breaking_changes: true
+					},
+					"4.4.0RC2": {
+						"version": "4.4.0RC2",
+						"date": "2010-06-20 14:37:20 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC2.tar.gz"
+						}
+					},
+					"4.4.0RC1": {
+						"version": "4.4.0RC1",
+						"date": "2010-06-17 05:54:00 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC1.tar.gz"
+						}
+					},
+					"4.4.0beta3": {
+						"version": "4.4.0beta3",
+						"date": "2010-05-31 08:42:43 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta3.tar.gz"
+						}
+					},
+					"4.4.0beta2": {
+						"version": "4.4.0beta2",
+						"date": "2010-05-03 09:38:56 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta2.tar.gz"
+						}
+					},
+					"4.4.0beta1": {
+						"version": "4.4.0beta1",
+						"date": "2010-04-14 23:58:46 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta1.tar.gz"
+						}
+					},
+					"4.4.0alpha2": {
+						"version": "4.4.0alpha2",
+						"date": "2010-03-16 03:47:24 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha2.tar.gz"
+						}
+					},
+					"4.4.0alpha1": {
+						"version": "4.4.0alpha1",
+						"date": "2010-02-23 03:31:44 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha1.tar.gz"
+						}
+					}
+				}
+			},
+			"4.3": {
+				"releases": {
+					"4.3.0RC2": {
+						"version": "4.3.0RC2",
+						"date": "2009-11-25 15:45:49 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC2.tar.gz"
+						}
+					},
+					"4.3.0RC1": {
+						"version": "4.3.0RC1",
+						"date": "2009-11-18 01:01:35 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC1.tar.gz"
+						}
+					},
+					"4.3.0beta3": {
+						"version": "4.3.0beta3",
+						"date": "2009-11-08 11:59:31 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0beta3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0beta3.tar.gz"
+						}
+					},
+					"4.3.0beta2": {
+						"version": "4.3.0beta2",
+						"date": "2009-10-22 05:21:51 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0beta2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0beta2.tar.gz"
+						}
+					},
+					"4.3.0beta1": {
+						"version": "4.3.0beta1",
+						"date": "2009-10-01 11:27:40 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0beta1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0beta1.tar.gz"
+						}
+					},
+					"4.3.0alpha3": {
+						"version": "4.3.0alpha3",
+						"date": "2009-05-23 08:35:00 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha3.tar.gz"
+						}
+					},
+					"4.3.0alpha2": {
+						"version": "4.3.0alpha2",
+						"date": "2009-03-11 11:22:42 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha2.tar.gz"
+						}
+					},
+					"4.3.0alpha1": {
+						"version": "4.3.0alpha1",
+						"date": "2008-11-12 11:43:55 UTC",
+						"type": "development",
+						"url": {
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha1.tar.gz"
+						}
+					},
+				}
+			},
 			"4.2": {
 				"releases": {
 					"4.2.7": {
@@ -176,287 +460,133 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					}
 				}
 			},
-			"4.3": {
+			"4.1": {
 				"releases": {
-					"4.3.0RC2": {
-						"version": "4.3.0RC2",
-						"date": "2009-11-25 15:45:49 UTC",
-						"type": "development",
+					"4.1.11": {
+						"version": "4.1.11",
+						"date": "2009-07-02 02:32:06 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC2.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-11.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-11.tar.gz"
 						}
 					},
-					"4.3.0RC1": {
-						"version": "4.3.0RC1",
-						"date": "2009-11-18 01:01:35 UTC",
-						"type": "development",
+					"4.1.10": {
+						"version": "4.1.10",
+						"date": "2009-02-10 00:29:13 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0RC1.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-10.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-10.tar.gz"
 						}
 					},
-					"4.3.0beta3": {
-						"version": "4.3.0beta3",
-						"date": "2009-11-08 11:59:31 UTC",
-						"type": "development",
+					"4.1.9": {
+						"version": "4.1.9",
+						"date": "2009-01-24 07:23:58 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0beta3.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0beta3.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-9.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-9.tar.gz"
 						}
 					},
-					"4.3.0beta2": {
-						"version": "4.3.0beta2",
-						"date": "2009-10-22 05:21:51 UTC",
-						"type": "development",
+					"4.1.8": {
+						"version": "4.1.8",
+						"date": "2009-01-20 04:35:31 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0beta2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0beta2.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-8.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-8.tar.gz"
 						}
 					},
-					"4.3.0beta1": {
-						"version": "4.3.0beta1",
-						"date": "2009-10-01 11:27:40 UTC",
-						"type": "development",
+					"4.1.7": {
+						"version": "4.1.7",
+						"date": "2008-06-11 01:34:28 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0beta1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0beta1.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-7.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-7.tar.gz"
 						}
 					},
-					"4.3.0alpha3": {
-						"version": "4.3.0alpha3",
-						"date": "2009-05-23 08:35:00 UTC",
-						"type": "development",
+					"4.1.6": {
+						"version": "4.1.6",
+						"date": "2008-03-03 11:34:16 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha3.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha3.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-6.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-6.tar.gz"
 						}
 					},
-					"4.3.0alpha2": {
-						"version": "4.3.0alpha2",
-						"date": "2009-03-11 11:22:42 UTC",
-						"type": "development",
+					"4.1.5": {
+						"version": "4.1.5",
+						"date": "2007-12-14 05:19:50 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha2.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-5.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-5.tar.gz"
 						}
 					},
-					"4.3.0alpha1": {
-						"version": "4.3.0alpha1",
-						"date": "2008-11-12 11:43:55 UTC",
-						"type": "development",
+					"4.1.4": {
+						"version": "4.1.4",
+						"date": "2007-12-10 11:00:48 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha1.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-4.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-4.tar.gz"
 						}
 					},
-				}
-			},
-			"4.4": {
-				"releases": {
-					"4.4.14": {
-						breaking_changes: true
-					},
-					"4.4.9": {
-						breaking_changes: true
-					},
-					"4.4.5": {
-						breaking_changes: true
-					},
-					"4.4.1": {
-						breaking_changes: true
-					},
-					"4.4.0": {
-						breaking_changes: true
-					},
-					"4.4.0RC2": {
-						"version": "4.4.0RC2",
-						"date": "2010-06-20 14:37:20 UTC",
-						"type": "development",
+					"4.1.3": {
+						"version": "4.1.3",
+						"date": "2007-10-22 13:19:15 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC2.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-3.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-3.tar.gz"
 						}
 					},
-					"4.4.0RC1": {
-						"version": "4.4.0RC1",
-						"date": "2010-06-17 05:54:00 UTC",
-						"type": "development",
+					"4.1.2": {
+						"version": "4.1.2",
+						"date": "2007-07-16 12:22:44 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0RC1.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-2.tar.gz"
 						}
 					},
-					"4.4.0beta3": {
-						"version": "4.4.0beta3",
-						"date": "2010-05-31 08:42:43 UTC",
-						"type": "development",
+					"4.1.1": {
+						"version": "4.1.1",
+						"date": "2007-04-02 15:11:06 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta3.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta3.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-1.tar.gz"
 						}
 					},
-					"4.4.0beta2": {
-						"version": "4.4.0beta2",
-						"date": "2010-05-03 09:38:56 UTC",
-						"type": "development",
+					"4.1.0": {
+						"version": "4.1.0",
+						"date": "2007-03-05 16:59:41 UTC",
+						"type": "regular",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta2.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-0.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-0.tar.gz"
 						}
 					},
-					"4.4.0beta1": {
-						"version": "4.4.0beta1",
-						"date": "2010-04-14 23:58:46 UTC",
+					"4.1.0RC2": {
+						"version": "4.1.0RC2",
+						"date": "2007-02-20 20:44:38 UTC",
 						"type": "development",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0beta1.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-0RC2.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-0RC2.tar.gz"
 						}
 					},
-					"4.4.0alpha2": {
-						"version": "4.4.0alpha2",
-						"date": "2010-03-16 03:47:24 UTC",
+					"4.1.0RC1": {
+						"version": "4.1.0RC1",
+						"date": "2007-02-06 16:34:46 UTC",
 						"type": "development",
 						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha2.tar.gz"
+							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-0RC1.zip",
+							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-1-0RC1.tar.gz"
 						}
-					},
-					"4.4.0alpha1": {
-						"version": "4.4.0alpha1",
-						"date": "2010-02-23 03:31:44 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-4-0alpha1.tar.gz"
-						}
-					}
-				}
-			},
-			"4.5": {
-				"releases": {
-					"4.5.24": {
-						breaking_changes: true
-					},
-					"4.5.14": {
-						breaking_changes: true
-					},
-					"4.5.4": {
-						breaking_changes: true
-					},
-					"4.5.1": {
-						breaking_changes: true
-					},
-					"4.5.0": {
-						breaking_changes: true
-					},
-					"4.5.0rc3": {
-						"version": "4.5.0rc3",
-						"date": "2011-01-25 17:24:55 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc3.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc3.tar.gz"
-						}
-					},
-					"4.5.0rc2": {
-						"version": "4.5.0rc2",
-						"date": "2011-01-25 02:25:20 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc2.tar.gz"
-						}
-					},
-					"4.5.0rc1": {
-						"version": "4.5.0rc1",
-						"date": "2011-01-22 13:36:13 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0rc1.tar.gz"
-						}
-					},
-					"4.5.0beta4": {
-						"version": "4.5.0beta4",
-						"date": "2011-01-12 17:44:04 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta4.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta4.tar.gz"
-						}
-					},
-					"4.5.0beta3": {
-						"version": "4.5.0beta3",
-						"date": "2010-12-28 09:39:26 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta3.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta3.tar.gz"
-						}
-					},
-					"4.5.0beta2": {
-						"version": "4.5.0beta2",
-						"date": "2010-12-01 16:57:36 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta2.tar.gz"
-						}
-					},
-					"4.5.0beta1": {
-						"version": "4.5.0beta1",
-						"date": "2010-11-17 19:24:21 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0beta1.tar.gz"
-						}
-					},
-					"4.5.0alpha3": {
-						"version": "4.5.0alpha3",
-						"date": "2010-10-20 02:39:31 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha3.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha3.tar.gz"
-						}
-					},
-					"4.5.0alpha2": {
-						"version": "4.5.0alpha2",
-						"date": "2010-09-22 01:55:23 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha2.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha2.tar.gz"
-						}
-					},
-					"4.5.0alpha1": {
-						"version": "4.5.0alpha1",
-						"date": "2010-08-24 07:41:55 UTC",
-						"type": "development",
-						"url": {
-							"zip": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha1.zip",
-							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-5-0alpha1.tar.gz"
-						}
-					}
-				}
-			},
-			"4.7": {
-				"releases": {
-					"4.7.9": {
-						breaking_changes: true
-					},
-					"4.7.0": {
-						breaking_changes: true
-					}
-				}
-			},
-			"6.0": {
-				"releases": {
-					"6.0.3": {
-						breaking_changes: true
 					}
 				}
 			}
