@@ -47,16 +47,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	checkNonOutdatedBranches: function() {
 		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
 			buttons =  buttonset.find( "input");
-
+			
 		buttons.prop( 'checked', false );
-		buttons.each( function() {
-			var button = $( this );
-				branch = button.attr( "data-filter" );
-
-			if ( branch >= 45 ) {
-				button.prop( 'checked', true );
-			}
-		});
+		buttons.not(".trash").prop( 'checked', true );
 		buttonset.buttonset( "refresh" );
 	},
 
@@ -261,6 +254,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"data-filter": index,
 				"class": value
 			})
+			.addClass( data.icon )
 			.appendTo( buttonSet )
 			.after ( $( '<label for="' + id + '">' + data.name + '</label>' ) )
 			.button({
