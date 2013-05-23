@@ -12,7 +12,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 	_start: function() {
 		this._super();
-		
+
 		this._drawButtons();
 		this._initButtonEvents();
 	},

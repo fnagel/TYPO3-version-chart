@@ -7,7 +7,7 @@
 	<link href="css/kube.css" rel="stylesheet">
 	<link href="css/isotope.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
-	
+
 	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -16,7 +16,7 @@
 <div id="page">
 
 	<h1>
-		<img src="img/typo3-logo.png" alt="TYPO3" title="TYPO3 is the leading Enterprise Open Source CMS." /> 
+		<img src="img/typo3-logo.png" alt="TYPO3" title="TYPO3 is the leading Enterprise Open Source CMS." />
 		Version Chart
 	</h1>
 	<p id="info"><a href="#info-content">More info</a></p>
@@ -31,7 +31,7 @@
 		<br />
 		<br />
 		It's powered by <a href="http://jquery.com">jQuery</a>, <a href="http://jqueryui.com">jQuery UI</a> and <a href="http://isotope.metafizzy.co/">jQuery Isotope</a>.
-		The used <a href="http://get.typo3.org/json">json</a> data is provided by the <a href="http://typo3.org/teams/server-team/">TYPO3 server team</a> 
+		The used <a href="http://get.typo3.org/json">json</a> data is provided by the <a href="http://typo3.org/teams/server-team/">TYPO3 server team</a>
 		and queried via <a href="http://developer.yahoo.com/yql/" title="Yahoo Query Language">YQL</a>. <em>Thanks for providing such great tools and services!</em>
 		<br />
 		<br />
@@ -39,18 +39,18 @@
 		Please feel free to add feature requests for adding additional information regarding specific TYPO3 versions or branches!
 		<br />
 		<br />
-		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the <a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>. 
+		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the <a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>.
 		It's Open Source - <em>inspiring people to share!</em>
 	</p>
-	
+
 	<p id="info" class="ui-helper-hidden">
-		
+
 	</p>
 
 	<div id="chart"></div>
 
 </div>
-	
+
 <script src="js/jquery-1.9.1.js"></script>
 <script src="js/jquery-ui-1.10.2.custom.js"></script>
 <script src="js/jquery.isotope.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 	var chart,
 		info = $("#info-content").hide(),
 		openDialog = (window.location.search.match(/[\?&]disable-dialog\b/)) ? 0 : 1;
-			
+
 	info.dialog({
 		title: "TYPO3 Version Chart",
 		width: 500,
@@ -82,17 +82,17 @@ $(function() {
 			}
 		},
 		close: function() {
-			chart.typo3VersionChart( "refreshDefaults" );			
+			chart.typo3VersionChart( "refreshDefaults" );
 			// remove close callback event
 			info.dialog( "option", "close", null );
 		}
 	});
-		
+
 	$("#info a").click( function(){
 		info.dialog();
 		return false;
 	});
-	
+
 	chart = $("#chart").typo3VersionChart();
 });
 </script>
