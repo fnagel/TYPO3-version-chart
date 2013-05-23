@@ -82,7 +82,9 @@ $(function() {
 			}
 		},
 		close: function() {
-			chart.typo3VersionChart( "refreshDefaults" );		
+			chart.typo3VersionChart( "refreshDefaults" );			
+			// remove close callback event
+			info.dialog( "option", "close", null );
 		}
 	});
 		
