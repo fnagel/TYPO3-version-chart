@@ -28,7 +28,10 @@ $.widget( "ui.typo3VersionChart", {
 			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new'
 		},		
 		// additional data to merge with the original json
-		typo3data: {}
+		typo3data: {},
+		
+		// callbacks
+		ready: null
 	},
 	
 	_create: function() {
@@ -49,7 +52,8 @@ $.widget( "ui.typo3VersionChart", {
 	_start: function() {
 		this._drawChart();
 		this._initIsotope();
-		this._initEvents();
+		this._initEvents();		
+		this._trigger( "ready" );
 	},
 	
 	refresh: function( filter ) {
