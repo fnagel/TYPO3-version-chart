@@ -103,8 +103,8 @@ $.widget( "ui.typo3VersionChart", {
 				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
 			});
 
-			// add branch item
-			html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>", "major ui-widget-header " ) );
+			// add branch item	
+			html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header " ) );
 		});
 
 		this.chart.html( html.join( "" ) );
@@ -122,7 +122,7 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
 		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
 		content.push( '</div>' );
-		content.push( '<div class="tags">' + this._renderTags( releaseData, branchIndex ) + '</div>' );
+		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
 				
 		return content.join( "" );
 	},
@@ -131,9 +131,28 @@ $.widget( "ui.typo3VersionChart", {
 		return '<div data-branch="' + this._convertVersion( branchIndex ) + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
 	},
 
-	_renderTags: function( releaseData, branchIndex ){
+	_renderBranchTags: function( branchData, branchIndex ){	
 		var tags = [];
-
+		
+		// outdated branch
+		if ( !branchData.active ) {
+			tags.push( this._renderTag( "trash", "", "info", "Outdated branch! Deprecated and no longer maintained." ) );
+		}
+		
+		// LTS
+		if ( branchIndex == 4.5 ) {
+			tags.push( this._renderTag( "clock", "", "info", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014." ) );
+		}
+		if ( branchIndex == 6.2 ) {
+			tags.push( this._renderTag( "clock", "", "info", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until October 2016." ) );
+		}		
+		
+		return tags.join( "" )	
+	},
+	
+	_renderItemTags: function( releaseData, branchIndex ){
+		var tags = [];
+		
 		// tag latest versions
 		if ( releaseData.version ==  this.typo3.meta.latest_stable) {
 			tags.push( this._renderTag( "check", "", "", "Latest stable release" ) );
@@ -146,11 +165,6 @@ $.widget( "ui.typo3VersionChart", {
 		}
 		if ( releaseData.version ==  this.typo3.meta.latest_deprecated) {
 			tags.push( this._renderTag( "check", "", "", "Latest obsolete stable release" ) );
-		}
-		
-		// outdated
-		if ( branchIndex < 4.5 ) {
-			tags.push( this._renderTag( "trash", "", "", "Outdated branch! Deprecated and no longer maintained." ) );
 		}
 		
 		// version type
@@ -173,23 +187,18 @@ $.widget( "ui.typo3VersionChart", {
 		if ( releaseData.breaking_changes ) {
 			tags.push( this._renderTag( "wrench", "typo3-type-breaking", "", "Introduces breaking changes. See Wiki for more information." ) );
 		}
-		
-		// LTS
-		if ( branchIndex == 4.5 ) {
-			tags.push( this._renderTag( "clock", "", "", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014." ) );
-		}
-		if ( branchIndex == 6.2 ) {
-			tags.push( this._renderTag( "clock", "", "", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until October 2016." ) );
-		}
 
 		return tags.join( "" )
 	},
 
-	_renderTag: function( icon, css, content, title ) {
-		if ( icon ) {
-			content = '<span class="ui-icon ui-icon-' + icon + '"></span>';
+	_renderTag: function( icon, css, state, title ) {
+		var content = '<span class="ui-icon ui-icon-' + icon + '"></span>';
+		
+		if ( !state ) {
+			state = "default";
 		}
-		return '<span class="ui-button ui-state-default ' + css + '" title="' + title + '">' + content + '</span>';
+		
+		return '<span class="ui-button ui-state-' + state + ' ' + css + '" title="' + title + '">' + content + '</span>';
 	},
 
 	_initEvents: function() {
