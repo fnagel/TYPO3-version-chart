@@ -23,7 +23,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		buttons.prop( 'checked', false );
 		$.each( types, function( index, data ) {
-			buttons.filter( "input.typo3-type-" + data ).prop( 'checked', true );
+			buttons.filter('[value="typo3-type-' + data +'"]').prop( 'checked', true );
 		});
 		buttonset.buttonset( "refresh" );
 	},
@@ -33,21 +33,14 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			buttons =  buttonset.find( "input");
 
 		buttons.prop( 'checked', false );
-		buttons.each( function() {
-			var button = $( this );
-				branch = button.attr( "data-filter" );
-
-			if ( branch.slice( 0, -1 ) == version ) {
-				button.prop( 'checked', true );
-			}
-		});
+		buttons.filter(".typo3-major-" + version ).prop( 'checked', true );
 		buttonset.buttonset( "refresh" );
 	},
 
 	checkNonOutdatedBranches: function() {
 		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
 			buttons =  buttonset.find( "input");
-			
+
 		buttons.prop( 'checked', false );
 		buttons.not(".trash").prop( 'checked', true );
 		buttonset.buttonset( "refresh" );
@@ -197,7 +190,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			var branchSort = that._convertVersion( branchIndex ),
 				icon = false;
-			
+
 			// LTS
 			if ( branchSort == 45 || branchSort == 62 ) {
 				icon = "clock";
@@ -210,6 +203,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			branches[ branchSort ] = {
 				name: branchIndex,
 				icon: icon,
+				css: "typo3-major-" + that._convertVersion( branchIndex, "major" ),
 			};
 		});
 
@@ -250,10 +244,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				type: "checkbox",
 				name: value,
 				value: value,
-				id: id,
-				"data-filter": index,
-				"class": value
+				id: id
 			})
+			.addClass( data.css )
 			.addClass( data.icon )
 			.appendTo( buttonSet )
 			.after ( $( '<label for="' + id + '">' + data.name + '</label>' ) )
