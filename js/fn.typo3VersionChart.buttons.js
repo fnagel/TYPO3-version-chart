@@ -11,8 +11,10 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	_start: function() {
-		this._drawButtons();
 		this._super();
+		
+		this._drawButtons();
+		this._initButtonEvents();
 	},
 
 	checkVersionTypes: function( types ){
@@ -68,7 +70,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		this.refresh( this._processForm() );
 	},
 
-	_initEvents: function() {
+	_initButtonEvents: function() {
 		var that = this;
 
 		// add event to buttons
@@ -79,8 +81,6 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				}
 			}
 		});
-
-		this._super();
 	},
 
 	_drawButtons: function() {
