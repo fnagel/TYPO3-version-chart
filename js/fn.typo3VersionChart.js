@@ -75,7 +75,6 @@ $.widget( "ui.typo3VersionChart", {
 				latest_old_stable: data.latest_old_stable,
 				latest_lts: data.latest_lts,
 				latest_deprecated: data.latest_deprecated,
-				major_versions: {},
 				versions_total: 0
 			}
 		};
@@ -98,7 +97,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			$.each( branchData.releases, function( releaseIndex, releaseData  ){
-				counter++;
+				that.typo3.meta.versions_total++;
 				
 				// add version item
 				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
@@ -109,7 +108,6 @@ $.widget( "ui.typo3VersionChart", {
 		});
 
 		this.chart.html( html.join( "" ) );
-		this.typo3.meta.versions_total = counter;
 	},
 
 	_renderItemInfo: function( branchIndex, releaseData ) {			
@@ -149,10 +147,12 @@ $.widget( "ui.typo3VersionChart", {
 		if ( releaseData.version ==  this.typo3.meta.latest_deprecated) {
 			tags.push( this._renderTag( "check", "", "", "Latest obsolete stable release" ) );
 		}
-		// deprecated
+		
+		// outdated
 		if ( branchIndex < 4.5 ) {
 			tags.push( this._renderTag( "trash", "", "", "Outdated branch! Deprecated and no longer maintained." ) );
 		}
+		
 		// version type
 		switch (releaseData.type) {
 			case "security":
@@ -168,13 +168,18 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "calendar", "typo3-type-" + releaseData.type, "", "Regular version" ) );
 				break;
 		}
+		
 		// breaking changes
 		if ( releaseData.breaking_changes ) {
-			tags.push( this._renderTag( "wrench", "typo3-type-breaking", "", "Introduces breaking changes" ) );
+			tags.push( this._renderTag( "wrench", "typo3-type-breaking", "", "Introduces breaking changes. See Wiki for more information." ) );
 		}
+		
 		// LTS
-		if ( branchIndex == 4.5 || branchIndex == 6.2 ) {
-			tags.push( this._renderTag( "clock", "", "", "Long Time Support (LTS): full support (bug fixes and security fixes) until April 2014." ) );
+		if ( branchIndex == 4.5 ) {
+			tags.push( this._renderTag( "clock", "", "", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014." ) );
+		}
+		if ( branchIndex == 6.2 ) {
+			tags.push( this._renderTag( "clock", "", "", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until October 2016." ) );
 		}
 
 		return tags.join( "" )
