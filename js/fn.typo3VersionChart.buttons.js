@@ -204,11 +204,13 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			var branchSort = that._convertVersion( branchIndex ),
 				icon = false;
-
-			if ( branchSort == 45 ) {
+			
+			// LTS
+			if ( branchSort == 45 || branchSort == 62 ) {
 				icon = "clock";
 			}
-			if ( branchSort < 45 ) {
+			// Outdated
+			if ( !branchData.active ) {
 				icon = "trash";
 			}
 
