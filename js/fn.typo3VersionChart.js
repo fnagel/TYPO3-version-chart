@@ -118,9 +118,9 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( '<p><small>' + releaseData.date.slice(0, -13) + '</small></p>' );
 		content.push( '<div class="ui-helper-hidden">' );
 		content.push( '<p>Released: ' + releaseData.date + '</p>' );
-		content.push( '<p>Release type: ' + releaseData.type + '</p>' );
 		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
 		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
+		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
 		content.push( '</div>' );
 		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
 
