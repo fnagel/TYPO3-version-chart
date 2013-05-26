@@ -10,11 +10,28 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
 	},
 
-	_start: function() {
+	_drawHtml: function() {
+		this._super();
+		
+		this.buttons = $( '<form id="buttons" class="ui-helper-clearfix">' ).prependTo( this.element );
+		this._drawMajorButtons();
+		this._drawBranchesBoxes();
+		this._drawTypeBoxes();
+		this._drawControlButtons();
+	},
+	
+	_initEvents: function() {
+		var that = this;
+		
 		this._super();
 
-		this._drawButtons();
-		this._initButtonEvents();
+		this._on( this.buttons, {
+			click: function( event ){
+				if ( $( event.target ).is( "input" ) ) {
+					that.refreshFromButtons();
+				}
+			}
+		});
 	},
 
 	checkVersionTypes: function( types ){
@@ -55,29 +72,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	refreshFromButtons: function( filter ) {
 		this.refresh( this._processForm() );
 	},
-
-	_initButtonEvents: function() {
-		var that = this;
-
-		// add event to buttons
-		this._on( this.buttons, {
-			click: function( event ){
-				if ( $( event.target ).is( "input" ) ) {
-					that.refreshFromButtons();
-				}
-			}
-		});
-	},
-
-	_drawButtons: function() {
-		this.buttons = $( '<form id="buttons" class="ui-helper-clearfix">' ).prependTo( this.element );
-
-		this._drawMajorButtons();
-		this._drawBranchesBoxes();
-		this._drawTypeBoxes();
-		this._drawControlButtons();
-	},
-
+	
 	_processForm: function() {
 		var that = this,
 			types = [ ".major" ],

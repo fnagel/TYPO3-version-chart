@@ -19,13 +19,24 @@
 		<img src="img/typo3-logo.png" alt="TYPO3" title="TYPO3 is the leading Enterprise Open Source CMS." />
 		Version Chart
 	</h1>
+	
 	<p id="info"><a href="#info-content">More info</a></p>
+	
 	<p>
 		A TYPO3 version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>.
 	</p>
-	<p>
-		<noscript>Please enable Java-Script!</noscript>
-	</p>
+	
+	<noscript>	
+		<div class="ui-widget">
+			<div style="padding: 0 .7em;" class="ui-state-error ui-corner-all">
+				<p>
+					<span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span>
+					<strong>Error:</strong> You need to enable Java-Script!
+				</p>
+			</div>
+		</div>
+	</noscript>
+	
 	<p id="info-content" class="ui-helper-hidden-accessible">
 		A TYPO3 version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>.
 		<br />
@@ -43,10 +54,6 @@
 		It's Open Source - <em>inspiring people to share!</em>
 	</p>
 
-	<p id="info" class="ui-helper-hidden">
-
-	</p>
-
 	<div id="chart"></div>
 
 </div>
@@ -55,45 +62,24 @@
 <script src="js/jquery-ui-1.10.2.custom.js"></script>
 <script src="js/jquery.isotope.js"></script>
 <script src="js/fn.typo3VersionChart.js"></script>
+<script src="js/fn.typo3VersionChart.dialog.js"></script>
 <script src="js/fn.typo3VersionChart.buttons.js"></script>
-<script src="data/fn.typo3VersionChart.typo3data.js"></script>
+<script src="js/fn.typo3VersionChart.typo3data.js"></script>
 <script>
 $(function() {
-	var chart,
-		info = $("#info-content").hide(),
-		openDialog = (window.location.search.match(/[\?&]disable-dialog\b/)) ? 0 : 1;
+	var info = $("#info-content").hide(),
+		chart, dialogOptions;
 
-	info.dialog({
-		title: "TYPO3 Version Chart",
-		width: 500,
-		modal: true,
-		autoOpen: openDialog,
-		open: function() {
-			$('.ui-widget-overlay').bind('click', function() {
-				info.dialog('close');
-			});
-		},
-		buttons: {
-			"Report issue": function() {
-				window.open( "https://github.com/fnagel/TYPO3-version-chart/issues/new", '_newtab' );
-			},
-			"Fork me on GitHub": function() {
-				window.open( "https://github.com/fnagel/TYPO3-version-chart", '_newtab' );
-			}
-		},
-		close: function() {
-			chart.typo3VersionChart( "refreshDefaults" );
-			// remove close callback event
-			info.dialog( "option", "close", null );
+	chart = $("#chart").typo3VersionChart({
+		dialog: {
+			element: info
 		}
-	});
-
-	$("#info a").click( function(){
+	 });
+	 	 
+	$("#info a").click( function( event ){
 		info.dialog();
-		return false;
+		event.preventDefault();
 	});
-
-	chart = $("#chart").typo3VersionChart();
 });
 </script>
 

@@ -39,20 +39,26 @@ $.widget( "ui.typo3VersionChart", {
 		this.id = this.element.uniqueId().attr( "id" );
 
 		this.xhr = $.ajax($.extend({
-			success: function( data ) {
-				that._initSource( data );
-				that._start();
+			success: function( data ) {	
+				that._start( data );
 			},
 			error: function( xhr,err ) {
-				that._showMsg( "Could not load JSON data!" );
+				that._showMsg( "Could not load JSON data! Please try again later!" );
 			}
 		}, that.options.ajax ));
 	},
 
-	_start: function() {
-		this._drawChart();
+	_start: function( data ) {
+		if ( !data && $.isEmptyObject(data) ) {
+			alert("Problems with the JSON data. Please try again later...");
+			return;
+		}
+		
+		this._initSource( data );	
+		this._drawHtml();
 		this._initIsotope();
 		this._initEvents();
+		
 		this._trigger( "ready" );
 	},
 
@@ -64,11 +70,6 @@ $.widget( "ui.typo3VersionChart", {
 		// normalize YQL responses
 		if ( data.query ) {
 			data = data.query.results.json;
-		}
-		
-		if ( !( data && data.length ) ) {
-			alert("Problems with the JSON data. Try again later...");
-			return false;
 		}
 
 		$.extend( true, data, this.options.typo3data );
@@ -93,12 +94,13 @@ $.widget( "ui.typo3VersionChart", {
 		this.typo3.versions = data;
 	},
 
-	_drawChart: function() {
+	_drawHtml: function() {
 		var that = this,
 			html = []
 			counter = 0;
 
-		this.chart = $( "<div>" ).appendTo( this.element )
+		this.chart = $( "<div>" );
+		this.element.empty().append( this.chart );
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			$.each( branchData.releases, function( releaseIndex, releaseData  ){
