@@ -65,6 +65,11 @@ $.widget( "ui.typo3VersionChart", {
 		if ( data.query ) {
 			data = data.query.results.json;
 		}
+		
+		if ( !( data && data.length ) ) {
+			alert("Problems with the JSON data. Try again later...");
+			return false;
+		}
 
 		$.extend( true, data, this.options.typo3data );
 
