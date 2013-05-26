@@ -21,11 +21,21 @@ $.widget( "ui.typo3VersionChart", {
 	defaultElement: "<div>",
 	options: {
 		ajax: {
-			dataType: 'json',
 			// TYPO3 version json URL
+			// dataType: 'json',
 			// url: "./data/typo3.json"
+
 			// using YQL for cross domain AJAX request
-			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new'
+			dataType: 'yql-json',
+			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new',
+			converters: {
+				// add YQL json converter
+				"text yql-json": function( raw ){
+					var data = $.parseJSON(raw);
+					// normalize YQL responses
+					return data.query.results.json;
+				}
+			},
 		},
 		// additional data to merge with the original json
 		typo3data: {},
@@ -39,26 +49,26 @@ $.widget( "ui.typo3VersionChart", {
 		this.id = this.element.uniqueId().attr( "id" );
 
 		this.xhr = $.ajax($.extend({
-			success: function( data ) {	
+			success: function( data ) {
 				that._start( data );
 			},
 			error: function( xhr,err ) {
-				that._showMsg( "Could not load JSON data! Please try again later!" );
+				that._showMsg( "Could not load JSON data! Please try again later...", "Error" );
 			}
 		}, that.options.ajax ));
 	},
 
 	_start: function( data ) {
-		if ( !data && $.isEmptyObject(data) ) {
-			alert("Problems with the JSON data. Please try again later...");
+		if ( !( data && $.isPlainObject( data ) && !$.isEmptyObject( data ) ) ) {
+			this._showMsg( "Problems with the JSON data. Please reload.", "Error" );
 			return;
 		}
-		
-		this._initSource( data );	
+		this._initSource( data );
+
 		this._drawHtml();
 		this._initIsotope();
 		this._initEvents();
-		
+
 		this._trigger( "ready" );
 	},
 
@@ -67,11 +77,6 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_initSource: function( data ) {
-		// normalize YQL responses
-		if ( data.query ) {
-			data = data.query.results.json;
-		}
-
 		$.extend( true, data, this.options.typo3data );
 
 		// todo: rework this to a for loop checking for all non integers
@@ -265,11 +270,15 @@ $.widget( "ui.typo3VersionChart", {
 		}
 	},
 
-	_showMsg: function( msg ) {
-		$( "<div>", { html: msg } ).dialog({
-			title: "Info",
-			modal: true
-		});
+	_showMsg: function( msg, title ) {
+		if ($.ui.dialog) {
+			$( "<div>", { html: msg } ).dialog({
+				title: title,
+				modal: true
+			});
+		} else {
+			alert( title + ": " + msg );
+		}
 	},
 
 	_destroy: function() {
