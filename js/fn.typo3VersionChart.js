@@ -36,6 +36,10 @@ $.widget( "ui.typo3VersionChart", {
 					return data.query.results.json;
 				}
 			},
+			
+			// using new beta API
+			// dataType: 'jsonp',
+			// url: 'https://www.causal.ch/?eID=extensions&route=/v2'
 		},
 		// additional data to merge with the original json
 		typo3data: {},
@@ -51,7 +55,8 @@ $.widget( "ui.typo3VersionChart", {
 		this._log( "AJAX request started: load JSON data." );
 		this.xhr = $.ajax($.extend({
 			success: function( data ) {
-				that.start( data );
+				console.log(data);
+				// that.start( data );
 			},
 			error: function( xhr,err ) {
 				that._showMsg( "Could not load JSON data! Please try again later...", "Error" );
