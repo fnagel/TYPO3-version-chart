@@ -19,14 +19,14 @@
 		<img src="img/typo3-logo.png" alt="TYPO3" title="TYPO3 is the leading Enterprise Open Source CMS." />
 		Version Chart
 	</h1>
-	
+
 	<p id="info"><a href="#info-content">More info</a></p>
-	
+
 	<p>
 		A TYPO3 version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>.
 	</p>
-	
-	<noscript>	
+
+	<noscript>
 		<div class="ui-widget">
 			<div style="padding: 0 .7em;" class="ui-state-error ui-corner-all">
 				<p>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</noscript>
-	
+
 	<p id="info-content" class="ui-helper-hidden-accessible">
 		A TYPO3 version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>.
 		<br />
@@ -67,15 +67,14 @@
 <script src="js/fn.typo3VersionChart.typo3data.js"></script>
 <script>
 $(function() {
-	var info = $("#info-content"),
-		chart, dialogOptions;
+	var info = $("#info-content");
 
-	chart = $("#chart").typo3VersionChart({
+	$("#chart").typo3VersionChart({
 		dialog: {
 			element: info
 		}
 	 });
-	 	 
+
 	$("#info a").click( function( event ){
 		info.dialog();
 		event.preventDefault();
