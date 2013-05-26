@@ -18,8 +18,6 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		this._drawBranchesBoxes();
 		this._drawTypeBoxes();
 		this._drawControlButtons();
-		
-		this._log( "Finished building button HTML." );
 	},
 	
 	_initEvents: function() {
@@ -34,8 +32,6 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				}
 			}
 		});
-		
-		this._log( "Button events initialized." );
 	},
 
 	checkVersionTypes: function( types ){
@@ -141,7 +137,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		$( "<buttton>", {
 			title: "Show all non-dev versions of all maintained branches",
-			text: "reset",
+			text: "show default",
 			click: function( event ) {
 				that.refreshDefaults();
 				event.preventDefault();

@@ -25,20 +25,17 @@
 	</p>
 
 	<noscript>
-		<div class="ui-widget">
-			<div style="padding: 0 .7em;" class="ui-state-error ui-corner-all">
-				<p>
-					<span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span>
-					<strong>Error:</strong> You need to enable Java-Script!
-				</p>
-			</div>
+		<div style="width: 10em; padding: 1em; margin: 1em;" class="ui-state-error ui-corner-all">
+			<p>
+				<span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span>
+				<strong>Error:</strong> You need to enable Java-Script! This won't work without.
+			</p>
 		</div>
 	</noscript>
 	
 	<nav id="meta" class="nav-h">
 		<ul>
 			<li><a href="#dialog-info">Info</a></li>
-			<li><a href="#dialog-usage">Usage</a></li>
 			<li><a href="">Report issue</a></li>
 		<ul>
 	</nav>
@@ -58,25 +55,9 @@
 		<br />
 		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the archive: 
 		<a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>.
-		<a href="">zip</a> | <a href="">zip</a>
 		It's Open Source - <em>inspiring people to share!</em>
 	</div>
-
-	<div id="dialog-usage" class="ui-helper-hidden">
-		Possible start configurations:
-		<ul>
-			<li>Disable start dialog: <a href="?dialog=0">?dialog=0</a></li>
-			<li>Disable start dialog status log: <a href="?log=0">?log=0</a></li>
-			<li>
-				Initial sorting:
-				<ul>
-					<li>Show all versions: <a href="?sorting=all">?sorting=all</a></li>
-					<li>All active non-dev versions: <a href="?sorting=default">?sorting=default</a></li>
-				</ul>
-			</li>
-		<ul>
-	</div>
-
+	
 	<div id="chart"></div>
 
 </div>
@@ -90,16 +71,16 @@
 <script src="js/fn.typo3VersionChart.typo3data.js"></script>
 <script>
 $(function() {
-	var dialogInfo = $("#dialog-info");
+	var dialogInfoId = "#dialog-info";
 
-	$("#chart").typo3VersionChart({
+	$( "#chart" ).typo3VersionChart({
 		dialog: {
-			element: dialogInfo
+			element: $( dialogInfoId )
 		}
 	 });
 
-	$("#meta a[href='#dialog-info']").click( function( event ){
-		dialogInfo.dialog( "open" );
+	$( "#meta a[href='" + dialogInfoId + "']" ).click( function( event ){
+		$( dialogInfoId ).dialog( "open" );
 		event.preventDefault();
 	});
 });

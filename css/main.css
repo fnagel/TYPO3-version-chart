@@ -156,10 +156,7 @@ a:hover {
 
 #dialog-info .log {
 	font-size: 0.8em;
-	height: 75px;
-	overflow: auto;
-	border: 1px solid #cccccc;
-	padding: 0.3em;
+	margin-top: 2em;
 }
 
 /* =Responsive

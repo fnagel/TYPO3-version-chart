@@ -46,8 +46,6 @@ $.widget( "ui.typo3VersionChart", {
 
 	_create: function() {
 		var that = this;
-		this._log( "Start initialization." );
-		
 		this.id = this.element.uniqueId().attr( "id" );	
 		
 		this._log( "AJAX request started: load JSON data." );
@@ -100,14 +98,14 @@ $.widget( "ui.typo3VersionChart", {
 		delete data.latest_deprecated;
 
 		this.typo3.versions = data;
-		
-		this._log( "JSON data merged and normalized" );
 	},
 
 	_drawHtml: function() {
 		var that = this,
 			html = []
 			counter = 0;
+		
+		this._log( "Building HTML." );
 					
 		this.chart = $( "<div>" );
 		this.element.append( this.chart );
@@ -129,8 +127,6 @@ $.widget( "ui.typo3VersionChart", {
 		}
 
 		this.chart.html( html.join( "" ) );
-		
-		this._log( "Finished building chart HTML." );
 	},
 
 	_renderItemInfo: function( branchIndex, releaseData ) {
@@ -241,8 +237,6 @@ $.widget( "ui.typo3VersionChart", {
 
 		// add tooltips
 		this.document.tooltip();
-		
-		this._log( "Chart events initialized." );
 	},
 
 	_initIsotope: function() {

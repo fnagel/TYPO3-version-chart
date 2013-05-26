@@ -9,13 +9,12 @@
 $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
 		dialog: {
-			showLog: window.location.search.match( /[\?&]log\b/ ) || 1,
 			element: null,
 			options: {
 				title: "TYPO3 Version Chart",
 				width: 500,
 				modal: true,
-				autoOpen: window.location.search.match( /[\?&]dialog\b/ ) || 1
+				autoOpen: ( window.location.search.match( /[\?&]dialog=0/ ) ) ? 0 : 1
 			}
 		}
 	},
@@ -37,7 +36,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"Show all": function() {
 							that.options.dialog.element.dialog( "close" );
 						},
-						"Show active & non-dev": function() {
+						"Show active (default)": function() {
 							that.refreshDefaults();
 							that.options.dialog.element.dialog( "close" );
 						}
@@ -46,43 +45,14 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				this.options.dialog.options
 			);
 
-		if ( this.options.dialog.showLog ) {
-			this._logQueue = new Array();
-			this._logFireTimeout = true;
-			
-			this._logElement = $( '<div class="log">' )
-				.appendTo( this.options.dialog.element )
-				.before( "<br /><br /><p>Status:</p>" );
-		}
-
+		this._logElement = $( '<div class="log">' ).appendTo( this.options.dialog.element );
+		
 		this.options.dialog.element.dialog( dialogOptions );
 	},
 
 	_log: function( msg ) {
 		this._super( msg );
-		
-		if ( this.options.dialog.showLog ) {
-			this._logQueue.unshift( msg );
-			
-			if ( this._logFireTimeout ) {
-				this._updateLog();
-			}
-		}
-	},
-
-	_updateLog: function( msg ) {
-		var that = this;
-		
-		this._logFireTimeout = false;		
-		this._logElement.prepend( "<p>" + this._logQueue.pop() + "</p>" );
-		
-		window.setTimeout( function() {	
-			if ( that._logQueue.length ) {
-				that._updateLog()	
-			} else {
-				that._logFireTimeout = true;
-			}	
-		}, 150 );
+		this._logElement.html( "Status: " + msg );
 	}
 });
 
