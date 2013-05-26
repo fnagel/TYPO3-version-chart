@@ -46,29 +46,28 @@ $.widget( "ui.typo3VersionChart", {
 
 	_create: function() {
 		var that = this;
-		this.id = this.element.uniqueId().attr( "id" );
-
+		this._log( "Start initialization." );
+		
+		this.id = this.element.uniqueId().attr( "id" );	
+		
+		this._log( "AJAX request started: load JSON data." );
 		this.xhr = $.ajax($.extend({
 			success: function( data ) {
-				that._start( data );
+				that.start( data );
 			},
 			error: function( xhr,err ) {
 				that._showMsg( "Could not load JSON data! Please try again later...", "Error" );
 			}
 		}, that.options.ajax ));
 	},
-
-	_start: function( data ) {
-		if ( !( data && $.isPlainObject( data ) && !$.isEmptyObject( data ) ) ) {
-			this._showMsg( "Problems with the JSON data. Please reload.", "Error" );
-			return;
-		}
-		this._initSource( data );
-
+	
+	start: function( data ) {
+		this._initSource( data );		
 		this._drawHtml();
-		this._initIsotope();
-		this._initEvents();
+		this._initIsotope();		
+		this._initEvents();		
 
+		this._log( "<strong>TYPO3 version chart is ready!</strong>" );
 		this._trigger( "ready" );
 	},
 
@@ -76,7 +75,11 @@ $.widget( "ui.typo3VersionChart", {
 		this.chart.isotope({ filter: filter });
 	},
 
-	_initSource: function( data ) {
+	_initSource: function( data ) {		
+		if ( !(data && $.isPlainObject( data ) && !$.isEmptyObject( data ) ) ) {
+			this._showMsg( "Problems with the JSON data. Please reload.", "Error" );
+		}
+	
 		$.extend( true, data, this.options.typo3data );
 
 		// todo: rework this to a for loop checking for all non integers
@@ -97,29 +100,37 @@ $.widget( "ui.typo3VersionChart", {
 		delete data.latest_deprecated;
 
 		this.typo3.versions = data;
+		
+		this._log( "JSON data merged and normalized" );
 	},
 
 	_drawHtml: function() {
 		var that = this,
 			html = []
 			counter = 0;
-
+					
 		this.chart = $( "<div>" );
-		this.element.empty().append( this.chart );
+		this.element.append( this.chart );
+		
+		try {
+			$.each( this.typo3.versions, function( branchIndex, branchData ){
+				$.each( branchData.releases, function( releaseIndex, releaseData  ){
+					that.typo3.meta.versions_total++;
 
-		$.each( this.typo3.versions, function( branchIndex, branchData ){
-			$.each( branchData.releases, function( releaseIndex, releaseData  ){
-				that.typo3.meta.versions_total++;
+					// add version item
+					html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
+				});
 
-				// add version item
-				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
+				// add branch item
+				html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header " ) );
 			});
-
-			// add branch item
-			html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header " ) );
-		});
+		} catch ( error ) {
+			this._showMsg( "JSON data seems invalid.", "Error" );
+		}
 
 		this.chart.html( html.join( "" ) );
+		
+		this._log( "Finished building chart HTML." );
 	},
 
 	_renderItemInfo: function( branchIndex, releaseData ) {
@@ -215,8 +226,7 @@ $.widget( "ui.typo3VersionChart", {
 
 	_initEvents: function() {
 		// add dialogs
-		this.items = this.chart.find(".item");
-		this._on( this.items.filter( ".item:not(.major)") , {
+		this._on( this.chart.find(".item:not(.major)") , {
 			click: function( event ) {
 				var link = $( event.currentTarget );
 				$( "<div>", { html: link.find( ".ui-helper-hidden" ).html() } ).dialog({
@@ -230,24 +240,31 @@ $.widget( "ui.typo3VersionChart", {
 		});
 
 		// add tooltips
-		this.element.tooltip();
+		this.document.tooltip();
+		
+		this._log( "Chart events initialized." );
 	},
 
 	_initIsotope: function() {
-		this.chart.isotope({
-			itemSelector : '.item',
-			layoutMode : 'categoryRows',
-			categoryRows : {
-				gutter : 30
-			},
-			getSortData : {
-				branch : function ( item ) {
-					return item.attr('data-branch');
-				}
-			},
-			sortBy : 'branch',
-			sortAscending : false,
-		});
+		this.chart.isotope(
+			// options
+			{
+				itemSelector : '.item',
+				layoutMode : 'categoryRows',
+				categoryRows : {
+					gutter : 30
+				},
+				getSortData : {
+					branch : function ( item ) {
+						return item.attr('data-branch');
+					}
+				},
+				sortBy : 'branch',
+				sortAscending : false,
+			}, 
+			// create callback
+			this._log( "jQuery Isotope initialized." )
+		);
 	},
 
 	_convertVersion: function( version, key ) {
@@ -271,14 +288,22 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_showMsg: function( msg, title ) {
+		var text = title + ": " + msg;
+		
+		this._log( text );	
+		
 		if ($.ui.dialog) {
 			$( "<div>", { html: msg } ).dialog({
 				title: title,
 				modal: true
 			});
 		} else {
-			alert( title + ": " + msg );
+			alert( text );
 		}
+	},
+
+	_log: function( msg ) {
+		// console.log( msg );
 	},
 
 	_destroy: function() {

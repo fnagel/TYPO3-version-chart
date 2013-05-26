@@ -20,8 +20,6 @@
 		Version Chart
 	</h1>
 
-	<p id="info"><a href="#info-content">More info</a></p>
-
 	<p>
 		A TYPO3 version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>.
 	</p>
@@ -36,8 +34,16 @@
 			</div>
 		</div>
 	</noscript>
+	
+	<nav id="meta" class="nav-h">
+		<ul>
+			<li><a href="#dialog-info">Info</a></li>
+			<li><a href="#dialog-usage">Usage</a></li>
+			<li><a href="">Report issue</a></li>
+		<ul>
+	</nav>
 
-	<p id="info-content" class="ui-helper-hidden-accessible">
+	<div id="dialog-info" class="ui-helper-hidden">
 		A TYPO3 version visualization made by <a href="http://www.felixnagel.com">Felix Nagel</a>.
 		<br />
 		<br />
@@ -50,9 +56,26 @@
 		Please feel free to add feature requests for adding additional information regarding specific TYPO3 versions or branches!
 		<br />
 		<br />
-		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the <a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>.
+		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the archive: 
+		<a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>.
+		<a href="">zip</a> | <a href="">zip</a>
 		It's Open Source - <em>inspiring people to share!</em>
-	</p>
+	</div>
+
+	<div id="dialog-usage" class="ui-helper-hidden">
+		Possible start configurations:
+		<ul>
+			<li>Disable start dialog: <a href="?dialog=0">?dialog=0</a></li>
+			<li>Disable start dialog status log: <a href="?log=0">?log=0</a></li>
+			<li>
+				Initial sorting:
+				<ul>
+					<li>Show all versions: <a href="?sorting=all">?sorting=all</a></li>
+					<li>All active non-dev versions: <a href="?sorting=default">?sorting=default</a></li>
+				</ul>
+			</li>
+		<ul>
+	</div>
 
 	<div id="chart"></div>
 
@@ -67,16 +90,16 @@
 <script src="js/fn.typo3VersionChart.typo3data.js"></script>
 <script>
 $(function() {
-	var info = $("#info-content");
+	var dialogInfo = $("#dialog-info");
 
 	$("#chart").typo3VersionChart({
 		dialog: {
-			element: info
+			element: dialogInfo
 		}
 	 });
 
-	$("#info a").click( function( event ){
-		info.dialog();
+	$("#meta a[href='#dialog-info']").click( function( event ){
+		dialogInfo.dialog( "open" );
 		event.preventDefault();
 	});
 });

@@ -30,17 +30,6 @@ a:hover {
 
 /* =Layout
 -----------------------------------------------------------------------------*/
-#top-gradient {
-	width: 100%;
-	height: 20em;
-	position: absolute;
-	top: 0;
-	background-image: linear-gradient(bottom, white 33%, #EDEDED 100%);
-	background-image: -o-linear-gradient(bottom, white 33%, #EDEDED 100%);
-	background-image: -moz-linear-gradient(bottom, white 33%, #EDEDED 100%);
-	background-image: -webkit-linear-gradient(bottom, white 33%, #EDEDED 100%);
-	background-image: -ms-linear-gradient(bottom, white 33%, #EDEDED 100%);
-}
 
 #page {
 	width: 98%;
@@ -68,6 +57,50 @@ a:hover {
 #chart .item strong {
 	color: #FF8700;
 }
+
+
+/* =Header
+-----------------------------------------------------------------------------*/
+
+#top-gradient {
+	width: 100%;
+	height: 20em;
+	position: absolute;
+	top: 0;
+	background-image: linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -o-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -moz-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -webkit-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -ms-linear-gradient(bottom, white 33%, #EDEDED 100%);
+}
+
+#meta {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+#buttons {
+	margin: 2em 0;
+	max-width: 90em;
+}
+
+#buttons .ui-buttonset  {
+	float: left;
+	margin: 0 1em 1em 1em;
+}
+#buttons .ui-button  {
+    font-size: 0.9em;
+}
+#buttons .ui-button  .ui-icon {
+	margin-top: -10px;
+}
+
+/* =JQuery UI Tags
+-----------------------------------------------------------------------------*/
 
 #chart .item  .tags{
 	position: absolute;
@@ -104,25 +137,12 @@ a:hover {
     background-position: -64px -144px;
 }
 
-#info {
-	position: absolute;
-	top: 0;
-	right: 0;
+.tags .ui-button  {
+    cursor: help;
 }
 
-/* =Header
------------------------------------------------------------------------------*/
 
-
-
-/* =Nav
------------------------------------------------------------------------------*/
-#buttons {
-	margin: 2em 1em;
-	max-width: 90em;
-}
-
-/* =Misc
+/* =JQuery UI Dialog
 -----------------------------------------------------------------------------*/
 
 .ui-dialog  {
@@ -134,25 +154,27 @@ a:hover {
     padding: 0.2em 1em;
 }
 
-#buttons .ui-buttonset  {
-	float: left;
-	margin: 0 1em 1em 1em;
-}
-#buttons .ui-button  {
-    font-size: 0.9em;
-}
-#buttons .ui-button  .ui-icon {
-	margin-top: -10px;
+#dialog-info .log {
+	font-size: 0.8em;
+	height: 75px;
+	overflow: auto;
+	border: 1px solid #cccccc;
+	padding: 0.3em;
 }
 
-.tags .ui-button  {
-    cursor: help;
-}
-
-/* =Footer
+/* =Responsive
 -----------------------------------------------------------------------------*/
 
-
+@media (max-width: 650px) {
+	#meta {
+		margin-top: 1em;
+		position: relative;
+	}
+	#page {
+		width: 95%;
+		margin: 1em auto;
+	}
+}
 
 /* =Helper
 -----------------------------------------------------------------------------*/

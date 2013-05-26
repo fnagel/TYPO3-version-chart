@@ -478,3 +478,177 @@ table.bordered .thead-black td,
 table.bordered .thead-black th {
   border: 1px solid #444;
 }
+/* =Navs
+-----------------------------------------------------------------------------*/
+/* Horizontal */
+.nav-h,
+.nav-g {
+  margin-bottom: 1.5em;
+}
+.nav-h:after,
+.nav-g:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.nav-h ul,
+.nav-g ul {
+  list-style: none;
+  margin: 0;
+}
+.nav-h ul:after,
+.nav-g ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.nav-h ul li,
+.nav-g ul li {
+  float: left;
+  margin-right: 1.5em;
+}
+.nav-h ul li a,
+.nav-h ul li span,
+.nav-g ul li a,
+.nav-g ul li span {
+  display: block;
+}
+.nav-h ul li a,
+.nav-g ul li a {
+  color: #000000;
+  text-decoration: none;
+}
+.nav-h ul li a:hover,
+.nav-g ul li a:hover {
+  color: #c72020;
+  text-decoration: underline;
+}
+.nav-h ul li span,
+.nav-g ul li span {
+  color: #999999;
+}
+/* Vertical */
+.nav-v {
+  margin-bottom: 1.5em;
+}
+.nav-v ul {
+  list-style: none;
+  margin: 0;
+}
+.nav-v ul li {
+  border-bottom: 1px solid #eee;
+}
+.nav-v ul li ul {
+  margin-left: 2em;
+  font-size: .95em;
+}
+.nav-v ul li ul li:last-child {
+  border-bottom: none;
+}
+.nav-v ul li ul li a,
+.nav-v ul li ul li span {
+  padding: 4px 0;
+}
+.nav-v ul li a,
+.nav-v ul li span {
+  display: block;
+  padding: 5px 0;
+}
+.nav-v ul li a {
+  color: #000000;
+  text-decoration: none;
+}
+.nav-v ul li a:hover {
+  color: #c72020;
+  text-decoration: underline;
+}
+.nav-v ul li span {
+  color: #999999;
+}
+
+}
+/* =Responsive Mobile
+-----------------------------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+  .row .half,
+  .row .third,
+  .row .quarter,
+  .row .fifth,
+  .row .sixth,
+  .row .twothird,
+  .row .twofifth,
+  .row .threefifth,
+  .row .fourfifth,
+  .row .fivesixth,
+  .row .threequarter {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 1.5em;
+  }
+  .push-half,
+  .push-threequarter,
+  .push-quarter,
+  .push-third,
+  .push-twothird,
+  .push-fifth,
+  .push-twofifth,
+  .push-threefifth,
+  .push-fourfifth,
+  .push-sixth,
+  .push-fivesixth {
+    left: 0;
+  }
+  .row .pull-right {
+    float: none;
+  }
+  /*
+  		Blocks
+  	*/
+  .block-two,
+  .block-three,
+  .block-four,
+  .block-five,
+  .block-six {
+    margin-left: 0;
+    margin-bottom: 1.5em;
+  }
+  .block-two > li,
+  .block-three > li,
+  .block-four > li,
+  .block-five > li,
+  .block-six > li {
+    float: none;
+    margin: 0;
+    width: 100%;
+  }
+  /*
+  		Navs
+  	*/
+  .nav-g,
+  .nav-g ul,
+  .nav-g ul li,
+  .nav-g,
+  .nav-v ul,
+  .nav-v,
+  .nav-tabs ul,
+  .nav-pills,
+  .nav-pills ul {
+    float: none;
+  }
+  .nav-g ul li {
+    margin: 0;
+    margin-bottom: 1px;
+  }
+  .nav-tabs ul li {
+    float: none;
+  }
+  .nav-tabs ul li a,
+  .nav-tabs ul li span {
+    margin-top: 0;
+    bottom: 0;
+  }
+}
