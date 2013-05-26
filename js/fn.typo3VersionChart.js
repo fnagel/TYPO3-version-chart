@@ -55,8 +55,7 @@ $.widget( "ui.typo3VersionChart", {
 		this._log( "AJAX request started: load JSON data." );
 		this.xhr = $.ajax($.extend({
 			success: function( data ) {
-				console.log(data);
-				// that.start( data );
+				that.start( data );
 			},
 			error: function( xhr,err ) {
 				that._showMsg( "Could not load JSON data! Please try again later...", "Error" );
