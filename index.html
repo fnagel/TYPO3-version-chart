@@ -32,7 +32,7 @@
 			</p>
 		</div>
 	</noscript>
-	
+
 	<nav id="meta" class="nav-h">
 		<ul>
 			<li><a href="#dialog-info">Info</a></li>
@@ -53,11 +53,11 @@
 		Please feel free to add feature requests for adding additional information regarding specific TYPO3 versions or branches!
 		<br />
 		<br />
-		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the archive: 
+		Grab the source at <a href="https://github.com/fnagel/TYPO3-version-chart">GitHub</a> or download the archive:
 		<a href="https://github.com/fnagel/TYPO3-version-chart/archive/master.zip">latest zip</a>.
 		It's Open Source - <em>inspiring people to share!</em>
 	</div>
-	
+
 	<div id="chart"></div>
 
 </div>
@@ -66,21 +66,39 @@
 <script src="js/jquery-ui-1.10.2.custom.js"></script>
 <script src="js/jquery.isotope.js"></script>
 <script src="js/fn.typo3VersionChart.js"></script>
-<script src="js/fn.typo3VersionChart.dialog.js"></script>
 <script src="js/fn.typo3VersionChart.buttons.js"></script>
 <script src="js/fn.typo3VersionChart.typo3data.js"></script>
 <script>
 $(function() {
-	var dialogInfoId = "#dialog-info";
-
-	$( "#chart" ).typo3VersionChart({
-		dialog: {
-			element: $( dialogInfoId )
-		}
-	 });
+	var dialogInfoId = "#dialog-info",
+		buttonsOptions = {
+			"Show all": function() {
+				dialogInfo.dialog( "close" );
+			},
+			"Show active (default)": function() {
+				chart.typo3VersionChart( "refreshDefaults" );
+				dialogInfo.dialog( "close" );
+			}
+		},
+		dialogInfo = $( dialogInfoId ).dialog({
+			title: "TYPO3 Version Chart",
+			width: 550,
+			modal: true,
+			autoOpen: ( window.location.search.match( /[\?&]dialog=0/ ) ) ? 0 : 1,
+			open: function() {
+				$('body > .ui-widget-overlay').on('click', function() {
+					dialogInfo.dialog('close');
+				});
+			}
+		}),
+		chart = $( "#chart" ).typo3VersionChart({
+			ready: function() {
+				dialogInfo.dialog( "option", "buttons", buttonsOptions );
+			}
+		});
 
 	$( "#meta a[href='" + dialogInfoId + "']" ).click( function( event ){
-		$( dialogInfoId ).dialog( "open" );
+		dialogInfo.dialog( "open" );
 		event.preventDefault();
 	});
 });
