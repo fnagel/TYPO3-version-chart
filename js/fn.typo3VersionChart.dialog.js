@@ -24,6 +24,25 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		this._super();
 	},
 
+	start: function( data ) {
+		var that = this,
+			buttonsOptions = {
+				"Show all": function() {
+					that.options.dialog.element.dialog( "close" );
+				},
+				"Show active (default)": function() {
+					that.refreshDefaults();
+					that.options.dialog.element.dialog( "close" );
+				}
+			};
+
+		this._super( data );
+		// ready callback is fired right before this line
+		this.options.dialog.element.dialog( "option", "buttons", buttonsOptions );
+
+
+	},
+
 	_addDialog: function() {
 		var that = this,
 			dialogOptions = $.extend({
@@ -31,22 +50,13 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						$('body > .ui-widget-overlay').on('click', function() {
 							that.options.dialog.element.dialog('close');
 						});
-					},
-					buttons: {
-						"Show all": function() {
-							that.options.dialog.element.dialog( "close" );
-						},
-						"Show active (default)": function() {
-							that.refreshDefaults();
-							that.options.dialog.element.dialog( "close" );
-						}
 					}
 				},
 				this.options.dialog.options
 			);
 
 		this._logElement = $( '<div class="log">' ).appendTo( this.options.dialog.element );
-		
+
 		this.options.dialog.element.dialog( dialogOptions );
 	},
 
