@@ -36,7 +36,7 @@ $.widget( "ui.typo3VersionChart", {
 					return data.query.results.json;
 				}
 			},
-			
+
 			// using new beta API
 			// dataType: 'jsonp',
 			// url: 'https://www.causal.ch/?eID=extensions&route=/v2'
@@ -50,8 +50,8 @@ $.widget( "ui.typo3VersionChart", {
 
 	_create: function() {
 		var that = this;
-		this.id = this.element.uniqueId().attr( "id" );	
-		
+		this.id = this.element.uniqueId().attr( "id" );
+
 		this._log( "AJAX request started: load JSON data." );
 		this.xhr = $.ajax($.extend({
 			success: function( data ) {
@@ -62,12 +62,12 @@ $.widget( "ui.typo3VersionChart", {
 			}
 		}, that.options.ajax ));
 	},
-	
+
 	start: function( data ) {
-		this._initSource( data );		
+		this._initSource( data );
 		this._drawHtml();
-		this._initIsotope();		
-		this._initEvents();		
+		this._initIsotope();
+		this._initEvents();
 
 		this._log( "<strong>TYPO3 version chart is ready!</strong>" );
 		this._trigger( "ready" );
@@ -77,11 +77,11 @@ $.widget( "ui.typo3VersionChart", {
 		this.chart.isotope({ filter: filter });
 	},
 
-	_initSource: function( data ) {		
+	_initSource: function( data ) {
 		if ( !(data && $.isPlainObject( data ) && !$.isEmptyObject( data ) ) ) {
 			this._showMsg( "Problems with the JSON data. Please reload.", "Error" );
 		}
-	
+
 		$.extend( true, data, this.options.typo3data );
 
 		// todo: rework this to a for loop checking for all non integers
@@ -108,12 +108,12 @@ $.widget( "ui.typo3VersionChart", {
 		var that = this,
 			html = []
 			counter = 0;
-		
+
 		this._log( "Building HTML." );
-					
+
 		this.chart = $( "<div>" );
 		this.element.append( this.chart );
-		
+
 		try {
 			$.each( this.typo3.versions, function( branchIndex, branchData ){
 				$.each( branchData.releases, function( releaseIndex, releaseData  ){
@@ -259,7 +259,7 @@ $.widget( "ui.typo3VersionChart", {
 				},
 				sortBy : 'branch',
 				sortAscending : false,
-			}, 
+			},
 			// create callback
 			this._log( "jQuery Isotope initialized." )
 		);
@@ -287,9 +287,9 @@ $.widget( "ui.typo3VersionChart", {
 
 	_showMsg: function( msg, title ) {
 		var text = title + ": " + msg;
-		
-		this._log( text );	
-		
+
+		this._log( text );
+
 		if ($.ui.dialog) {
 			$( "<div>", { html: msg } ).dialog({
 				title: title,
