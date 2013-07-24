@@ -139,17 +139,28 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( '<strong>' + releaseData.version + '</strong>' );
 		// todo: format date with jQuery UI datepicker
 		content.push( '<p><small>' + releaseData.date.slice(0, -13) + '</small></p>' );
-		content.push( '<div class="ui-helper-hidden">' );
-		content.push( '<p>Released: ' + releaseData.date + '</p>' );
-		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
-		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
-		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
-		content.push( '</div>' );
+		content.push( this._renderItemDialogContent( branchIndex, releaseData ) );
 		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
 
 		return content.join( "" );
 	},
 
+	_renderItemDialogContent: function( branchIndex, releaseData ) {
+		var content = [];
+
+		content.push( '<div class="ui-helper-hidden">' );
+		content.push( '<p>Released: ' + releaseData.date + '</p>' );
+		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
+		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
+		content.push( '<div class="tags">' );
+		content.push( this._renderItemTags( releaseData, branchIndex ) );
+		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
+		content.push( '</div>' );
+		content.push( '</div>' );
+
+		return content.join( "" );
+	},
+	
 	_renderItem: function( branchIndex, content, css ) {
 		return '<div data-branch="' + this._convertVersion( branchIndex ) + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
 	},
