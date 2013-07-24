@@ -158,7 +158,7 @@ $.widget( "ui.typo3VersionChart", {
 		var tags = [];
 
 		// outdated branch
-		if ( !branchData.active ) {
+		if ( !branchData.active && branchData.stable != "0.0.0" ) {
 			tags.push( this._renderTag( "trash", "", "info", "Outdated branch! Deprecated and no longer maintained." ) );
 		}
 
