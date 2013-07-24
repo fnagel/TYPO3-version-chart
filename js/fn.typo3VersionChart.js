@@ -153,8 +153,8 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
 		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
 		content.push( '<div class="tags">' );
-		content.push( this._renderItemTags( releaseData, branchIndex ) );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
+		content.push( this._renderItemTags( releaseData, branchIndex ) );
 		content.push( '</div>' );
 		content.push( '</div>' );
 
@@ -170,15 +170,15 @@ $.widget( "ui.typo3VersionChart", {
 
 		// outdated branch
 		if ( !branchData.active && branchData.stable != "0.0.0" ) {
-			tags.push( this._renderTag( "trash", "", "info", "Outdated branch! Deprecated and no longer maintained." ) );
+			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained." ) );
 		}
 
 		// LTS
 		if ( branchIndex == 4.5 ) {
-			tags.push( this._renderTag( "clock", "", "info", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014." ) );
+			tags.push( this._renderTag( "clock", "", "Long Time Support (LTS): branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014." ) );
 		}
 		if ( branchIndex == 6.2 ) {
-			tags.push( this._renderTag( "clock", "", "info", "Long Time Support (LTS): will get full support (bug fixes and security fixes) until October 2016." ) );
+			tags.push( this._renderTag( "clock", "", "Long Time Support (LTS): branch will get full support (bug fixes and security fixes) until October 2016." ) );
 		}
 
 		return tags.join( "" )
@@ -189,50 +189,45 @@ $.widget( "ui.typo3VersionChart", {
 
 		// tag latest versions
 		if ( releaseData.version ==  this.typo3.meta.latest_stable) {
-			tags.push( this._renderTag( "check", "", "", "Latest stable release" ) );
+			tags.push( this._renderTag( "check", "", "Latest stable release" ) );
 		}
 		if ( releaseData.version ==  this.typo3.meta.latest_old_stable) {
-			tags.push( this._renderTag( "check", "", "", "Latest old stable release" ) );
+			tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
 		}
 		if ( releaseData.version ==  this.typo3.meta.latest_lts) {
-			tags.push( this._renderTag( "check", "", "", "The latest stable LTS release (for old projects)" ) );
+			tags.push( this._renderTag( "check", "", "The latest stable LTS release (for old projects)" ) );
 		}
 		if ( releaseData.version ==  this.typo3.meta.latest_deprecated) {
-			tags.push( this._renderTag( "check", "", "", "Latest obsolete stable release" ) );
+			tags.push( this._renderTag( "check", "", "Latest obsolete stable release" ) );
 		}
 
 		// version type
 		switch (releaseData.type) {
 			case "security":
-				tags.push( this._renderTag( "alert", "typo3-type-" + releaseData.type, "", "Security patch included!" ) );
+				tags.push( this._renderTag( "alert", "typo3-type-" + releaseData.type, "Security patch included!" ) );
 				break;
 			case "development":
-				tags.push( this._renderTag( "lightbulb", "typo3-type-" + releaseData.type, "", "Development version" ) );
+				tags.push( this._renderTag( "lightbulb", "typo3-type-" + releaseData.type, "Development version" ) );
 				break;
 			case "release":
-				tags.push( this._renderTag( "tag", "typo3-type-" + releaseData.type, "", "Release version" ) );
+				tags.push( this._renderTag( "tag", "typo3-type-" + releaseData.type, "Release version" ) );
 				break;
 			case "regular":
-				tags.push( this._renderTag( "calendar", "typo3-type-" + releaseData.type, "", "Regular version" ) );
+				tags.push( this._renderTag( "calendar", "typo3-type-" + releaseData.type, "Regular version" ) );
 				break;
 		}
 
 		// breaking changes
 		if ( releaseData.breaking_changes ) {
-			tags.push( this._renderTag( "wrench", "typo3-type-breaking", "", "Introduces breaking changes. See Wiki for more information." ) );
+			tags.push( this._renderTag( "wrench", "typo3-type-breaking", "Introduces breaking changes. See Wiki for more information." ) );
 		}
 
 		return tags.join( "" )
 	},
 
-	_renderTag: function( icon, css, state, title ) {
+	_renderTag: function( icon, css, title ) {
 		var content = '<span class="ui-icon ui-icon-' + icon + '"></span>';
-
-		if ( !state ) {
-			state = "default";
-		}
-
-		return '<span class="ui-button ui-state-' + state + ' ' + css + '" title="' + title + '">' + content + '</span>';
+		return '<span class="ui-button ui-state-default ' + css + '" title="' + title + '">' + content + '</span>';
 	},
 
 	_initEvents: function() {

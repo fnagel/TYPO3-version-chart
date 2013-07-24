@@ -109,7 +109,7 @@ a:hover {
 	right: 0;
 }
 
-#chart .item  .tags>span{
+#chart .item  .tags > span{
 	float: right;
 	font-size: 0.8em;
 	font-weight: normal;
@@ -136,6 +136,14 @@ a:hover {
 }
 #chart .item  .tags span.ui-icon-check {
     background-position: -64px -144px;
+}
+
+#chart .item.major .ui-state-default {
+	background: none;
+	border: 0;
+}
+#chart .item.major .ui-state-default .ui-icon {
+	background-image: url(typo3-version-chart/images/ui-icons_ffffff_256x240.png);
 }
 
 .tags .ui-button  {
