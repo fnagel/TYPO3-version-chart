@@ -182,22 +182,25 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_renderItemTags: function( releaseData, branchIndex ){
-		var tags = [];
+		var tags = [],
+			meta = this.typo3.meta;
 
 		// tag latest versions
-		if ( releaseData.version ==  this.typo3.meta.latest_stable) {
-			tags.push( this._renderTag( "check", "", "Latest stable release" ) );
+		switch (releaseData.version) {
+			case meta.latest_stable:
+				tags.push( this._renderTag( "check", "", "Latest stable release" ) );
+				break;
+			case meta.latest_old_stable:
+				tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
+				break;
+			case meta.latest_lts:
+				tags.push( this._renderTag( "check", "", "The latest stable LTS release (for old projects)" ) );
+				break;
+			case meta.latest_deprecated:
+				tags.push( this._renderTag( "check", "", "Latest obsolete stable release" ) );
+				break;
 		}
-		if ( releaseData.version ==  this.typo3.meta.latest_old_stable) {
-			tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
-		}
-		if ( releaseData.version ==  this.typo3.meta.latest_lts) {
-			tags.push( this._renderTag( "check", "", "The latest stable LTS release (for old projects)" ) );
-		}
-		if ( releaseData.version ==  this.typo3.meta.latest_deprecated) {
-			tags.push( this._renderTag( "check", "", "Latest obsolete stable release" ) );
-		}
-
+		
 		// version type
 		switch (releaseData.type) {
 			case "security":
