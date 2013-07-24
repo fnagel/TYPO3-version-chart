@@ -1,4 +1,4 @@
-/* =Typography
+	/* =Typography
 -----------------------------------------------------------------------------*/
 body {
 }
@@ -95,7 +95,7 @@ a:hover {
 #buttons .ui-button  {
     font-size: 0.9em;
 }
-#buttons .ui-button  .ui-icon {
+#buttons .typo3-branch .ui-button  .ui-icon {
 	margin-top: -10px;
 }
 
