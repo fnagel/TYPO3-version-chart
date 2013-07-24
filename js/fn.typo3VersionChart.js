@@ -139,7 +139,6 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( '<strong>' + releaseData.version + '</strong>' );
 		// todo: format date with jQuery UI datepicker
 		content.push( '<p><small>' + releaseData.date.slice(0, -13) + '</small></p>' );
-		content.push( this._renderItemDialogContent( branchIndex, releaseData ) );
 		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
 
 		return content.join( "" );
@@ -148,7 +147,6 @@ $.widget( "ui.typo3VersionChart", {
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
 		var content = [];
 
-		content.push( '<div class="ui-helper-hidden">' );
 		content.push( '<p>Released: ' + releaseData.date + '</p>' );
 		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
 		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
@@ -156,13 +154,12 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
 		content.push( this._renderItemTags( releaseData, branchIndex ) );
 		content.push( '</div>' );
-		content.push( '</div>' );
 
 		return content.join( "" );
 	},
 	
 	_renderItem: function( branchIndex, content, css ) {
-		return '<div data-branch="' + this._convertVersion( branchIndex ) + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
+		return '<div data-branch="' + branchIndex + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
 	},
 
 	_renderBranchTags: function( branchData, branchIndex ){
@@ -234,11 +231,16 @@ $.widget( "ui.typo3VersionChart", {
 		// add dialogs
 		this._on( this.chart.find(".item:not(.major)") , {
 			click: function( event ) {
-				var link = $( event.currentTarget );
-				$( "<div>", { html: link.find( ".ui-helper-hidden" ).html() } ).dialog({
-					title: "TYPO3 " + link.find( "strong" ).text(),
+				var item = $( event.currentTarget ),
+					version = item.find( "strong" ).text(),
+					branch = item.attr( "data-branch" ).replace(/-/g, "."),
+					branchData = this.typo3.versions[ branch ],
+					content = this._renderItemDialogContent( branch, branchData.releases[ version ] );
+								
+				$( "<div>", { html: content } ).dialog({
+					title: "TYPO3 " + version,
 					position: {
-						of: link
+						of: item
 					}
 				});
 				event.preventDefault();
@@ -272,10 +274,10 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_convertVersion: function( version, key ) {
-		var value = version.replace(/\./g, "");
+		var value = version.replace(/\./g, "-");
 
 		if ( key == "major" ) {
-			value = value.slice( 0, -1 )
+			value = value.slice( 0, -2 )
 		}
 
 		return value;

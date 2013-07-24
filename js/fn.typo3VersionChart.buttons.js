@@ -187,7 +187,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				icon = false;
 
 			// LTS
-			if ( branchSort == 45 || branchSort == 62 ) {
+			if ( branchSort == 4.5 || branchSort == 6.2 ) {
 				icon = "clock";
 			}
 			// Outdated
