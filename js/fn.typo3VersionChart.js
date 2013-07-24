@@ -20,6 +20,8 @@ $.widget( "ui.typo3VersionChart", {
 	version: "@VERSION",
 	defaultElement: "<div>",
 	options: {
+		debug: false,
+		dateFormat: 'dd. M yy',
 		ajax: {
 			// TYPO3 version json URL
 			// dataType: 'json',
@@ -69,7 +71,7 @@ $.widget( "ui.typo3VersionChart", {
 		this._initIsotope();
 		this._initEvents();
 
-		this._log( "<strong>TYPO3 version chart is ready!</strong>" );
+		this._log( "TYPO3 version chart is ready!" );
 		this._trigger( "ready" );
 	},
 
@@ -105,30 +107,38 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_drawHtml: function() {
-		var that = this,
-			html = []
-			counter = 0;
-
 		this._log( "Building HTML." );
 
 		this.chart = $( "<div>" );
 		this.element.append( this.chart );
 
-		try {
-			$.each( this.typo3.versions, function( branchIndex, branchData ){
-				$.each( branchData.releases, function( releaseIndex, releaseData  ){
-					that.typo3.meta.versions_total++;
-
-					// add version item
-					html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
-				});
-
-				// add branch item
-				html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header " ) );
-			});
-		} catch ( error ) {
-			this._showMsg( "JSON data seems invalid.", "Error" );
+		if ( this.options.debug ) {
+			this.__drawHtml();
+		} else {
+			try {
+				this.__drawHtml();
+			} catch ( error ) {
+				this._showMsg( "Data seems invalid.", "Error" );
+			}
 		}
+	},
+
+	__drawHtml: function() {
+		var that = this,
+			html = []
+			counter = 0;
+
+		$.each( this.typo3.versions, function( branchIndex, branchData ){
+			$.each( branchData.releases, function( releaseIndex, releaseData  ){
+				that.typo3.meta.versions_total++;
+
+				// add version item
+				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
+			});
+
+			// add branch item
+			html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header " ) );
+		});
 
 		this.chart.html( html.join( "" ) );
 	},
@@ -146,7 +156,7 @@ $.widget( "ui.typo3VersionChart", {
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
 		var content = [];
 
-		content.push( '<p>Released: ' + this._formatDate( releaseData.date ) + '</p>' );
+		content.push( '<p>Released: <em title="' + releaseData.date + '">' + this._formatDate( releaseData.date ) + '</em></p>' );
 		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
 		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
 		content.push( '<div class="tags">' );
@@ -156,7 +166,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		return content.join( "" );
 	},
-	
+
 	_renderItem: function( branchIndex, content, css ) {
 		return '<div data-branch="' + branchIndex + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
 	},
@@ -170,7 +180,7 @@ $.widget( "ui.typo3VersionChart", {
 			lastVersionData = branchData.releases[ branchData.latest ];
 			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + branchData.latest + " (" + this._formatDate( lastVersionData.date ) + ")" ) );
 		}
-		
+
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
 			case "6.2":
@@ -212,7 +222,7 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "check", "", "Latest obsolete stable release" ) );
 				break;
 		}
-		
+
 		// version type
 		switch (releaseData.type) {
 			case "security":
@@ -251,7 +261,7 @@ $.widget( "ui.typo3VersionChart", {
 					branch = item.attr( "data-branch" ).replace(/-/g, "."),
 					branchData = this.typo3.versions[ branch ],
 					content = this._renderItemDialogContent( branch, branchData.releases[ version ] );
-								
+
 				$( "<div>", { html: content } ).dialog({
 					title: "TYPO3 " + version,
 					position: {
@@ -297,10 +307,10 @@ $.widget( "ui.typo3VersionChart", {
 
 		return value;
 	},
-	
-	// todo: format date with jQuery UI datepicker
+
 	_formatDate: function( string ) {
-		return string.slice(0, -13);
+		var raw = new Date( string.replace(/-/g, "/") );
+		return $.datepicker.formatDate(this.options.dateFormat, raw);
 	},
 
 	_setOption: function( key, value ) {
@@ -329,7 +339,9 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_log: function( msg ) {
-		// console.log( msg );
+		if ( this.options.debug ) {
+			console.log( msg );
+		}
 	},
 
 	_destroy: function() {
