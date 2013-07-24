@@ -137,8 +137,7 @@ $.widget( "ui.typo3VersionChart", {
 		var content = [];
 
 		content.push( '<strong>' + releaseData.version + '</strong>' );
-		// todo: format date with jQuery UI datepicker
-		content.push( '<p><small>' + releaseData.date.slice(0, -13) + '</small></p>' );
+		content.push( '<p><small>' + this._formatDate( releaseData.date ) + '</small></p>' );
 		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
 
 		return content.join( "" );
@@ -147,7 +146,7 @@ $.widget( "ui.typo3VersionChart", {
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
 		var content = [];
 
-		content.push( '<p>Released: ' + releaseData.date + '</p>' );
+		content.push( '<p>Released: ' + this._formatDate( releaseData.date ) + '</p>' );
 		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
 		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
 		content.push( '<div class="tags">' );
@@ -163,19 +162,32 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_renderBranchTags: function( branchData, branchIndex ){
-		var tags = [];
+		var tags = [],
+			lastVersionData;
 
 		// outdated branch
 		if ( !branchData.active && branchData.stable != "0.0.0" ) {
-			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained." ) );
+			lastVersionData = branchData.releases[ branchData.latest ];
+			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + branchData.latest + " (" + this._formatDate( lastVersionData.date ) + ")" ) );
 		}
-
-		// LTS
-		if ( branchIndex == 4.5 ) {
-			tags.push( this._renderTag( "clock", "", "Long Time Support (LTS): branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014." ) );
-		}
-		if ( branchIndex == 6.2 ) {
-			tags.push( this._renderTag( "clock", "", "Long Time Support (LTS): branch will get full support (bug fixes and security fixes) until October 2016." ) );
+		
+		// LTS & End of maintenance
+		switch ( branchIndex ) {
+			case "6.2":
+				tags.push( this._renderTag( "clock", "", "The next branch with Long Term Support (LTS) is scheduled for October 2013. It will be supported until October 2016." ) );
+				break;
+			case "6.1":
+				tags.push( this._renderTag( "power", "", "Long Time Support (LTS): this branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes and important bugfixes until October 2014." ) );
+				break;
+			case "6.0":
+				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until April 2014." ) );
+				break;
+			case "4.7":
+				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until April 2014." ) );
+				break;
+			case "4.5":
+				tags.push( this._renderTag( "clock", "", "Long Time Support (LTS): this branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014. " ) );
+				break;
 		}
 
 		return tags.join( "" )
@@ -284,6 +296,11 @@ $.widget( "ui.typo3VersionChart", {
 		}
 
 		return value;
+	},
+	
+	// todo: format date with jQuery UI datepicker
+	_formatDate: function( string ) {
+		return string.slice(0, -13);
 	},
 
 	_setOption: function( key, value ) {
