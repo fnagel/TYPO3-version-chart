@@ -191,7 +191,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				icon = "clock";
 			}
 			// Outdated
-			if ( !branchData.active ) {
+			if ( !branchData.active && branchData.stable != "0.0.0"  ) {
 				icon = "trash";
 			}
 
