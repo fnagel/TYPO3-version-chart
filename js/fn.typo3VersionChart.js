@@ -92,9 +92,9 @@ $.widget( "ui.typo3VersionChart", {
 				latest_stable: data.latest_stable,
 				latest_old_stable: data.latest_old_stable,
 				latest_lts: data.latest_lts,
-				latest_deprecated: data.latest_deprecated,
-				versions_total: 0
-			}
+				latest_deprecated: data.latest_deprecated
+			},
+			versions_total: 0
 		};
 
 		// remove latest version related items
@@ -130,7 +130,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			$.each( branchData.releases, function( releaseIndex, releaseData  ){
-				that.typo3.meta.versions_total++;
+				that.typo3.versions_total++;
 
 				// add version item
 				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );

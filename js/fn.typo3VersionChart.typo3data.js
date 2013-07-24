@@ -1,6 +1,6 @@
 /*!
  * jQuery TYPO3 Version Chart - TYPO3 additional data addition
- * http://www.felixnagel.com/typo3-version-chart
+ * http://typo3versions.felixnagel.com/
  *
  * Copyright 2013 Felix Nagel
  */

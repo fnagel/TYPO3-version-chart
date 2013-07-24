@@ -1,6 +1,6 @@
 /*!
  * jQuery TYPO3 Version Chart - Button creation and functionality
- * http://typo3-version-chart.felixnagel.com/
+ * http://typo3versions.felixnagel.com/
  *
  * Copyright 2013 Felix Nagel
  */
@@ -112,7 +112,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			});
 
 		$( "<buttton>", {
-			text: "show all (" + this.typo3.meta.versions_total + ")",
+			text: "show all (" + this.typo3.versions_total + ")",
 			click: function( event ) {
 				that.buttons.find( "input:checkbox" ).prop( 'checked', true );
 				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
