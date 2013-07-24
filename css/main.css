@@ -47,6 +47,7 @@ a:hover {
 	margin: 0.25em;
 	padding: 0.25em;
 	cursor: pointer;
+	max-width: 7em;
 }
 
 #chart .item.major {
@@ -146,8 +147,8 @@ a:hover {
 -----------------------------------------------------------------------------*/
 
 .ui-dialog  {
-	-webkit-box-shadow: 0 0 30px gray; /* webkit browser*/ 
-	-moz-box-shadow: 0 0 30px gray; /* firefox */ 
+	-webkit-box-shadow: 0 0 30px gray; /* webkit browser*/
+	-moz-box-shadow: 0 0 30px gray; /* firefox */
 	box-shadow: 0 0 30px gray;
 }
 .ui-dialog .ui-dialog-titlebar {
