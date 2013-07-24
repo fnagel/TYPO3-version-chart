@@ -187,7 +187,7 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "clock", "", "The next branch with Long Term Support (LTS) is scheduled for October 2013. It will be supported until October 2016." ) );
 				break;
 			case "6.1":
-				tags.push( this._renderTag( "power", "", "Long Time Support (LTS): this branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes and important bugfixes until October 2014." ) );
+				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes and important bugfixes until October 2014." ) );
 				break;
 			case "6.0":
 				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until April 2014." ) );
