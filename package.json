@@ -1,0 +1,30 @@
+{
+	"name": "TYPO3-version-chart",
+	"title": "A TYPO3 version visualization",
+	"description": "A TYPO3 version visualization created by Felix Nagel.",
+	"version": "1.0.0",
+	"homepage": "https://github.com/fnagel/TYPO3-version-chart",
+	"author": {
+		"name": "Felix Nagel",
+		"url": "http://www.felixnagel.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/fnagel/TYPO3-version-chart.git"
+	},
+	"scripts": {
+		"test": "grunt"
+	},
+	"engines": {
+		"node": ">= 0.8.0"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-watch": "~0.4.0",
+		"grunt-contrib-csslint": "~0.1.0",
+		"grunt-contrib-cssmin": "~0.6.0",
+		"grunt-contrib-jshint": "~0.6.0",
+		"grunt-contrib-concat": "~0.3.0",
+		"grunt-contrib-uglify": "~0.2.0"
+	}
+}
