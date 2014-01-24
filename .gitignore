@@ -1,8 +1,15 @@
+dist
+node_modules
+docs
+.project
 *~
 *.diff
 *.patch
-Thumbs.db
 .DS_Store
+.settings
+*.db
 *.session
+compiled
+*.zip
 
 /.htaccess
