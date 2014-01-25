@@ -7,22 +7,20 @@
 (function( $ ) {
 
 $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
-	options: {
-	},
 
 	_drawHtml: function() {
 		this._super();
-		
-		this.buttons = $( '<form id="buttons" class="ui-helper-clearfix">' ).prependTo( this.element );
+
+		this.buttons = $( "<form id='buttons' class='ui-helper-clearfix'>" ).prependTo( this.element );
 		this._drawMajorButtons();
 		this._drawBranchesBoxes();
 		this._drawTypeBoxes();
 		this._drawControlButtons();
 	},
-	
+
 	_initEvents: function() {
 		var that = this;
-		
+
 		this._super();
 
 		this._on( this.buttons, {
@@ -36,21 +34,21 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 	checkVersionTypes: function( types ){
 		var buttonset = this.buttons.find( ".typo3-type.ui-buttonset" ),
-			buttons =  buttonset.find( "input");
+			buttons =  buttonset.find( "input" );
 
-		buttons.prop( 'checked', false );
+		buttons.prop( "checked", false );
 		$.each( types, function( index, data ) {
-			buttons.filter('[value="typo3-type-' + data +'"]').prop( 'checked', true );
+			buttons.filter( "[value='typo3-type-" + data + "']" ).prop( "checked", true );
 		});
 		buttonset.buttonset( "refresh" );
 	},
 
 	checkMajor: function( version ){
 		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
-			buttons =  buttonset.find( "input");
+			buttons =  buttonset.find( "input" );
 
-		buttons.prop( 'checked', false );
-		buttons.filter(".typo3-major-" + version ).prop( 'checked', true );
+		buttons.prop( "checked", false );
+		buttons.filter( ".typo3-major-" + version ).prop( "checked", true );
 		buttonset.buttonset( "refresh" );
 	},
 
@@ -58,21 +56,21 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
 			buttons =  buttonset.find( "input");
 
-		buttons.prop( 'checked', false );
-		buttons.not(".trash").prop( 'checked', true );
+		buttons.prop( "checked", false );
+		buttons.not(".trash").prop( "checked", true );
 		buttonset.buttonset( "refresh" );
 	},
 
 	refreshDefaults: function() {
 		this.checkNonOutdatedBranches();
-		this.checkVersionTypes( ["release", "regular", "security"] );
+		this.checkVersionTypes( [ "release", "regular", "security" ] );
 		this.refreshFromButtons();
 	},
 
-	refreshFromButtons: function( filter ) {
+	refreshFromButtons: function() {
 		this.refresh( this._processForm() );
 	},
-	
+
 	_processForm: function() {
 		var that = this,
 			types = [ ".major" ],
@@ -114,7 +112,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		$( "<buttton>", {
 			text: "show all (" + this.typo3.versions_total + ")",
 			click: function( event ) {
-				that.buttons.find( "input:checkbox" ).prop( 'checked', true );
+				that.buttons.find( "input:checkbox" ).prop( "checked", true );
 				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
 				that.chart.isotope({ filter: "" });
 				event.preventDefault();
@@ -126,7 +124,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		$( "<buttton>", {
 			text: "show none",
 			click: function( event ) {
-				that.buttons.find( "input:checkbox" ).prop( 'checked', false );
+				that.buttons.find( "input:checkbox" ).prop( "checked", false );
 				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
 				that.chart.isotope({ filter: ".major" });
 				event.preventDefault();
@@ -156,7 +154,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"class": "typo3-major"
 			});
 
-		$.each( this.typo3.versions, function( branchIndex, branchData ){
+		$.each( this.typo3.versions, function( branchIndex ){
 			var majorSort = that._convertVersion( branchIndex, "major" );
 
 			if ( !major [ majorSort ] ) {
@@ -187,11 +185,11 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				icon = false;
 
 			// LTS
-			if ( branchSort == 4.5 || branchSort == 6.2 ) {
+			if ( branchSort === 4.5 || branchSort === 6.2 ) {
 				icon = "clock";
 			}
 			// Outdated
-			if ( !branchData.active && branchData.stable != "0.0.0"  ) {
+			if ( !branchData.active && branchData.stable !== "0.0.0"  ) {
 				icon = "trash";
 			}
 
@@ -232,10 +230,10 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		});
 
 		$.each( group, function( index, data ){
-			var value = name + '-' + index,
-				id = 'check-boxgroup-' + value;
+			var value = name + "-" + index,
+				id = "check-boxgroup-" + value;
 
-			$( '<input>', {
+			$( "<input>", {
 				type: "checkbox",
 				name: value,
 				value: value,
@@ -244,7 +242,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			.addClass( data.css )
 			.addClass( data.icon )
 			.appendTo( buttonSet )
-			.after ( $( '<label for="' + id + '">' + data.name + '</label>' ) )
+			.after ( $( "<label for='" + id + "'>" + data.name + "</label>" ) )
 			.button({
 				icons: { secondary: ( data.icon ) ? "ui-icon-" + data.icon : null	}
 			});

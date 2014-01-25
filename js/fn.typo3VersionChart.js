@@ -21,15 +21,15 @@ $.widget( "ui.typo3VersionChart", {
 	defaultElement: "<div>",
 	options: {
 		debug: false,
-		dateFormat: 'dd. M yy',
+		dateFormat: "dd. M yy",
 		ajax: {
 			// TYPO3 version json URL
-			// dataType: 'json',
+			// dataType: "json",
 			// url: "./data/typo3.json"
 
 			// using YQL for cross domain AJAX request
-			dataType: 'yql-json',
-			url: 'http://query.yahooapis.com/v1/public/yql?q=select * from json where url="http://get.typo3.org/json"&format=json&jsonCompat=new',
+			dataType: "yql-json",
+			url: "http://query.yahooapis.com/v1/public/yql?q=select * from json where url='http://get.typo3.org/json'&format=json&jsonCompat=new",
 			converters: {
 				// add YQL json converter
 				"text yql-json": function( raw ){
@@ -41,7 +41,7 @@ $.widget( "ui.typo3VersionChart", {
 
 			// using new beta API
 			// dataType: 'jsonp',
-			// url: 'https://www.causal.ch/?eID=extensions&route=/v2'
+			// url: "https://www.causal.ch/?eID=extensions&route=/v2"
 		},
 		// additional data to merge with the original json
 		typo3data: {},
@@ -55,14 +55,14 @@ $.widget( "ui.typo3VersionChart", {
 		this.id = this.element.uniqueId().attr( "id" );
 
 		this._log( "AJAX request started: load JSON data." );
-		this.xhr = $.ajax($.extend({
+		this.xhr = $.ajax( $.extend( {
 			success: function( data ) {
 				that.start( data );
 			},
-			error: function( xhr,err ) {
+			error: function() {
 				that._showMsg( "Could not load JSON data! Please try again later...", "Error" );
 			}
-		}, that.options.ajax ));
+		}, that.options.ajax ) );
 	},
 
 	start: function( data ) {
@@ -125,15 +125,14 @@ $.widget( "ui.typo3VersionChart", {
 
 	__drawHtml: function() {
 		var that = this,
-			html = []
-			counter = 0;
+			html = [];
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			$.each( branchData.releases, function( releaseIndex, releaseData  ){
 				that.typo3.versions_total++;
 
 				// add version item
-				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  'typo3-release-' + that._convertVersion( branchIndex ) + ' typo3-type-' + releaseData.type + ' '  ) );
+				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  "typo3-release-" + that._convertVersion( branchIndex ) + " typo3-type-" + releaseData.type + " "  ) );
 			});
 
 			// add branch item
@@ -146,9 +145,9 @@ $.widget( "ui.typo3VersionChart", {
 	_renderItemInfo: function( branchIndex, releaseData ) {
 		var content = [];
 
-		content.push( '<strong>' + releaseData.version + '</strong>' );
-		content.push( '<p><small>' + this._formatDate( releaseData.date ) + '</small></p>' );
-		content.push( '<div class="tags">' + this._renderItemTags( releaseData, branchIndex ) + '</div>' );
+		content.push( "<strong>" + releaseData.version + "</strong>" );
+		content.push( "<p><small>" + this._formatDate( releaseData.date ) + "</small></p>" );
+		content.push( "<div class='tags'>" + this._renderItemTags( releaseData, branchIndex ) + "</div>" );
 
 		return content.join( "" );
 	},
@@ -156,19 +155,19 @@ $.widget( "ui.typo3VersionChart", {
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
 		var content = [];
 
-		content.push( '<p>Released: <em title="' + releaseData.date + '">' + this._formatDate( releaseData.date ) + '</em></p>' );
-		content.push( '<p>Wiki page: <a href="http://wiki.typo3.org/TYPO3_' + releaseData.version + '">TYPO3 ' + releaseData.version + '</a></p>' );
-		content.push( '<p>Download: <a href="' + releaseData.url.tar + '">tar</a> | <a href="' + releaseData.url.zip + '">zip</a></p>' );
-		content.push( '<div class="tags">' );
+		content.push( "<p>Released: <em title='" + releaseData.date + "'>" + this._formatDate( releaseData.date ) + "</em></p>" );
+		content.push( "<p>Wiki page: <a href='http://wiki.typo3.org/TYPO3_" + releaseData.version + "'>TYPO3 " + releaseData.version + "</a></p>" );
+		content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
+		content.push( "<div class='tags'>" );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
 		content.push( this._renderItemTags( releaseData, branchIndex ) );
-		content.push( '</div>' );
+		content.push( "</div>" );
 
 		return content.join( "" );
 	},
 
 	_renderItem: function( branchIndex, content, css ) {
-		return '<div data-branch="' + branchIndex + '" class="item ' + css + 'ui-widget-content ui-corner-all typo3-branch-' + this._convertVersion( branchIndex ) + ' typo3-major-' + this._convertVersion( branchIndex, "major") + '">' + content + '</div>';
+		return "<div data-branch='" + branchIndex + "' class='item " + css + "ui-widget-content ui-corner-all typo3-branch-" + this._convertVersion( branchIndex ) + " typo3-major-" + this._convertVersion( branchIndex, "major") + "'>" + content + "</div>";
 	},
 
 	_renderBranchTags: function( branchData, branchIndex ){
@@ -176,7 +175,7 @@ $.widget( "ui.typo3VersionChart", {
 			lastVersionData;
 
 		// outdated branch
-		if ( !branchData.active && branchData.stable != "0.0.0" ) {
+		if ( !branchData.active && branchData.stable !== "0.0.0" ) {
 			lastVersionData = branchData.releases[ branchData.latest ];
 			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + branchData.latest + " (" + this._formatDate( lastVersionData.date ) + ")" ) );
 		}
@@ -200,10 +199,10 @@ $.widget( "ui.typo3VersionChart", {
 				break;
 		}
 
-		return tags.join( "" )
+		return tags.join( "" );
 	},
 
-	_renderItemTags: function( releaseData, branchIndex ){
+	_renderItemTags: function( releaseData ){
 		var tags = [],
 			meta = this.typo3.meta;
 
@@ -244,21 +243,20 @@ $.widget( "ui.typo3VersionChart", {
 			tags.push( this._renderTag( "wrench", "typo3-type-breaking", "Introduces breaking changes. See Wiki for more information." ) );
 		}
 
-		return tags.join( "" )
+		return tags.join( "" );
 	},
 
 	_renderTag: function( icon, css, title ) {
-		var content = '<span class="ui-icon ui-icon-' + icon + '"></span>';
-		return '<span class="ui-button ui-state-default ' + css + '" title="' + title + '">' + content + '</span>';
+		var content = "<span class='ui-icon ui-icon-" + icon + "'></span>";
+		return "<span class='ui-button ui-state-default " + css + "' title='" + title + "'>" + content + "</span>";
 	},
 
 	_initEvents: function() {
-		// add dialogs
-		this._on( this.chart.find(".item:not(.major)") , {
+		this._on( this.chart.find( ".item:not(.major)" ) , {
 			click: function( event ) {
 				var item = $( event.currentTarget ),
 					version = item.find( "strong" ).text(),
-					branch = item.attr( "data-branch" ).replace(/-/g, "."),
+					branch = item.attr( "data-branch" ).replace( /-/g, "." ),
 					branchData = this.typo3.versions[ branch ],
 					content = this._renderItemDialogContent( branch, branchData.releases[ version ] );
 
@@ -280,18 +278,18 @@ $.widget( "ui.typo3VersionChart", {
 		this.chart.isotope(
 			// options
 			{
-				itemSelector : '.item',
-				layoutMode : 'categoryRows',
-				categoryRows : {
-					gutter : 30
+				itemSelector: ".item",
+				layoutMode: "categoryRows",
+				categoryRows: {
+					gutter: 30
 				},
-				getSortData : {
-					branch : function ( item ) {
-						return item.attr('data-branch');
+				getSortData: {
+					branch: function ( item ) {
+						return item.attr( "data-branch" );
 					}
 				},
-				sortBy : 'branch',
-				sortAscending : false,
+				sortBy: "branch",
+				sortAscending: false
 			},
 			// create callback
 			this._log( "jQuery Isotope initialized." )
@@ -299,23 +297,22 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_convertVersion: function( version, key ) {
-		var value = version.replace(/\./g, "-");
+		var value = version.replace( /\./g, "-" );
 
-		if ( key == "major" ) {
-			value = value.slice( 0, -2 )
+		if ( key === "major" ) {
+			value = value.slice( 0, -2 );
 		}
 
 		return value;
 	},
 
 	_formatDate: function( string ) {
-		var raw = new Date( string.replace(/-/g, "/") );
-		return $.datepicker.formatDate(this.options.dateFormat, raw);
+		var raw = new Date( string.replace( /-/g, "/" ) );
+		
+		return $.datepicker.formatDate( this.options.dateFormat, raw );
 	},
 
 	_setOption: function( key, value ) {
-		var that = this;
-
 		this._super( key, value );
 
 		if ( key === "disabled" && value && this.xhr ) {
@@ -372,8 +369,7 @@ $.extend( $.Isotope.prototype, {
 			var $this = $(this),
 				atomW = $this.outerWidth(true),
 				atomH = $this.outerHeight(true),
-				category = $.data( this, 'isotope-sort-data' )[ sortBy ],
-				x, y;
+				category = $.data( this, "isotope-sort-data" )[ sortBy ];
 
 			if ( category !== props.currentCategory ) {
 				// new category, new row
