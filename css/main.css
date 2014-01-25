@@ -1,8 +1,5 @@
 	/* =Typography
 -----------------------------------------------------------------------------*/
-body {
-}
-
 h1 {
 	font-size: 2.5em;
 	font-weight: normal;
@@ -72,6 +69,7 @@ a:hover {
 	background-image: -o-linear-gradient(bottom, white 33%, #EDEDED 100%);
 	background-image: -moz-linear-gradient(bottom, white 33%, #EDEDED 100%);
 	background-image: -webkit-linear-gradient(bottom, white 33%, #EDEDED 100%);
+	background-image: -webkit-gradient(linear, top, bottom, color-stop(33%, white), color-stop(100%, #EDEDED));
 	background-image: -ms-linear-gradient(bottom, white 33%, #EDEDED 100%);
 }
 
