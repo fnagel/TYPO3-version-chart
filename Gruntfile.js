@@ -22,6 +22,7 @@ module.exports = function (grunt) {
 				"trailing": true,
 				"undef": true,
 				"unused": true,
+				"devel": true,
 				"node": true,
 				"browser": true,
 				"globals": {
@@ -40,7 +41,8 @@ module.exports = function (grunt) {
 				"important": false,
 				"outline-none": false,
 				"overqualified-elements": false,
-				"text-indent": false
+				"text-indent": false,
+				"ids": false
 			}
 		},
 		concat : {
