@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - TYPO3 additional data addition
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013 Felix Nagel
+ * Copyright 2013-2014 Felix Nagel
  */
 (function( $ ) {
 
