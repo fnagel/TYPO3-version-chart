@@ -77,11 +77,10 @@ $(function() {
 			width: 550,
 			modal: true,
 			autoOpen: ( window.location.search.match( /[\?&]dialog=0/ ) ) ? 0 : 1,
-			open: function() {
-				$('body > .ui-widget-overlay').on('click', function() {
-					dialogInfo.dialog('close');
-				});
-			}
+			buttons: [ { 
+				text: "Loading...",
+				disabled: true
+			} ]
 		}),
 		chart = $( "#chart" ).typo3VersionChart({
 			ready: function() {
