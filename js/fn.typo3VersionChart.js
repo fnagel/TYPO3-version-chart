@@ -92,6 +92,7 @@ $.widget( "ui.typo3VersionChart", {
 				latest_stable: data.latest_stable,
 				latest_old_stable: data.latest_old_stable,
 				latest_lts: data.latest_lts,
+				latest_old_lts: data.latest_old_lts,
 				latest_deprecated: data.latest_deprecated
 			},
 			versions_total: 0
@@ -101,6 +102,7 @@ $.widget( "ui.typo3VersionChart", {
 		delete data.latest_stable;
 		delete data.latest_old_stable;
 		delete data.latest_lts;
+		delete data.latest_old_lts;
 		delete data.latest_deprecated;
 
 		this.typo3.versions = data;
@@ -183,19 +185,16 @@ $.widget( "ui.typo3VersionChart", {
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
 			case "6.2":
-				tags.push( this._renderTag( "clock", "", "The next branch with Long Term Support (LTS) is scheduled for March 25 2014. It will be supported until December 2016." ) );
+				tags.push( this._renderTag( "clock", "", "The current stable LTS release: this branch will get full support until March 2017." ) );
 				break;
 			case "6.1":
 				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes and important bugfixes until October 2014." ) );
 				break;
-			case "6.0":
-				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until April 2014." ) );
-				break;
 			case "4.7":
-				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until April 2014." ) );
+				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until October 2014." ) );
 				break;
 			case "4.5":
-				tags.push( this._renderTag( "clock", "", "Long Time Support (LTS): this branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until October 2014. " ) );
+				tags.push( this._renderTag( "clock", "", "The old stable LTS release: this branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until March 2015." ) );
 				break;
 		}
 
@@ -215,10 +214,13 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
 				break;
 			case meta.latest_lts:
-				tags.push( this._renderTag( "check", "", "The latest stable LTS release (for old projects)" ) );
+				tags.push( this._renderTag( "check", "", "Latest current stable LTS release" ) );
+				break;
+			case meta.latest_old_lts:
+				tags.push( this._renderTag( "check", "", "Latest old stable LTS release" ) );
 				break;
 			case meta.latest_deprecated:
-				tags.push( this._renderTag( "check", "", "Latest obsolete stable release" ) );
+				tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
 				break;
 		}
 
@@ -308,7 +310,7 @@ $.widget( "ui.typo3VersionChart", {
 
 	_formatDate: function( string ) {
 		var raw = new Date( string.replace( /-/g, "/" ) );
-		
+
 		return $.datepicker.formatDate( this.options.dateFormat, raw );
 	},
 
