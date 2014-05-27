@@ -155,10 +155,16 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
-		var content = [];
+		var content = [],
+			wikiUrl = releaseData.version;
+			
+		// new link structure in wiki due to renaming
+		if ( this._getDate( releaseData.date ) > new Date( "May 01, 2014" ) || releaseData.version === "6.2.1" ) {
+			wikiUrl = "CMS_" + wikiUrl;
+		}
 
 		content.push( "<p>Released: <em title='" + releaseData.date + "'>" + this._formatDate( releaseData.date ) + "</em></p>" );
-		content.push( "<p>Wiki page: <a href='http://wiki.typo3.org/TYPO3_" + releaseData.version + "'>TYPO3 " + releaseData.version + "</a></p>" );
+		content.push( "<p>Wiki page: <a href='http://wiki.typo3.org/TYPO3_" + wikiUrl + "'>TYPO3 " + releaseData.version + "</a></p>" );
 		content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
 		content.push( "<div class='tags'>" );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
@@ -307,11 +313,13 @@ $.widget( "ui.typo3VersionChart", {
 
 		return value;
 	},
+	
+	_getDate: function( string ) {
+		return new Date( string.replace( /-/g, "/" ) );
+	},
 
 	_formatDate: function( string ) {
-		var raw = new Date( string.replace( /-/g, "/" ) );
-
-		return $.datepicker.formatDate( this.options.dateFormat, raw );
+		return $.datepicker.formatDate( this.options.dateFormat, this._getDate( string ) );
 	},
 
 	_setOption: function( key, value ) {
