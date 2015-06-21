@@ -1,4 +1,4 @@
-/*! TYPO3-version-chart v1.0.0 - A TYPO3 version visualization - 27-05-2014 23:39 */
+/*! TYPO3-version-chart v1.0.0 - A TYPO3 version visualization - 21-06-2015 01:57 */
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
@@ -17980,7 +17980,7 @@ $.widget( "ui.tooltip", {
  * jQuery TYPO3 Version Chart
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2014 Felix Nagel
+ * Copyright 2013-2015 Felix Nagel
  *
  * Depends:
  *	jquery.ui.core.js
@@ -18015,7 +18015,7 @@ $.widget( "ui.typo3VersionChart", {
 					// normalize YQL responses
 					return data.query.results.json;
 				}
-			},
+			}
 
 			// using new beta API
 			// dataType: 'jsonp',
@@ -18049,7 +18049,7 @@ $.widget( "ui.typo3VersionChart", {
 		this._initIsotope();
 		this._initEvents();
 
-		this._log( "TYPO3 version chart is ready!" );
+		this._log( "TYPO3 version chart is ready!", data );
 		this._trigger( "ready" );
 	},
 
@@ -18286,7 +18286,7 @@ $.widget( "ui.typo3VersionChart", {
 		var value = version.replace( /\./g, "-" );
 
 		if ( key === "major" ) {
-			value = value.slice( 0, -2 );
+			value = value.charAt( 0 );
 		}
 
 		return value;
@@ -18323,9 +18323,13 @@ $.widget( "ui.typo3VersionChart", {
 		}
 	},
 
-	_log: function( msg ) {
+	_log: function( msg, data ) {
 		if ( this.options.debug ) {
-			console.log( msg );
+			if ( data ) {
+				console.log( msg, data );
+			} else {
+				console.log( msg );
+			}
 		}
 	},
 
@@ -18396,7 +18400,7 @@ $.extend( $.Isotope.prototype, {
  * jQuery TYPO3 Version Chart - Button creation and functionality
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2014 Felix Nagel
+ * Copyright 2013-2015 Felix Nagel
  */
 (function( $ ) {
 
@@ -18529,7 +18533,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		$( "<buttton>", {
 			title: "Show all non-dev versions of all maintained branches",
-			text: "show default",
+			text: "show active",
 			click: function( event ) {
 				that.refreshDefaults();
 				event.preventDefault();
@@ -18555,7 +18559,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				major[ majorSort ] = true;
 
 				$( "<buttton>", {
-					text: majorSort + ".0",
+					text: majorSort + ".x",
 					click: function( event ) {
 						that.checkMajor( majorSort );
 						that.refresh( that._processForm() );
@@ -18590,7 +18594,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			branches[ branchSort ] = {
 				name: branchIndex,
 				icon: icon,
-				css: "typo3-major-" + that._convertVersion( branchIndex, "major" ),
+				css: "typo3-major-" + that._convertVersion( branchIndex, "major" )
 			};
 		});
 
@@ -18601,19 +18605,19 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		this._renderCheckboxGroup( {
 			development: {
 				name: "Development",
-				icon: "lightbulb",
+				icon: "lightbulb"
 			},
 			release: {
 				name: "Release",
-				icon: "tag",
+				icon: "tag"
 			},
 			regular: {
 				name: "Regular",
-				icon: "calendar",
+				icon: "calendar"
 			},
 			security: {
 				name: "Security",
-				icon: "alert",
+				icon: "alert"
 			}
 		}, "typo3-type" );
 	},
@@ -18652,7 +18656,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
  * jQuery TYPO3 Version Chart - TYPO3 additional data addition
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2014 Felix Nagel
+ * Copyright 2013-2015 Felix Nagel
  */
 (function( $ ) {
 
@@ -18941,7 +18945,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 							"zip": "https://github.com/TYPO3/TYPO3v4-Core/tree/TYPO3_4-3-0alpha1.zip",
 							"tar": "https://github.com/TYPO3/TYPO3v4-Core/archive/TYPO3_4-3-0alpha1.tar.gz"
 						}
-					},
+					}
 				}
 			},
 			"4.2": {

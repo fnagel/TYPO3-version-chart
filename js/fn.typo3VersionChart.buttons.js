@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - Button creation and functionality
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2014 Felix Nagel
+ * Copyright 2013-2015 Felix Nagel
  */
 (function( $ ) {
 
@@ -135,7 +135,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		$( "<buttton>", {
 			title: "Show all non-dev versions of all maintained branches",
-			text: "show default",
+			text: "show active",
 			click: function( event ) {
 				that.refreshDefaults();
 				event.preventDefault();
@@ -161,7 +161,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				major[ majorSort ] = true;
 
 				$( "<buttton>", {
-					text: majorSort + ".0",
+					text: majorSort + ".x",
 					click: function( event ) {
 						that.checkMajor( majorSort );
 						that.refresh( that._processForm() );
@@ -196,7 +196,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			branches[ branchSort ] = {
 				name: branchIndex,
 				icon: icon,
-				css: "typo3-major-" + that._convertVersion( branchIndex, "major" ),
+				css: "typo3-major-" + that._convertVersion( branchIndex, "major" )
 			};
 		});
 
@@ -207,19 +207,19 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		this._renderCheckboxGroup( {
 			development: {
 				name: "Development",
-				icon: "lightbulb",
+				icon: "lightbulb"
 			},
 			release: {
 				name: "Release",
-				icon: "tag",
+				icon: "tag"
 			},
 			regular: {
 				name: "Regular",
-				icon: "calendar",
+				icon: "calendar"
 			},
 			security: {
 				name: "Security",
-				icon: "alert",
+				icon: "alert"
 			}
 		}, "typo3-type" );
 	},

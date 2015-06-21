@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2014 Felix Nagel
+ * Copyright 2013-2015 Felix Nagel
  *
  * Depends:
  *	jquery.ui.core.js
@@ -37,7 +37,7 @@ $.widget( "ui.typo3VersionChart", {
 					// normalize YQL responses
 					return data.query.results.json;
 				}
-			},
+			}
 
 			// using new beta API
 			// dataType: 'jsonp',
@@ -71,7 +71,7 @@ $.widget( "ui.typo3VersionChart", {
 		this._initIsotope();
 		this._initEvents();
 
-		this._log( "TYPO3 version chart is ready!" );
+		this._log( "TYPO3 version chart is ready!", data );
 		this._trigger( "ready" );
 	},
 
@@ -308,7 +308,7 @@ $.widget( "ui.typo3VersionChart", {
 		var value = version.replace( /\./g, "-" );
 
 		if ( key === "major" ) {
-			value = value.slice( 0, -2 );
+			value = value.charAt( 0 );
 		}
 
 		return value;
@@ -345,9 +345,13 @@ $.widget( "ui.typo3VersionChart", {
 		}
 	},
 
-	_log: function( msg ) {
+	_log: function( msg, data ) {
 		if ( this.options.debug ) {
-			console.log( msg );
+			if ( data ) {
+				console.log( msg, data );
+			} else {
+				console.log( msg );
+			}
 		}
 	},
 
