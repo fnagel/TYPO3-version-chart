@@ -1,4 +1,4 @@
-/*! TYPO3-version-chart v1.0.0 - A TYPO3 version visualization - 21-06-2015 01:57 */
+/*! TYPO3-version-chart v1.0.0 - A TYPO3 version visualization - 29-09-2015 00:13 */
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
@@ -18002,20 +18002,8 @@ $.widget( "ui.typo3VersionChart", {
 		dateFormat: "dd. M yy",
 		ajax: {
 			// TYPO3 version json URL
-			// dataType: "json",
-			// url: "./data/typo3.json"
-
-			// using YQL for cross domain AJAX request
-			dataType: "yql-json",
-			url: "http://query.yahooapis.com/v1/public/yql?q=select * from json where url='http://get.typo3.org/json'&format=json&jsonCompat=new",
-			converters: {
-				// add YQL json converter
-				"text yql-json": function( raw ){
-					var data = $.parseJSON(raw);
-					// normalize YQL responses
-					return data.query.results.json;
-				}
-			}
+			 dataType: "json",
+			 url: "http://get.typo3.org/json"
 
 			// using new beta API
 			// dataType: 'jsonp',

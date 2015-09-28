@@ -11,5 +11,3 @@ docs
 *.session
 compiled
 *.zip
-
-/.htaccess
