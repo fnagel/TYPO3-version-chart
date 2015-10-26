@@ -23,13 +23,21 @@ $.widget( "ui.typo3VersionChart", {
 		debug: false,
 		dateFormat: "dd. M yy",
 		ajax: {
-			// TYPO3 version json URL
-			 dataType: "json",
-			 url: "http://get.typo3.org/json"
+			// TYPO3 version json URL (CORS issues)
+			// dataType: "json",
+			// url: "http://get.typo3.org/json",
 
-			// using new beta API
-			// dataType: 'jsonp',
-			// url: "https://www.causal.ch/?eID=extensions&route=/v2"
+			// using YQL for cross domain AJAX request
+			dataType: "yql-json",
+			url: "http://query.yahooapis.com/v1/public/yql?q=select * from json where url='http://get.typo3.org/json'&format=json&jsonCompat=new",
+			converters: {
+				// add YQL json converter
+				"text yql-json": function( raw ){
+					var data = $.parseJSON(raw);
+					// normalize YQL responses
+					return data.query.results.json;
+				}
+			}
 		},
 		// additional data to merge with the original json
 		typo3data: {},
