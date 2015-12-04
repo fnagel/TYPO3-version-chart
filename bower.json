@@ -1,0 +1,21 @@
+{
+  "name": "TYPO3-version-chart",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fnagel/TYPO3-version-chart",
+  "authors": [
+    "Felix Nagel <info@felixnagel.com>"
+  ],
+  "description": "A TYPO3 version visualization",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "isotope": "~1.5.25",
+    "jquery-ui": "~1.11.4"
+  }
+}

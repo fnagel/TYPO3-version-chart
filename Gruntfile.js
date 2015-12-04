@@ -51,9 +51,18 @@ module.exports = function (grunt) {
 			},
 			standalone : {
 				src : [
-					"js/jquery-1.9.1.js",
-					"js/jquery-ui-1.10.3.custom.js",
-					"js/jquery.isotope.js",
+					"bower_components/jquery/dist/jquery.js",
+					"bower_components/jquery-ui/ui/core.js",
+					"bower_components/jquery-ui/ui/widget.js",
+					"bower_components/jquery-ui/ui/position.js",
+					"bower_components/jquery-ui/ui/mouse.js",
+					"bower_components/jquery-ui/ui/draggable.js",
+					"bower_components/jquery-ui/ui/resizable.js",
+					"bower_components/jquery-ui/ui/button.js",
+					"bower_components/jquery-ui/ui/dialog.js",
+					"bower_components/jquery-ui/ui/tooltip.js",
+					"bower_components/jquery-ui/ui/datepicker.js",
+					"bower_components/isotope/jquery.isotope.js",
 					"js/fn.typo3VersionChart.js",
 					"js/fn.typo3VersionChart.buttons.js",
 					"js/fn.typo3VersionChart.typo3data.js"
@@ -77,7 +86,13 @@ module.exports = function (grunt) {
 			},
 			files : {
 				src: [
-					"css/jquery-ui-1.10.3.custom.css", 
+					"bower_components/jquery-ui/themes/base/core.css",
+					"bower_components/jquery-ui/themes/base/button.css",
+					"bower_components/jquery-ui/themes/base/dialog.css",
+					"bower_components/jquery-ui/themes/base/draggable.css",
+					"bower_components/jquery-ui/themes/base/resizable.css",
+					"bower_components/jquery-ui/themes/base/tooltip.css",
+					"css/jquery-ui.theme.css",
 					"css/kube.css",
 					"css/isotope.css",
 					"css/main.css"
