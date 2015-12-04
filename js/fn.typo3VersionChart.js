@@ -193,9 +193,6 @@ $.widget( "ui.typo3VersionChart", {
 			case "6.2":
 				tags.push( this._renderTag( "clock", "", "The current stable LTS release (for existing projects). The old version with Long Term Support. It will have maintenance and security-related bugfixes until March 2017." ) );
 				break;
-			case "6.1":
-				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes and important bugfixes until October 2014." ) );
-				break;
 			case "4.7":
 				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until October 2014." ) );
 				break;
