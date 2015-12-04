@@ -62,7 +62,13 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	start: function( data ) {
+		if ( !(data && $.isPlainObject( data ) && !$.isEmptyObject( data ) && this._sourceIsValid( data ) ) ) {
+			this._showMsg( "Problems with the JSON data (source invalid). Please reload.", "Error" );
+			return;
+		}
+
 		this._initSource( data );
+
 		this._drawHtml();
 		this._initIsotope();
 		this._initEvents();
@@ -75,20 +81,24 @@ $.widget( "ui.typo3VersionChart", {
 		this.chart.isotope({ filter: filter });
 	},
 
-	_initSource: function( data ) {
-		if ( !(data && $.isPlainObject( data ) && !$.isEmptyObject( data ) ) ) {
-			this._showMsg( "Problems with the JSON data. Please reload.", "Error" );
-		}
+	_sourceIsValid: function( data ) {
+		return !(
+			data.latest_stable &&
+			data.latest_old_stable &&
+			data.latest_lts &&
+			data.latest_old_lts
+		);
+	},
 
+	_initSource: function( data ) {
 		$.extend( true, data, this.options.typo3data );
 
-		// todo: rework this to a for loop checking for all non integers
 		this.typo3 = {
-			meta: {
-				latest_stable: data.latest_stable,
-				latest_old_stable: data.latest_old_stable,
-				latest_lts: data.latest_lts,
-				latest_old_lts: data.latest_old_lts
+			latest: {
+				stable: data.latest_stable,
+				oldStable: data.latest_old_stable,
+				lts: data.latest_lts,
+				oldLts: data.latest_old_lts,
 			},
 			versions_total: 0
 		};
@@ -103,7 +113,7 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_drawHtml: function() {
-		this._log( "Building HTML." );
+		this._log( "Building HTML.", this.typo3 );
 
 		this.chart = $( "<div>" );
 		this.element.append( this.chart );
@@ -114,7 +124,7 @@ $.widget( "ui.typo3VersionChart", {
 			try {
 				this.__drawHtml();
 			} catch ( error ) {
-				this._showMsg( "Data seems invalid.", "Error" );
+				this._showMsg( "Data seems invalid.", "Error", this.typo3 );
 			}
 		}
 	},
@@ -178,7 +188,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		// outdated branch
 		if ( !branchData.active && branchData.stable !== "0.0.0" ) {
-			lastVersionData = branchData.releases[ branchData.latest ];
+			lastVersionData = branchData.releases[ branchData.latest || branchData.latestRelease ];
 			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + branchData.latest + " (" + this._formatDate( lastVersionData.date ) + ")" ) );
 		}
 
@@ -205,21 +215,20 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_renderItemTags: function( releaseData ){
-		var tags = [],
-			meta = this.typo3.meta;
+		var tags = [];
 
 		// tag latest versions
 		switch (releaseData.version) {
-			case meta.latest_stable:
+			case this.typo3.latest.stable:
 				tags.push( this._renderTag( "check", "", "Latest stable release" ) );
 				break;
-			case meta.latest_old_stable:
+			case this.typo3.latest.oldStable:
 				tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
 				break;
-			case meta.latest_lts:
+			case this.typo3.latest.lts:
 				tags.push( this._renderTag( "check", "", "Latest current stable LTS release" ) );
 				break;
-			case meta.latest_old_lts:
+			case this.typo3.latest.oldLts:
 				tags.push( this._renderTag( "check", "", "Latest old stable LTS release" ) );
 				break;
 		}
@@ -324,10 +333,10 @@ $.widget( "ui.typo3VersionChart", {
 		}
 	},
 
-	_showMsg: function( msg, title ) {
+	_showMsg: function( msg, title, data ) {
 		var text = title + ": " + msg;
 
-		this._log( text );
+		this._log( text, data );
 
 		if ($.ui.dialog) {
 			$( "<div>", { html: msg } ).dialog({
