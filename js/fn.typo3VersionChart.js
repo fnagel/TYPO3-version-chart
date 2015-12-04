@@ -88,8 +88,7 @@ $.widget( "ui.typo3VersionChart", {
 				latest_stable: data.latest_stable,
 				latest_old_stable: data.latest_old_stable,
 				latest_lts: data.latest_lts,
-				latest_old_lts: data.latest_old_lts,
-				latest_deprecated: data.latest_deprecated
+				latest_old_lts: data.latest_old_lts
 			},
 			versions_total: 0
 		};
@@ -99,7 +98,6 @@ $.widget( "ui.typo3VersionChart", {
 		delete data.latest_old_stable;
 		delete data.latest_lts;
 		delete data.latest_old_lts;
-		delete data.latest_deprecated;
 
 		this.typo3.versions = data;
 	},
@@ -186,8 +184,14 @@ $.widget( "ui.typo3VersionChart", {
 
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
+			case "8":
+				tags.push( this._renderTag( "clock", "", "The upcoming LTS release, scheduled for April 2017. Once released, it will get 3 years of important and security fixes from the day of the release." ) );
+				break;
+			case "7":
+				tags.push( this._renderTag( "clock", "", "The current stable LTS release (for all new projects). The latest version with Long Term Support. It will have full support until April 2017 and security bugfixes until November 2018." ) );
+				break;
 			case "6.2":
-				tags.push( this._renderTag( "clock", "", "The current stable LTS release: this branch will get full support until March 2017." ) );
+				tags.push( this._renderTag( "clock", "", "The current stable LTS release (for existing projects). The old version with Long Term Support. It will have maintenance and security-related bugfixes until March 2017." ) );
 				break;
 			case "6.1":
 				tags.push( this._renderTag( "power", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes and important bugfixes until October 2014." ) );
@@ -220,9 +224,6 @@ $.widget( "ui.typo3VersionChart", {
 				break;
 			case meta.latest_old_lts:
 				tags.push( this._renderTag( "check", "", "Latest old stable LTS release" ) );
-				break;
-			case meta.latest_deprecated:
-				tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
 				break;
 		}
 
