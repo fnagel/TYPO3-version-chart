@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 					"js/fn.typo3VersionChart.buttons.js",
 					"js/fn.typo3VersionChart.typo3data.js"
 				],
-				dest : "js/scripts.js"
+				dest : "dist/scripts.js"
 			}
 		},
 		uglify : {
@@ -67,8 +67,8 @@ module.exports = function (grunt) {
 				preserveComments : "some"
 			},
 			files : {
-				src : [ "js/scripts.js" ],
-				dest : "js/scripts.min.js"
+				src : [ "dist/scripts.js" ],
+				dest : "dist/scripts.min.js"
 			}
 		},
 		cssmin: {
