@@ -65,6 +65,7 @@ module.exports = function (grunt) {
 					"bower_components/isotope/jquery.isotope.js",
 					"js/fn.typo3VersionChart.js",
 					"js/fn.typo3VersionChart.buttons.js",
+					"js/fn.typo3VersionChart.causal.js",
 					"js/fn.typo3VersionChart.typo3data.js"
 				],
 				dest : "dist/scripts.js"
