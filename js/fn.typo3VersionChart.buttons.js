@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - Button creation and functionality
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2015 Felix Nagel
+ * Copyright 2013-2016 Felix Nagel
  */
 (function( $ ) {
 
@@ -154,24 +154,27 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"class": "typo3-major"
 			});
 
-		$.each( this.typo3.versions, function( branchIndex ){
-			var majorSort = that._convertVersion( branchIndex, "major" );
+		Object.keys( this.typo3.versions )
+			.sort()
+			.reverse()
+			.forEach(function( branchIndex ) {
+				var majorSort = that._convertVersion( branchIndex, "major" );
 
-			if ( !major [ majorSort ] ) {
-				major[ majorSort ] = true;
+				if ( !major [ majorSort ] ) {
+					major[ majorSort ] = true;
 
-				$( "<buttton>", {
-					text: majorSort + ".x",
-					click: function( event ) {
-						that.checkMajor( majorSort );
-						that.refresh( that._processForm() );
-						event.preventDefault();
-					}
-				})
-				.appendTo( buttonSet )
-				.button();
-			}
-		});
+					$( "<buttton>", {
+						text: majorSort + ".x",
+						click: function( event ) {
+							that.checkMajor( majorSort );
+							that.refresh( that._processForm() );
+							event.preventDefault();
+						}
+					})
+					.appendTo( buttonSet )
+					.button();
+				}
+			});
 
 		buttonSet.buttonset().appendTo( this.buttons );
 	},
@@ -229,24 +232,28 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			"class": name
 		});
 
-		$.each( group, function( index, data ){
-			var value = name + "-" + index,
-				id = "check-boxgroup-" + value;
+		Object.keys( group )
+			.sort()
+			.reverse()
+			.forEach(function( index ) {
+				var data = group[ index ],
+					value = name + "-" + index,
+					id = "check-boxgroup-" + value;
 
-			$( "<input>", {
-				type: "checkbox",
-				name: value,
-				value: value,
-				id: id
-			})
-			.addClass( data.css )
-			.addClass( data.icon )
-			.appendTo( buttonSet )
-			.after ( $( "<label for='" + id + "'>" + data.name + "</label>" ) )
-			.button({
-				icons: { secondary: ( data.icon ) ? "ui-icon-" + data.icon : null	}
+				$( "<input>", {
+					type: "checkbox",
+					name: value,
+					value: value,
+					id: id
+				})
+				.addClass( data.css )
+				.addClass( data.icon )
+				.appendTo( buttonSet )
+				.after ( $( "<label for='" + id + "'>" + data.name + "</label>" ) )
+				.button({
+					icons: { secondary: ( data.icon ) ? "ui-icon-" + data.icon : null	}
+				});
 			});
-		});
 
 		buttonSet.buttonset().appendTo( this.buttons );
 	}
