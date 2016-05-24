@@ -268,6 +268,16 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_initEvents: function() {
+		this._on( this.window , {
+			keydown: function ( event ) {
+				console.log(event, "Test");
+				if ( event.keyCode === $.ui.keyCode.ESCAPE ) {
+					$( ".ui-dialog-content" ).dialog( "close" );
+					event.preventDefault();
+				}
+			}
+		});
+
 		this._on( this.chart.find( ".item:not(.major)" ) , {
 			click: function( event ) {
 				var item = $( event.currentTarget ),
