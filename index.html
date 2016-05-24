@@ -32,7 +32,8 @@
 
 	<nav id="meta" class="nav-h">
 		<ul>
-			<li><a href="#dialog-info" title="Open info dialog. Add ?dialog=0 to the URL to disable dialog on init.">Info</a></li>
+			<li><a href="#dialog-info" title="Open info dialog.">Info</a></li>
+			<li><a href="#dialog-hints" title="Open hints dialog.">Hints</a></li>
 			<li><a href="https://github.com/fnagel/TYPO3-version-chart/issues/new" title="Report issues or add feature requests.">Report issue</a></li>
 		</ul>
 	</nav>
@@ -55,6 +56,17 @@
 		It's Open Source - <em>inspiring people to share!</em>
 	</div>
 
+	<div id="dialog-hints" class="ui-helper-hidden">
+		<ul>
+			<li>Add <a href="?dialog=0" target="_blank">?dialog=0</a> to the URL to disable dialog on init.</li>
+			<li>Add <a href="?version=8.0.0" target="_blank">?version=VERSION</a> to the URL to highlight a specific version.</li>
+			<li>Use <em>STRG</em> and click a tile for highlighting it.</li>
+			<li>Use <em>ALT</em> and click a tile to open its wiki page in a new tab.</li>
+			<li>Move info boxes around by drag'n'drop their header.</li>
+			<li>Close all info boxes by pressing ESC.</li>
+		</ul>
+	</div>
+
 	<div id="chart"></div>
 
 </div>
@@ -62,7 +74,9 @@
 <script src="dist/scripts.min.js"></script>
 <script>
 $(function() {
-	var dialogInfoId = "#dialog-info",
+	var meta = $( "#meta" ),
+		dialogInfoId = "#dialog-info",
+		dialogHintsId = "#dialog-hints",
 		buttonsOptions = {
 			"Show all": function() {
 				dialogInfo.dialog( "close" );
@@ -76,22 +90,55 @@ $(function() {
 			title: "TYPO3 Version Chart",
 			width: 550,
 			modal: true,
-			autoOpen: ( window.location.search.match( /[\?&]dialog=0/ ) ) ? 0 : 1,
+			autoOpen: ( getUrlVar( "dialog" ) ) ? 0 : 1,
 			buttons: [ { 
 				text: "Loading...",
 				disabled: true
 			} ]
 		}),
+		dialogHints = $( dialogHintsId ).dialog({
+			width: 550,
+			modal: true,
+			autoOpen: false
+		}),
 		chart = $( "#chart" ).typo3VersionChart({
 			ready: function() {
 				dialogInfo.dialog( "option", "buttons", buttonsOptions );
+				if ( getUrlVar( "version" ) ) {
+					dialogInfo.dialog( "close" );
+					chart.typo3VersionChart( "toggleHighlightItem", getUrlVar( "version" ) );
+				}
 			}
 		});
 
-	$( "#meta a[href='" + dialogInfoId + "']" ).click( function( event ){
+	meta.find( "a[href='" + dialogInfoId + "']" ).click( function( event ){
 		dialogInfo.dialog( "open" );
 		event.preventDefault();
 	});
+	meta.find( "a[href='" + dialogHintsId + "']" ).click( function( event ){
+		dialogHints.dialog( "open" );
+		event.preventDefault();
+	});
+
+
+	// some helper functions
+	function getUrlVars() {
+		var href = window.location.href,
+				hashes = href.slice( href.indexOf( "?" ) + 1 ).split( "&" ),
+				vars = [],
+				hash, i;
+
+		for ( i = 0; i < hashes.length; i++ ) {
+			hash = hashes[ i ].split( "=" );
+			vars.push( hash[ 0 ] );
+			vars[ hash[ 0 ] ] = hash[ 1 ];
+		}
+
+		return vars;
+	}
+	function getUrlVar( name ) {
+		return getUrlVars()[ name ];
+	}
 });
 </script>
 
