@@ -270,7 +270,6 @@ $.widget( "ui.typo3VersionChart", {
 	_initEvents: function() {
 		this._on( this.window , {
 			keydown: function ( event ) {
-				console.log(event, "Test");
 				if ( event.keyCode === $.ui.keyCode.ESCAPE ) {
 					$( ".ui-dialog-content" ).dialog( "close" );
 					event.preventDefault();
@@ -284,9 +283,13 @@ $.widget( "ui.typo3VersionChart", {
 					version = item.find( "strong" ).text(),
 					branch =  item.attr( "data-branch" ).replace( /-/g, "." );
 
-				if( event.altKey || event.ctrlKey ) {
+				if( event.altKey ) {
 					window.open( this._getWikiUrl( this.typo3.versions[ branch ].releases[ version ] ) , "_blank" );
-				} else {
+				}
+				else if( event.ctrlKey ) {
+					this.toggleHighlightItem( $( event.currentTarget ).closest( ".item" ) );
+				}
+				else {
 					this.openVersionDialog( version, branch, item );
 				}
 
@@ -296,6 +299,10 @@ $.widget( "ui.typo3VersionChart", {
 
 		// add tooltips
 		this.document.tooltip();
+	},
+
+	toggleHighlightItem: function( item ) {
+		item.toggleClass( "ui-state-highlight" );
 	},
 
 	openVersionDialog: function( version, branch, positionOf ) {
