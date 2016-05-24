@@ -10,9 +10,8 @@
  *	jquery.ui.dialog.js
  *	jquery.ui.button.js
  *
- * todo and ideas:
+ * @todo and ideas:
  *  make language strings options
- *  add more Version and branch related data
  */
 (function( $, undefined ) {
 
@@ -45,6 +44,8 @@ $.widget( "ui.typo3VersionChart", {
 		// callbacks
 		ready: null
 	},
+
+	itemSelector: ".item:not(.major)",
 
 	_create: function() {
 		var that = this;
@@ -98,7 +99,7 @@ $.widget( "ui.typo3VersionChart", {
 				stable: data.latest_stable,
 				oldStable: data.latest_old_stable,
 				lts: data.latest_lts,
-				oldLts: data.latest_old_lts,
+				oldLts: data.latest_old_lts
 			},
 			versions_total: 0
 		};
@@ -138,14 +139,22 @@ $.widget( "ui.typo3VersionChart", {
 				that.typo3.versions_total++;
 
 				// add version item
-				html.push( that._renderItem( branchIndex, that._renderItemInfo( branchIndex, releaseData ) ,  "typo3-release-" + that._convertVersion( branchIndex ) + " typo3-type-" + releaseData.type + " "  ) );
+				html.push( that._renderItem( branchIndex, "data-version='" + releaseData.version + "'", that._renderItemInfo( branchIndex, releaseData ) ,  "typo3-type-" + releaseData.type ) );
 			});
 
 			// add branch item
-			html.push( that._renderItem( branchIndex, "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header " ) );
+			html.push( that._renderItem( branchIndex, "", "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header" ) );
 		});
 
 		this.chart.html( html.join( "" ) );
+	},
+
+	_renderItem: function( branchIndex, attributes, content, css ) {
+		attributes += " data-branch='" + branchIndex + "'";
+		attributes += " class='item " + css + " ui-widget-content ui-corner-all typo3-branch-" + this._convertVersion( branchIndex ) +
+		              " typo3-major-" + this._convertVersion( branchIndex, "major") + "'";
+
+		return "<div " + attributes + ">" + content + "</div>";
 	},
 
 	_renderItemInfo: function( branchIndex, releaseData ) {
@@ -181,10 +190,6 @@ $.widget( "ui.typo3VersionChart", {
 		}
 
 		return url + data.version;
-	},
-
-	_renderItem: function( branchIndex, content, css ) {
-		return "<div data-branch='" + branchIndex + "' class='item " + css + "ui-widget-content ui-corner-all typo3-branch-" + this._convertVersion( branchIndex ) + " typo3-major-" + this._convertVersion( branchIndex, "major") + "'>" + content + "</div>";
 	},
 
 	_renderBranchTags: function( branchData, branchIndex ){
@@ -277,17 +282,17 @@ $.widget( "ui.typo3VersionChart", {
 			}
 		});
 
-		this._on( this.chart.find( ".item:not(.major)" ) , {
+		this._on( this.chart.find( this.itemSelector ) , {
 			click: function( event ) {
 				var item = $( event.currentTarget ),
-					version = item.find( "strong" ).text(),
+					version = item.attr( "data-version" ),
 					branch =  item.attr( "data-branch" ).replace( /-/g, "." );
 
 				if( event.altKey ) {
 					window.open( this._getWikiUrl( this.typo3.versions[ branch ].releases[ version ] ) , "_blank" );
 				}
 				else if( event.ctrlKey ) {
-					this.toggleHighlightItem( $( event.currentTarget ).closest( ".item" ) );
+					this.toggleHighlightItem( version );
 				}
 				else {
 					this.openVersionDialog( version, branch, item );
@@ -301,8 +306,8 @@ $.widget( "ui.typo3VersionChart", {
 		this.document.tooltip();
 	},
 
-	toggleHighlightItem: function( item ) {
-		item.toggleClass( "ui-state-highlight" );
+	toggleHighlightItem: function( version ) {
+		this.chart.find( this.itemSelector ).filter( "[data-version='" + version + "']" ).toggleClass( "ui-state-highlight" );
 	},
 
 	openVersionDialog: function( version, branch, positionOf ) {
