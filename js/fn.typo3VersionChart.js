@@ -159,16 +159,10 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
-		var content = [],
-			wikiUrl = releaseData.version;
-			
-		// new link structure in wiki due to renaming
-		if ( this._getDate( releaseData.date ) > new Date( "May 01, 2014" ) || releaseData.version === "6.2.1" ) {
-			wikiUrl = "CMS_" + wikiUrl;
-		}
+		var content = [];
 
 		content.push( "<p>Released: <em title='" + releaseData.date + "'>" + this._formatDate( releaseData.date ) + "</em></p>" );
-		content.push( "<p>Wiki page: <a href='http://wiki.typo3.org/TYPO3_" + wikiUrl + "'>TYPO3 " + releaseData.version + "</a></p>" );
+		content.push( "<p>Wiki page: <a href='" + this._getWikiUrl( releaseData ) + "'>TYPO3 " + releaseData.version + "</a></p>" );
 		content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
 		content.push( "<div class='tags'>" );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
@@ -176,6 +170,17 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( "</div>" );
 
 		return content.join( "" );
+	},
+
+	_getWikiUrl: function( data ) {
+		var url = "http://wiki.typo3.org/TYPO3_";
+
+		// new link structure in wiki due to renaming
+		if ( this._getDate( data.date ) > new Date( "May 01, 2014" ) || data.version === "6.2.1" ) {
+			url += "CMS_";
+		}
+
+		return url + data.version;
 	},
 
 	_renderItem: function( branchIndex, content, css ) {
@@ -267,22 +272,26 @@ $.widget( "ui.typo3VersionChart", {
 			click: function( event ) {
 				var item = $( event.currentTarget ),
 					version = item.find( "strong" ).text(),
-					branch = item.attr( "data-branch" ).replace( /-/g, "." ),
-					branchData = this.typo3.versions[ branch ],
-					content = this._renderItemDialogContent( branch, branchData.releases[ version ] );
+					branch =  item.attr( "data-branch" ).replace( /-/g, "." );
 
-				$( "<div>", { html: content } ).dialog({
-					title: "TYPO3 " + version,
-					position: {
-						of: item
-					}
-				});
+				this.openVersionDialog( version, branch, item );
 				event.preventDefault();
 			}
 		});
 
 		// add tooltips
 		this.document.tooltip();
+	},
+
+	openVersionDialog: function( version, branch, positionOf ) {
+		$( "<div>", {
+			html: this._renderItemDialogContent( branch, this.typo3.versions[ branch ].releases[ version ] )
+		} ).dialog({
+            title: "TYPO3 " + version,
+            position: {
+               of: positionOf
+            }
+        });
 	},
 
 	_initIsotope: function() {
