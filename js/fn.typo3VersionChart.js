@@ -274,7 +274,12 @@ $.widget( "ui.typo3VersionChart", {
 					version = item.find( "strong" ).text(),
 					branch =  item.attr( "data-branch" ).replace( /-/g, "." );
 
-				this.openVersionDialog( version, branch, item );
+				if( event.altKey || event.ctrlKey ) {
+					window.open( this._getWikiUrl( this.typo3.versions[ branch ].releases[ version ] ) , "_blank" );
+				} else {
+					this.openVersionDialog( version, branch, item );
+				}
+
 				event.preventDefault();
 			}
 		});
