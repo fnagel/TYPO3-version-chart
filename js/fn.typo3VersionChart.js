@@ -316,7 +316,9 @@ $.widget( "ui.typo3VersionChart", {
 		} ).dialog({
             title: "TYPO3 " + version,
             position: {
-               of: positionOf
+                my: "center bottom",
+                at: "center top-20",
+                of: positionOf
             }
         });
 	},
