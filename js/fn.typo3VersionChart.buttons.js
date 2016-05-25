@@ -223,6 +223,10 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			security: {
 				name: "Security",
 				icon: "alert"
+			},
+			elts: {
+				name: "ELTS",
+				icon: "locked"
 			}
 		}, "typo3-type" );
 	},
