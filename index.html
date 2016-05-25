@@ -71,13 +71,16 @@
 
 </div>
 
-<script src="dist/scripts.min.js"></script>
+<script src="dist/scripts.js"></script>
 <script>
 $(function() {
 	var meta = $( "#meta" ),
 		dialogInfoId = "#dialog-info",
 		dialogHintsId = "#dialog-hints",
 		buttonsOptions = {
+			"Hints": function() {
+				dialogHints.dialog( "open" );
+			},
 			"Show all": function() {
 				dialogInfo.dialog( "close" );
 			},
