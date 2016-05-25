@@ -19,7 +19,7 @@ $.widget( "ui.typo3VersionChart", {
 	version: "@VERSION",
 	defaultElement: "<div>",
 	options: {
-		debug: false,
+		debug: true,
 		dateFormat: "dd. M yy",
 		ajax: {
 			// TYPO3 version json URL (CORS issues)
@@ -92,9 +92,13 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_initSource: function( data ) {
+		var that = this,
+			dataSorted;
+
 		$.extend( true, data, this.options.typo3data );
 
 		this.typo3 = {
+			versions: {},
 			latest: {
 				stable: data.latest_stable,
 				oldStable: data.latest_old_stable,
@@ -104,13 +108,29 @@ $.widget( "ui.typo3VersionChart", {
 			versions_total: 0
 		};
 
-		// remove latest version related items
-		delete data.latest_stable;
-		delete data.latest_old_stable;
-		delete data.latest_lts;
-		delete data.latest_old_lts;
+		$.each( data, function( branchIndex, branchData ){
+			if ( !branchData.releases ) {
+				return true;
+			}
 
-		this.typo3.versions = data;
+			Object.keys( branchData.releases ).forEach(function( version ) {
+				branchData.releases[ version ] = that._prepareVersionData( branchData.releases[ version ] );
+			} );
+
+			dataSorted = [];
+			Object.keys( branchData.releases )
+				.sort( function( a, b ) {
+					return that._sortTypo3Versions( branchData.releases[ a ], branchData.releases[ b ] );
+				} )
+				.reverse()
+				.forEach(function( version ) {
+					that.typo3.versions_total++;
+					dataSorted.push( branchData.releases[ version ] );
+				} );
+
+			that.typo3.versions[ branchIndex ] = branchData;
+			that.typo3.versions[ branchIndex ].releases = dataSorted;
+		});
 	},
 
 	_drawHtml: function() {
@@ -130,14 +150,22 @@ $.widget( "ui.typo3VersionChart", {
 		}
 	},
 
+	_prepareVersionData: function ( data ) {
+		data.date = this._getDate( data.date );
+
+		return data;
+	},
+
+	_sortTypo3Versions: function ( a, b ) {
+		return ( a.date - b.date );
+	},
+
 	__drawHtml: function() {
 		var that = this,
 			html = [];
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			$.each( branchData.releases, function( releaseIndex, releaseData  ){
-				that.typo3.versions_total++;
-
 				// add version item
 				html.push( that._renderItem( branchIndex, "data-version='" + releaseData.version + "'", that._renderItemInfo( branchIndex, releaseData ) ,  "typo3-type-" + releaseData.type ) );
 			});
@@ -170,9 +198,11 @@ $.widget( "ui.typo3VersionChart", {
 	_renderItemDialogContent: function( branchIndex, releaseData ) {
 		var content = [];
 
-		content.push( "<p>Released: <em title='" + releaseData.date + "'>" + this._formatDate( releaseData.date ) + "</em></p>" );
+		content.push( "<p>Released: <em title='" + releaseData.date.toUTCString() + "'>" + this._formatDate( releaseData.date ) + "</em></p>" );
 		content.push( "<p>Wiki page: <a href='" + this._getWikiUrl( releaseData ) + "'>TYPO3 " + releaseData.version + "</a></p>" );
-		content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
+		if ( releaseData.url ) {
+			content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
+		}
 		content.push( "<div class='tags'>" );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
 		content.push( this._renderItemTags( releaseData, branchIndex ) );
@@ -185,7 +215,7 @@ $.widget( "ui.typo3VersionChart", {
 		var url = "http://wiki.typo3.org/TYPO3_";
 
 		// new link structure in wiki due to renaming
-		if ( this._getDate( data.date ) > new Date( "May 01, 2014" ) || data.version === "6.2.1" ) {
+		if ( data.date > new Date( "May 01, 2014" ) || data.version === "6.2.1" ) {
 			url += "CMS_";
 		}
 
@@ -194,12 +224,11 @@ $.widget( "ui.typo3VersionChart", {
 
 	_renderBranchTags: function( branchData, branchIndex ){
 		var tags = [],
-			lastVersionData;
+			lastVersion = branchData.latest || branchData.latestRelease;
 
 		// outdated branch
-		if ( !branchData.active && branchData.stable !== "0.0.0" ) {
-			lastVersionData = branchData.releases[ branchData.latest || branchData.latestRelease ];
-			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + branchData.latest + " (" + this._formatDate( lastVersionData.date ) + ")" ) );
+		if ( !branchData.active && branchData.stable !== "0.0.0" && lastVersion ) {
+			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + lastVersion + " (" + this._formatDate( this.getVersionData( lastVersion, branchIndex ).date ) + ")" ) );
 		}
 
 		// LTS & End of maintenance
@@ -217,7 +246,7 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until October 2014." ) );
 				break;
 			case "4.5":
-				tags.push( this._renderTag( "clock", "", "The old stable LTS release: this branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until March 2015." ) );
+				tags.push( this._renderTag( "clock", "", "The old stable LTS release: this branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until March 2015. In addition, there is a paid ELTS (extended LTS) with security and stability fixes (support planned to end on March 31st, 2016.)" ) );
 				break;
 		}
 
@@ -228,7 +257,7 @@ $.widget( "ui.typo3VersionChart", {
 		var tags = [];
 
 		// tag latest versions
-		switch (releaseData.version) {
+		switch ( releaseData.version ) {
 			case this.typo3.latest.stable:
 				tags.push( this._renderTag( "check", "", "Latest stable release" ) );
 				break;
@@ -244,9 +273,13 @@ $.widget( "ui.typo3VersionChart", {
 		}
 
 		// version type
-		switch (releaseData.type) {
+		switch ( releaseData.type ) {
 			case "security":
 				tags.push( this._renderTag( "alert", "typo3-type-" + releaseData.type, "Security patch included!" ) );
+				break;
+			case "elts":
+				tags.push( this._renderTag( "alert", "typo3-type-" + releaseData.type, "Security patch included!" ) );
+				tags.push( this._renderTag( "locked", "typo3-type-" + releaseData.type, "ELTS version" ) );
 				break;
 			case "development":
 				tags.push( this._renderTag( "lightbulb", "typo3-type-" + releaseData.type, "Development version" ) );
@@ -289,7 +322,7 @@ $.widget( "ui.typo3VersionChart", {
 					branch =  item.attr( "data-branch" ).replace( /-/g, "." );
 
 				if( event.altKey ) {
-					window.open( this._getWikiUrl( this.typo3.versions[ branch ].releases[ version ] ) , "_blank" );
+					window.open( this._getWikiUrl( this.getVersionData( version, branch ) ) , "_blank" );
 				}
 				else if( event.ctrlKey ) {
 					this.toggleHighlightItem( version );
@@ -312,7 +345,7 @@ $.widget( "ui.typo3VersionChart", {
 
 	openVersionDialog: function( version, branch, positionOf ) {
 		$( "<div>", {
-			html: this._renderItemDialogContent( branch, this.typo3.versions[ branch ].releases[ version ] )
+				html: this._renderItemDialogContent( branch, this.getVersionData( version, branch ) )
 		} ).dialog({
             title: "TYPO3 " + version,
             position: {
@@ -321,6 +354,12 @@ $.widget( "ui.typo3VersionChart", {
                 of: positionOf
             }
         });
+	},
+
+	getVersionData: function( version, branch ) {
+		return $.grep( this.typo3.versions[ branch ].releases, function( data ) {
+			return data.version === version;
+		})[ 0 ];
 	},
 
 	_initIsotope: function() {
@@ -360,7 +399,7 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_formatDate: function( string ) {
-		return $.datepicker.formatDate( this.options.dateFormat, this._getDate( string ) );
+		return $.datepicker.formatDate( this.options.dateFormat, string );
 	},
 
 	_setOption: function( key, value ) {
