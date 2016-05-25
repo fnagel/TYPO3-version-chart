@@ -110,7 +110,8 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			});
 
 		$( "<buttton>", {
-			text: "show all (" + this.typo3.versions_total + ")",
+			text: "show all",
+			title: "Show all versions (" + this.typo3.versions_total + " releases)",
 			click: function( event ) {
 				that.buttons.find( "input:checkbox" ).prop( "checked", true );
 				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
@@ -119,10 +120,26 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			}
 		})
 		.appendTo( buttonSet )
-		.button();
+		.button({
+	        icons: { primary: "ui-icon-bullet" }
+        });
 
 		$( "<buttton>", {
-			text: "show none",
+			text: "show active",
+			title: "Show all non-dev versions of all maintained branches (" + this.typo3.versions_active_total + " releases)",
+			click: function( event ) {
+				that.refreshDefaults();
+				event.preventDefault();
+			}
+		})
+		.appendTo( buttonSet )
+		.button({
+	        icons: { primary: "ui-icon-radio-on" }
+        });
+
+		$( "<buttton>", {
+			text: "clear",
+			title: "Clear all (show no releases)",
 			click: function( event ) {
 				that.buttons.find( "input:checkbox" ).prop( "checked", false );
 				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
@@ -131,18 +148,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			}
 		})
 		.appendTo( buttonSet )
-		.button();
-
-		$( "<buttton>", {
-			title: "Show all non-dev versions of all maintained branches",
-			text: "show active",
-			click: function( event ) {
-				that.refreshDefaults();
-				event.preventDefault();
-			}
-		})
-		.appendTo( buttonSet )
-		.button();
+		.button({
+	        icons: { primary: "ui-icon-radio-off" }
+        });
 
 		buttonSet.buttonset().appendTo( this.buttons );
 	},
