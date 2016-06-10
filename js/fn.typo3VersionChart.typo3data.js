@@ -60,6 +60,16 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"4.5": {
 				"releases": {
+					"4.5.47": {
+						"version": "4.5.47",
+						"date": "2016-05-23 12:00:00 UTC",
+						"type": "elts"
+					},
+					"4.5.46": {
+						"version": "4.5.46",
+						"date": "2016-04-18 12:00:00 UTC",
+						"type": "elts"
+					},
 					"4.5.45": {
 						"version": "4.5.45",
 						"date": "2016-02-24 12:00:00 UTC",
