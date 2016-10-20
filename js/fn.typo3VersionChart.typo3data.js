@@ -21,6 +21,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"releases": {
 					"7.0.0": {
 						breaking_changes: true
+					},
+					"7.6.11": {
+						breaking_changes: true
 					}
 				}
 			},
