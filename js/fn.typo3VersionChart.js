@@ -24,11 +24,11 @@ $.widget( "ui.typo3VersionChart", {
 		ajax: {
 			// TYPO3 version json URL (CORS issues)
 			// dataType: "json",
-			// url: "http://get.typo3.org/json",
+			// url: location.protocol + "//get.typo3.org/json",
 
 			// using YQL for cross domain AJAX request
 			dataType: "yql-json",
-			url: "http://query.yahooapis.com/v1/public/yql?q=select * from json where url='http://get.typo3.org/json'&format=json&jsonCompat=new",
+			url: location.protocol + "//query.yahooapis.com/v1/public/yql?q=select * from json where url='http://get.typo3.org/json'&format=json&jsonCompat=new",
 			converters: {
 				// add YQL json converter
 				"text yql-json": function( raw ){
