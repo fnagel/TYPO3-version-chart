@@ -205,15 +205,23 @@ $.widget( "ui.typo3VersionChart", {
 
 		content.push( "<p>Released: <em title='" + releaseData.date.toUTCString() + "'>" + this._formatDate( releaseData.date ) + "</em></p>" );
 		content.push( "<p>Wiki page: <a href='" + this._getWikiUrl( releaseData ) + "'>TYPO3 " + releaseData.version + "</a></p>" );
+
 		if ( releaseData.url ) {
 			content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
 		}
+
+		content.push( "<p>Git:  <a href='" + this._getGitBaseUrl() + "releases/tag/" + releaseData.version + "'>Tag</a></p>" );
+
 		content.push( "<div class='tags'>" );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
 		content.push( this._renderItemTags( releaseData, branchIndex ) );
 		content.push( "</div>" );
 
 		return content.join( "" );
+	},
+
+	_getGitBaseUrl: function() {
+		return "https://github.com/TYPO3/TYPO3.CMS/";
 	},
 
 	_getWikiUrl: function( data ) {
