@@ -29,6 +29,16 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.33": {
+						"version": "6.2.33",
+						"date": "2017-08-29 12:00:00 UTC",
+						"type": "elts"
+					},
+					"6.2.32": {
+						"version": "6.2.32",
+						"date": "2017-08-29 12:00:00 UTC",
+						"type": "elts"
+					},
 					"6.2.0": {
 						breaking_changes: true
 					}
