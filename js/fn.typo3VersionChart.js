@@ -285,14 +285,14 @@ $.widget( "ui.typo3VersionChart", {
 				break;
 		}
 
+		if ( releaseData.elts ) {
+			tags.push( this._renderTag( "locked", "typo3-type-" + releaseData.type, "ELTS version" ) );
+		}
+
 		// version type
 		switch ( releaseData.type ) {
 			case "security":
 				tags.push( this._renderTag( "alert", "typo3-type-" + releaseData.type, "Security patch included!" ) );
-				break;
-			case "elts":
-				tags.push( this._renderTag( "alert", "typo3-type-" + releaseData.type, "Security patch included!" ) );
-				tags.push( this._renderTag( "locked", "typo3-type-" + releaseData.type, "ELTS version" ) );
 				break;
 			case "development":
 				tags.push( this._renderTag( "lightbulb", "typo3-type-" + releaseData.type, "Development version" ) );

@@ -32,22 +32,25 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					"6.2.35": {
 						"version": "6.2.35",
 						"date": "2017-09-06 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"6.2.34": {
 						"version": "6.2.34",
 						"date": "2017-09-05 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"6.2.33": {
 						"version": "6.2.33",
 						"date": "2017-08-29 12:00:00 UTC",
-						"type": "elts"
+						"elts": true
 					},
 					"6.2.32": {
 						"version": "6.2.32",
 						"date": "2017-08-29 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"6.2.0": {
 						breaking_changes: true
@@ -86,52 +89,62 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					"4.5.50": {
 						"version": "4.5.50",
 						"date": "2017-01-09 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.49": {
 						"version": "4.5.49",
 						"date": "2017-11-23 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.48": {
 						"version": "4.5.48",
 						"date": "2016-07-20 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.47": {
 						"version": "4.5.47",
 						"date": "2016-05-23 12:00:00 UTC",
+						"elts": true,
 						"type": "elts"
 					},
 					"4.5.46": {
 						"version": "4.5.46",
 						"date": "2016-04-18 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.45": {
 						"version": "4.5.45",
 						"date": "2016-02-24 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.44": {
 						"version": "4.5.44",
 						"date": "2016-02-16 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.43": {
 						"version": "4.5.43",
 						"date": "2015-12-15 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.42": {
 						"version": "4.5.42",
 						"date": "2015-09-08 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.41": {
 						"version": "4.5.41",
 						"date": "2015-07-01 12:00:00 UTC",
-						"type": "elts"
+						"elts": true,
+						"type": "security"
 					},
 					"4.5.24": {
 						breaking_changes: true
