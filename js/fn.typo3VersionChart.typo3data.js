@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - TYPO3 additional data addition
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2016 Felix Nagel
+ * Copyright 2013-2018 Felix Nagel
  */
 (function( $ ) {
 
@@ -29,6 +29,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.36": {
+						"version": "6.2.36",
+						"date": "2018-03-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"6.2.35": {
 						"version": "6.2.35",
 						"date": "2017-09-06 12:00:00 UTC",
