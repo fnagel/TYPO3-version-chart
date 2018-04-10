@@ -11,3 +11,6 @@ docs
 *.session
 compiled
 *.zip
+.idea
+bower_components
+package-lock.json
