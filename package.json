@@ -2,7 +2,6 @@
 	"name": "TYPO3-version-chart",
 	"title": "A TYPO3 version visualization",
 	"description": "A TYPO3 version visualization created by Felix Nagel.",
-	"version": "1.0.0",
 	"homepage": "https://github.com/fnagel/TYPO3-version-chart",
 	"author": {
 		"name": "Felix Nagel",
