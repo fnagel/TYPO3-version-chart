@@ -171,11 +171,25 @@ $.widget( "ui.typo3VersionChart", {
 					that.typo3.versions_active_total++;
 				}
 				// add version item
-				html.push( that._renderItem( branchIndex, "data-version='" + releaseData.version + "'", that._renderItemInfo( branchIndex, releaseData ) ,  "typo3-type-" + releaseData.type ) );
+				html.push(
+					that._renderItem(
+						branchIndex,
+						"data-version='" + releaseData.version + "'",
+						that._renderItemInfo( branchIndex, releaseData ),
+						"typo3-type-" + releaseData.type + ( releaseData.elts ? " typo3-type-elts" : "" )
+					)
+				);
 			});
 
 			// add branch item
-			html.push( that._renderItem( branchIndex, "", "<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ), "major ui-widget-header" ) );
+			html.push(
+				that._renderItem(
+					branchIndex,
+					"",
+					"<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ),
+					"major ui-widget-header"
+				)
+			);
 
 		});
 
@@ -286,7 +300,7 @@ $.widget( "ui.typo3VersionChart", {
 		}
 
 		if ( releaseData.elts ) {
-			tags.push( this._renderTag( "locked", "typo3-type-" + releaseData.type, "ELTS version" ) );
+			tags.push( this._renderTag( "clock", "typo3-type-" + releaseData.type, "ELTS version" ) );
 		}
 
 		// version type
