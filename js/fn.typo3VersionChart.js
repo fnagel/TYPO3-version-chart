@@ -241,7 +241,7 @@ $.widget( "ui.typo3VersionChart", {
 	_getWikiUrl: function( data ) {
 		var url = "http://wiki.typo3.org/TYPO3_";
 
-		// new link structure in wiki due to renaming
+		// New link structure in wiki due to renaming
 		if ( data.date > new Date( "May 01, 2014" ) || data.version === "6.2.1" ) {
 			url += "CMS_";
 		}
@@ -421,12 +421,16 @@ $.widget( "ui.typo3VersionChart", {
 		return value;
 	},
 	
-	_getDate: function( string ) {
-		return new Date( string.replace( /-/g, "/" ) );
+	_getDate: function( value ) {
+        if ( $.type( value ) !== "date" ) {
+            return new Date( value.replace( /-/g, "/" ) );
+		}
+
+        return value;
 	},
 
-	_formatDate: function( string ) {
-		return $.datepicker.formatDate( this.options.dateFormat, string );
+	_formatDate: function( date ) {
+		return $.datepicker.formatDate( this.options.dateFormat, date );
 	},
 
 	_setOption: function( key, value ) {
