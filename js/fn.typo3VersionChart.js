@@ -20,7 +20,12 @@ $.widget( "ui.typo3VersionChart", {
 	defaultElement: "<div>",
 	options: {
 		debug: true,
-		dateFormat: "dd. M yy",
+		dateLocale: undefined,
+		dateFormat: {
+			year: "numeric",
+			month: "short",
+			day: "numeric"
+		},
 		ajax: {
 			// TYPO3 version json URL (CORS issues)
 			// dataType: "json",
@@ -430,7 +435,7 @@ $.widget( "ui.typo3VersionChart", {
 	},
 
 	_formatDate: function( date ) {
-		return $.datepicker.formatDate( this.options.dateFormat, date );
+		return date.toLocaleDateString( this.options.dateLocale , this.options.dateFormat );
 	},
 
 	_setOption: function( key, value ) {

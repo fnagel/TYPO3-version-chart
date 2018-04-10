@@ -61,7 +61,6 @@ module.exports = function (grunt) {
 					"bower_components/jquery-ui/ui/button.js",
 					"bower_components/jquery-ui/ui/dialog.js",
 					"bower_components/jquery-ui/ui/tooltip.js",
-					"bower_components/jquery-ui/ui/datepicker.js",
 					"bower_components/isotope/jquery.isotope.js",
 					"js/fn.typo3VersionChart.js",
 					"js/fn.typo3VersionChart.buttons.js",
