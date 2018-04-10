@@ -428,7 +428,7 @@ $.widget( "ui.typo3VersionChart", {
 	
 	_getDate: function( value ) {
         if ( $.type( value ) !== "date" ) {
-            return new Date( value.replace( /-/g, "/" ) );
+            return new Date( value.replace( /-/g, "/" ).replace( /CEST/g, "UTC+0200" ) );
 		}
 
         return value;
