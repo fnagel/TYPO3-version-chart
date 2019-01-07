@@ -29,6 +29,18 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.38": {
+						"version": "6.2.38",
+						"date": "2018-07-12 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"6.2.37": {
+						"version": "6.2.37",
+						"date": "2018-07-12 12:00:00 UTC",
+						"elts": true,
+						"type": "release"
+					},
 					"6.2.36": {
 						"version": "6.2.36",
 						"date": "2018-03-13 12:00:00 UTC",
@@ -50,7 +62,8 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					"6.2.33": {
 						"version": "6.2.33",
 						"date": "2017-08-29 12:00:00 UTC",
-						"elts": true
+						"elts": true,
+						"type": "release"
 					},
 					"6.2.32": {
 						"version": "6.2.32",
