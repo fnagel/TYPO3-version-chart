@@ -29,6 +29,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.39": {
+						"version": "6.2.38",
+						"date": "2018-12-11 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"6.2.38": {
 						"version": "6.2.38",
 						"date": "2018-07-12 12:00:00 UTC",
