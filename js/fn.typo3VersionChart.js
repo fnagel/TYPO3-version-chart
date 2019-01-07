@@ -2,21 +2,17 @@
  * jQuery TYPO3 Version Chart
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2016 Felix Nagel
+ * Copyright 2013-2018 Felix Nagel
  *
  * Depends:
  *	jquery.ui.core.js
  *	jquery.ui.widget.js
  *	jquery.ui.dialog.js
  *	jquery.ui.button.js
- *
- * @todo and ideas:
- *  make language strings options
  */
 (function( $, undefined ) {
 
 $.widget( "ui.typo3VersionChart", {
-	version: "@VERSION",
 	defaultElement: "<div>",
 	options: {
 		debug: true,
