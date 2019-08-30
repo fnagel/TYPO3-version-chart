@@ -52,7 +52,7 @@ $.widget( "ui.typo3VersionChart", {
 
 	start: function( data ) {
 		if ( !(data && $.isPlainObject( data ) && !$.isEmptyObject( data ) && this._sourceIsValid( data ) ) ) {
-			this._showMsg( "Problems with the JSON data (source invalid). Please reload.", "Error" );
+			this._showMsg( "Problems with the JSON data (source invalid). Please reload.", "Error", data );
 			return;
 		}
 
@@ -73,7 +73,6 @@ $.widget( "ui.typo3VersionChart", {
 	_sourceIsValid: function( data ) {
 		return (
 			data.latest_stable &&
-			data.latest_old_stable &&
 			data.latest_lts &&
 			data.latest_old_lts
 		);
@@ -89,7 +88,6 @@ $.widget( "ui.typo3VersionChart", {
 			versions: {},
 			latest: {
 				stable: data.latest_stable,
-				oldStable: data.latest_old_stable,
 				lts: data.latest_lts,
 				oldLts: data.latest_old_lts
 			},
@@ -98,7 +96,7 @@ $.widget( "ui.typo3VersionChart", {
 		};
 
 		$.each( data, function( branchIndex, branchData ){
-			if ( !branchData.releases ) {
+			if ( !branchData || !branchData.releases ) {
 				return true;
 			}
 
@@ -275,9 +273,6 @@ $.widget( "ui.typo3VersionChart", {
 		switch ( releaseData.version ) {
 			case this.typo3.latest.stable:
 				tags.push( this._renderTag( "check", "", "Latest stable release" ) );
-				break;
-			case this.typo3.latest.oldStable:
-				tags.push( this._renderTag( "check", "", "Latest old stable release" ) );
 				break;
 			case this.typo3.latest.lts:
 				tags.push( this._renderTag( "check", "", "Latest current stable LTS release" ) );
