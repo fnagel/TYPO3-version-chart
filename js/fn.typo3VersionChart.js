@@ -246,14 +246,20 @@ $.widget( "ui.typo3VersionChart", {
 
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
+			case "10":
+				tags.push( this._renderTag( "clock", "", "The upcoming LTS release. It will be supported with security and critical fixes until April 2023." ) );
+				break;
+			case "9":
+				tags.push( this._renderTag( "clock", "", "The upcoming LTS release. It will be supported with security and critical fixes until October 2021." ) );
+				break;
 			case "8":
-				tags.push( this._renderTag( "clock", "", "The upcoming LTS release, scheduled for April 2017. Once released, it will get 3 years of important and security fixes from the day of the release." ) );
+				tags.push( this._renderTag( "clock", "", "The current LTS release. It will be supported with security and critical fixes until March 2020." ) );
 				break;
 			case "7":
-				tags.push( this._renderTag( "clock", "", "The current stable LTS release (for all new projects). The latest version with Long Term Support. It will have full support until April 2017 and security bugfixes until November 2018." ) );
+				tags.push( this._renderTag( "clock", "", "The old stable LTS release. It will have full support until April 2017 and security bugfixes until November 2018." ) );
 				break;
 			case "6.2":
-				tags.push( this._renderTag( "clock", "", "The current stable LTS release (for existing projects). The old version with Long Term Support. It will have maintenance and security-related bugfixes until March 2017." ) );
+				tags.push( this._renderTag( "clock", "", "The old stable LTS release. The old version with Long Term Support. It will have maintenance and security-related bugfixes until March 2017." ) );
 				break;
 			case "4.7":
 				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until October 2014." ) );
