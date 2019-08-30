@@ -232,6 +232,11 @@ $.widget( "ui.typo3VersionChart", {
 			url += "CMS_";
 		}
 
+		// Wiki redirects do not work for TYPO3 10
+		if ( this._convertVersion( data.version, "major" ) >= 10 ) {
+			url = "https://get.typo3.org/release-notes/";
+		}
+
 		return url + data.version;
 	},
 
