@@ -389,7 +389,7 @@ $.widget( "ui.typo3VersionChart", {
 				},
 				getSortData: {
 					branch: function ( item ) {
-						return item.attr( "data-branch" );
+						return item.attr( "data-branch" ).floatval();
 					}
 				},
 				sortBy: "branch",
@@ -404,10 +404,10 @@ $.widget( "ui.typo3VersionChart", {
 		var value = version.replace( /\./g, "-" );
 
 		if ( key === "major" ) {
-			value = value.charAt( 0 );
+			value = value.split( "-" )[ 0 ];
 		}
 
-		return value;
+		return value.intval();
 	},
 	
 	_getDate: function( value ) {
@@ -513,6 +513,14 @@ $.extend( $.Isotope.prototype, {
 		return true;
 	}
 });
+
+String.prototype.intval = function() {
+	return parseInt( this, 10 );
+};
+
+String.prototype.floatval = function() {
+	return parseFloat( this );
+};
 
 }( jQuery ));
 

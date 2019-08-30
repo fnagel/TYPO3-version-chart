@@ -163,12 +163,14 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			});
 
 		Object.keys( this.typo3.versions )
-			.sort()
+			.sort( function( a, b ) {
+				return that._convertVersion( a ) > that._convertVersion( b );
+			} )
 			.reverse()
 			.forEach(function( branchIndex ) {
 				var majorSort = that._convertVersion( branchIndex, "major" );
 
-				if ( !major [ majorSort ] ) {
+				if ( !major[ majorSort ] ) {
 					major[ majorSort ] = true;
 
 					$( "<buttton>", {
@@ -245,7 +247,6 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		});
 
 		Object.keys( group )
-			.sort()
 			.reverse()
 			.forEach(function( index ) {
 				var data = group[ index ],
