@@ -13,25 +13,57 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			"8": {
 				"releases": {
 					"8.7.25": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"8.0.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					}
 				}
 			},
 			"7": {
 				"releases": {
-					"7.0.0": {
-						breaking_changes: true
+					"7.6.39": {
+						"version": "7.6.39",
+						"date": "2019-08-20 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"7.6.38": {
+						"version": "7.6.38",
+						"date": "2019-06-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
 					},
 					"7.6.11": {
-						breaking_changes: true
+						"breaking_changes": true
+					},
+					"7.0.0": {
+						"breaking_changes": true
 					}
 				}
 			},
 			"6.2": {
 				"releases": {
+					"6.2.46": {
+						"version": "6.2.46",
+						"date": "2019-08-20 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"6.2.45": {
+						"version": "6.2.45",
+						"date": "2019-07-02 12:00:00 UTC",
+						"elts": true,
+						"type": "regular",
+						"breaking_changes": true
+					},
+					"6.2.44": {
+						"version": "6.2.44",
+						"date": "2018-06-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"6.2.41": {
 						"version": "6.2.41",
 						"date": "2018-03-19 12:00:00 UTC",
@@ -93,34 +125,34 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"type": "security"
 					},
 					"6.2.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					}
 				}
 			},
 			"6.1": {
 				"releases": {
 					"6.1.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					}
 				}
 			},
 			"6.0": {
 				"releases": {
 					"6.0.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"6.0.3": {
-						breaking_changes: true
+						"breaking_changes": true
 					}
 				}
 			},
 			"4.7": {
 				"releases": {
 					"4.7.9": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.7.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					}
 				}
 			},
@@ -187,19 +219,19 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"type": "security"
 					},
 					"4.5.24": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.5.14": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.5.4": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.5.1": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.5.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.5.0rc3": {
 						"version": "4.5.0rc3",
@@ -296,19 +328,19 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			"4.4": {
 				"releases": {
 					"4.4.14": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.4.9": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.4.5": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.4.1": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.4.0": {
-						breaking_changes: true
+						"breaking_changes": true
 					},
 					"4.4.0RC2": {
 						"version": "4.4.0RC2",
