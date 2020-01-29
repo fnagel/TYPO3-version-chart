@@ -1,8 +1,8 @@
 /*!
- * jQuery TYPO3 Version Chart - TYPO3 additional data addition
+ * jQuery TYPO3 Version Chart - TYPO3 additional data
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2019 Felix Nagel
+ * Copyright 2013-2020 Felix Nagel
  */
 (function( $ ) {
 
@@ -22,6 +22,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"7": {
 				"releases": {
+					"7.6.41": {
+						"version": "7.6.41",
+						"date": "2020-01-29 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
 					"7.6.39": {
 						"version": "7.6.39",
 						"date": "2019-08-20 12:00:00 UTC",
@@ -45,6 +51,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.48": {
+						"version": "6.2.48",
+						"date": "2020-01-29 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
 					"6.2.46": {
 						"version": "6.2.46",
 						"date": "2019-08-20 12:00:00 UTC",
