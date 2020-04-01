@@ -416,17 +416,17 @@ $.widget( "ui.typo3VersionChart", {
 	},
 	
 	_getDate: function( value ) {
-        if ( $.type( value ) !== "date" ) {
-        	value = value.replace( /-/g, "/" );
+		if ( $.type( value ) !== "date" ) {
+			value = value.replace( /-/g, "/" );
 
-        	if ( value.search( "CEST" ) ) {
-        		// Summertime
-				value.replace( /CEST/g, "UTC+0200" )
+			if ( value.search( "CEST" ) !== -1) {
+				// Summertime
+				value = value.replace( /CEST/g, "UTC+0200" );
 			} else {
-				value.replace( /CET/g, "UTC+0100" )
+				value = value.replace( /CET/g, "UTC+0100" );
 			}
 
-            return new Date( value );
+			return new Date( value );
 		}
 
         return value;
