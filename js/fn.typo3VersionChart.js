@@ -417,7 +417,16 @@ $.widget( "ui.typo3VersionChart", {
 	
 	_getDate: function( value ) {
         if ( $.type( value ) !== "date" ) {
-            return new Date( value.replace( /-/g, "/" ).replace( /CEST/g, "UTC+0200" ) );
+        	value = value.replace( /-/g, "/" );
+
+        	if ( value.search( "CEST" ) ) {
+        		// Summertime
+				value.replace( /CEST/g, "UTC+0200" )
+			} else {
+				value.replace( /CET/g, "UTC+0100" )
+			}
+
+            return new Date( value );
 		}
 
         return value;
