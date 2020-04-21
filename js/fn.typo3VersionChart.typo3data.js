@@ -10,6 +10,13 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
 		// additional data to merge with the original json
 		typo3data: {
+			"10": {
+				"releases": {
+					"10.4.0": {
+						"breaking_changes": true
+					}
+				}
+			},
 			"9": {
 				"releases": {
 					"9.5.15": {
