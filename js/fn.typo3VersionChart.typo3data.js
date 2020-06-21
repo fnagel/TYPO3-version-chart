@@ -32,6 +32,18 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"8": {
 				"releases": {
+					"8.7.34": {
+						"version": "8.7.34",
+						"date": "2020-05-19 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.33": {
+						"version": "8.7.33",
+						"date": "2020-05-12 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"8.7.25": {
 						"breaking_changes": true
 					},
