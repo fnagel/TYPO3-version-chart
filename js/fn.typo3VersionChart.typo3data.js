@@ -54,11 +54,29 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"7": {
 				"releases": {
-					"7.6.41": {
-						"version": "7.6.41",
-						"date": "2020-01-29 12:00:00 UTC",
+					"7.6.43": {
+						"version": "7.6.43",
+						"date": "2020-05-19 12:00:00 UTC",
 						"elts": true,
 						"type": "regular"
+					},
+					"7.6.42": {
+						"version": "7.6.42",
+						"date": "2020-05-12 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"7.6.41": {
+						"version": "7.6.41",
+						"date": "2020-01-28 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"7.6.40": {
+						"version": "7.6.40",
+						"date": "2019-12-17 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
 					},
 					"7.6.39": {
 						"version": "7.6.39",
@@ -69,6 +87,37 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					"7.6.38": {
 						"version": "7.6.38",
 						"date": "2019-06-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"7.6.37": {
+						"version": "7.6.37",
+						"date": "2019-05-08 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"7.6.36": {
+						"version": "7.6.36",
+						"date": "2019-05-07 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"7.6.35": {
+						"version": "7.6.35",
+						"date": "2019-03-21 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"7.6.34": {
+						"version": "7.6.34",
+						"date": "2019-01-23 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"7.6.33": {
+						"version": "7.6.33",
+						"date": "2019-01-22 12:00:00 UTC",
 						"elts": true,
 						"type": "security",
 						"breaking_changes": true
