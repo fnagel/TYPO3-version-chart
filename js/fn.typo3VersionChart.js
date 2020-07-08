@@ -224,6 +224,7 @@ $.widget( "ui.typo3VersionChart", {
 		return "https://github.com/TYPO3/TYPO3.CMS/";
 	},
 
+	// @todo Some day, rename method, text and link to https://get.typo3.org/release-notes/
 	_getWikiUrl: function( data ) {
 		var url = "http://wiki.typo3.org/TYPO3_";
 
