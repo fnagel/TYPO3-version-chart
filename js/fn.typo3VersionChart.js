@@ -210,7 +210,10 @@ $.widget( "ui.typo3VersionChart", {
 			content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
 		}
 
-		content.push( "<p>Git:  <a href='" + this._getGitBaseUrl() + "releases/tag/" + releaseData.version + "'>Tag</a></p>" );
+		// ELTS repositories are not available at GitHub
+		if ( !releaseData.elts ) {
+			content.push( "<p>Git:  <a href='" + this._getGitBaseUrl() + "releases/tag/" + releaseData.version + "'>Tag</a></p>" );
+		}
 
 		content.push( "<div class='tags'>" );
 		content.push( this._renderBranchTags( this.typo3.versions[ branchIndex ], branchIndex ) );
