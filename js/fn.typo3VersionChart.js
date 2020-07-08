@@ -212,7 +212,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		// ELTS repositories are not available at GitHub
 		if ( !releaseData.elts ) {
-			content.push( "<p>Git:  <a href='" + this._getGitBaseUrl() + "releases/tag/" + releaseData.version + "'>Tag</a></p>" );
+			content.push( "<p>Git: <a href='" + this._getGitTagUrl( releaseData ) + "'>Tag</a></p>" );
 		}
 
 		content.push( "<div class='tags'>" );
@@ -221,6 +221,16 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( "</div>" );
 
 		return content.join( "" );
+	},
+
+	_getGitTagUrl: function( releaseData ) {
+		var version = releaseData.version;
+
+		if ( this._convertVersion( version, "major" ) >= 9 ) {
+			version = "v" + version;
+		}
+
+		return this._getGitBaseUrl() + "releases/tag/" + version;
 	},
 
 	_getGitBaseUrl: function() {
