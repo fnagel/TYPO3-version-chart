@@ -354,10 +354,19 @@ $.widget( "ui.typo3VersionChart", {
 			click: function( event ) {
 				var item = $( event.currentTarget ),
 					version = item.attr( "data-version" ),
-					branch =  item.attr( "data-branch" ).replace( /-/g, "." );
+					branch =  item.attr( "data-branch" ).replace( /-/g, "." ),
+					versionData = this.getVersionData( version, branch );
 
 				if( event.altKey ) {
-					window.open( this._getWikiUrl( this.getVersionData( version, branch ) ) , "_blank" );
+					if ( event.shiftKey ) {
+						if ( !versionData.elts ) {
+							this.openTab( this._getGitTagUrl( versionData ) );
+						} else {
+							window.alert( "Not available for ELTS versions." );
+						}
+					} else {
+						this.openTab( this._getWikiUrl( versionData ) );
+					}
 				}
 				else if( event.ctrlKey ) {
 					this.toggleHighlightItem( version );
@@ -372,6 +381,10 @@ $.widget( "ui.typo3VersionChart", {
 
 		// add tooltips
 		this.document.tooltip();
+	},
+
+	openTab: function( url ) {
+		window.open( url , "_blank" );
 	},
 
 	toggleHighlightItem: function( version ) {
