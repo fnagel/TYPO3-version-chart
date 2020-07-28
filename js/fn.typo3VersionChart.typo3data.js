@@ -150,6 +150,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.52": {
+						"version": "6.2.52",
+						"date": "2020-07-28 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"6.2.51": {
 						"version": "6.2.51",
 						"date": "2020-07-07 12:00:00 UTC",
