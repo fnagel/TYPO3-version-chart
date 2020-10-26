@@ -12,6 +12,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		typo3data: {
 			"10": {
 				"releases": {
+					"10.4.6": {
+						"breaking_changes": true
+					},
 					"10.4.4": {
 						"breaking_changes": true
 					},
