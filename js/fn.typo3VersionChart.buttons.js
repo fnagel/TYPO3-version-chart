@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - Button creation and functionality
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2018 Felix Nagel
+ * Copyright 2013-2021 Felix Nagel
  */
 (function( $ ) {
 
