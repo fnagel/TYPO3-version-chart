@@ -24,10 +24,12 @@ $.widget( "ui.typo3VersionChart", {
 		},
 		ajax: {
 			dataType: "json",
-			url: location.protocol + "//get.typo3.org/json"
+			url: "https://get.typo3.org/json"
 		},
-		// additional data to merge with the original json
+		// Additional data to merge with the original json
 		typo3data: {},
+		// Download URL
+		downloadUrl: "https://get.typo3.org",
 
 		// callbacks
 		ready: null
@@ -207,7 +209,11 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( "<p>Wiki page: <a href='" + this._getWikiUrl( releaseData ) + "'>TYPO3 " + releaseData.version + "</a></p>" );
 
 		if ( releaseData.url ) {
-			content.push( "<p>Download: <a href='" + releaseData.url.tar + "'>tar</a> | <a href='" + releaseData.url.zip + "'>zip</a></p>" );
+			content.push( "<p>Download: " );
+			content.push( "<a href='" + this.options.downloadUrl + releaseData.url.tar + "'>tar</a>" );
+			content.push( " | " );
+			content.push( "<a href='" + this.options.downloadUrl + releaseData.url.zip + "'>zip</a>" );
+			content.push( "</p>" );
 		}
 
 		// ELTS repositories are not available at GitHub
@@ -441,7 +447,7 @@ $.widget( "ui.typo3VersionChart", {
 
 		return value.intval();
 	},
-	
+
 	_getDate: function( value ) {
 		if ( $.type( value ) !== "date" ) {
 			value = value.replace( /-/g, "/" );
