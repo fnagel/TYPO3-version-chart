@@ -35,6 +35,24 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"8": {
 				"releases": {
+					"8.7.40": {
+						"version": "8.7.40",
+						"date": "2021-03-16 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.39": {
+						"version": "8.7.39",
+						"date": "2020-12-18 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.38": {
+						"version": "8.7.38",
+						"date": "2020-11-17 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"8.7.37": {
 						"version": "8.7.37",
 						"date": "2020-09-08 12:00:00 UTC",
@@ -75,6 +93,30 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"7": {
 				"releases": {
+					"7.6.51": {
+						"version": "7.6.51",
+						"date": "2021-03-16 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"7.6.50": {
+						"version": "7.6.50",
+						"date": "2020-12-18 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"7.6.49": {
+						"version": "7.6.49",
+						"date": "2020-11-17 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"7.6.48": {
+						"version": "7.6.48",
+						"date": "2020-11-17 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"7.6.47": {
 						"version": "7.6.47",
 						"date": "2020-09-08 12:00:00 UTC",
@@ -178,6 +220,30 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"6.2": {
 				"releases": {
+					"6.2.57": {
+						"version": "6.2.57",
+						"date": "2021-03-16 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"6.2.56": {
+						"version": "6.2.56",
+						"date": "2020-12-18 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"6.2.55": {
+						"version": "6.2.55",
+						"date": "2020-11-17 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"6.2.54": {
+						"version": "6.2.54",
+						"date": "2020-11-17 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"6.2.53": {
 						"version": "6.2.53",
 						"date": "2020-09-08 12:00:00 UTC",
