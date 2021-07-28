@@ -35,6 +35,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"8": {
 				"releases": {
+					"8.7.41": {
+						"version": "8.7.41",
+						"date": "2021-07-20 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"8.7.40": {
 						"version": "8.7.40",
 						"date": "2021-03-16 12:00:00 UTC",
@@ -93,6 +99,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"7": {
 				"releases": {
+					"7.6.52": {
+						"version": "7.6.52",
+						"date": "2021-07-20 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"7.6.51": {
 						"version": "7.6.51",
 						"date": "2021-03-16 12:00:00 UTC",
