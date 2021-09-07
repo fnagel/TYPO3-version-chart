@@ -40,7 +40,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		$.each( types, function( index, data ) {
 			buttons.filter( "[value='typo3-type-" + data + "']" ).prop( "checked", true );
 		});
-		buttonset.buttonset( "refresh" );
+		buttonset.controlgroup( "refresh" );
 	},
 
 	checkMajor: function( version ){
@@ -49,7 +49,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		buttons.prop( "checked", false );
 		buttons.filter( ".typo3-major-" + version ).prop( "checked", true );
-		buttonset.buttonset( "refresh" );
+		buttonset.controlgroup( "refresh" );
 	},
 
 	checkNonOutdatedBranches: function() {
@@ -58,7 +58,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		buttons.prop( "checked", false );
 		buttons.not(".trash").prop( "checked", true );
-		buttonset.buttonset( "refresh" );
+		buttonset.controlgroup( "refresh" );
 	},
 
 	showActive: function() {
@@ -69,7 +69,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 	showAll: function() {
 		this.buttons.find( "input:checkbox" ).prop( "checked", true );
-		this.buttons.find( ".ui-controlgroup" ).buttonset( "refresh" );
+		this.buttons.find( ".ui-controlgroup" ).controlgroup( "refresh" );
 		this.chart.isotope({ filter: "" });
 	},
 
@@ -115,7 +115,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"class": "controls"
 			});
 
-		$( "<buttton>", {
+		$( "<a>", {
 			text: "show all",
 			title: "Show all versions (" + this.typo3.versions_total + " releases)",
 			click: function( event ) {
@@ -128,7 +128,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	        icons: { primary: "ui-icon-bullet" }
         });
 
-		$( "<buttton>", {
+		$( "<a>", {
 			text: "show active",
 			title: "Show all non-dev versions of all maintained branches (" + this.typo3.versions_active_total + " releases)",
 			click: function( event ) {
@@ -141,12 +141,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	        icons: { primary: "ui-icon-radio-on" }
         });
 
-		$( "<buttton>", {
+		$( "<a>", {
 			text: "clear",
 			title: "Clear all (show no releases)",
 			click: function( event ) {
 				that.buttons.find( "input:checkbox" ).prop( "checked", false );
-				that.buttons.find( ".ui-controlgroup" ).buttonset( "refresh" );
+				that.buttons.find( ".ui-controlgroup" ).controlgroup( "refresh" );
 				that.chart.isotope({ filter: ".major" });
 				event.preventDefault();
 			}
@@ -156,7 +156,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	        icons: { primary: "ui-icon-radio-off" }
         });
 
-		buttonSet.buttonset().appendTo( this.buttons );
+		buttonSet.controlgroup().appendTo( this.buttons );
 	},
 
 	_drawMajorButtons: function() {
@@ -177,7 +177,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				if ( !major[ majorSort ] ) {
 					major[ majorSort ] = true;
 
-					$( "<buttton>", {
+					$( "<a>", {
 						text: majorSort + ".x",
 						click: function( event ) {
 							that.checkMajor( majorSort );
@@ -272,7 +272,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				});
 			});
 
-		buttonSet.buttonset().appendTo( this.buttons );
+		buttonSet.controlgroup().appendTo( this.buttons );
 	}
 });
 
