@@ -33,7 +33,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	checkVersionTypes: function( types ){
-		var buttonset = this.buttons.find( ".typo3-type.ui-buttonset" ),
+		var buttonset = this.buttons.find( ".typo3-type.ui-controlgroup" ),
 			buttons =  buttonset.find( "input" );
 
 		buttons.prop( "checked", false );
@@ -44,7 +44,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	checkMajor: function( version ){
-		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
+		var buttonset = this.buttons.find( ".typo3-branch.ui-controlgroup" ),
 			buttons =  buttonset.find( "input" );
 
 		buttons.prop( "checked", false );
@@ -53,7 +53,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	checkNonOutdatedBranches: function() {
-		var buttonset = this.buttons.find( ".typo3-branch.ui-buttonset" ),
+		var buttonset = this.buttons.find( ".typo3-branch.ui-controlgroup" ),
 			buttons =  buttonset.find( "input");
 
 		buttons.prop( "checked", false );
@@ -79,7 +79,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		$.each( that.buttons.find( "input:checked" ), function() {
 			var button = $( this ),
-				buttonset = button.parent( ".ui-buttonset" );
+				buttonset = button.parent( ".ui-controlgroup" );
 
 			if ( buttonset.hasClass( "typo3-type" ) ) {
 				types.push( "." + button.val() );
@@ -114,7 +114,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			title: "Show all versions (" + this.typo3.versions_total + " releases)",
 			click: function( event ) {
 				that.buttons.find( "input:checkbox" ).prop( "checked", true );
-				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
+				that.buttons.find( ".ui-controlgroup" ).buttonset( "refresh" );
 				that.chart.isotope({ filter: "" });
 				event.preventDefault();
 			}
@@ -142,7 +142,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			title: "Clear all (show no releases)",
 			click: function( event ) {
 				that.buttons.find( "input:checkbox" ).prop( "checked", false );
-				that.buttons.find( ".ui-buttonset" ).buttonset( "refresh" );
+				that.buttons.find( ".ui-controlgroup" ).buttonset( "refresh" );
 				that.chart.isotope({ filter: ".major" });
 				event.preventDefault();
 			}
@@ -186,7 +186,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				}
 			});
 
-		buttonSet.buttonset().appendTo( this.buttons );
+		buttonSet.controlgroup().appendTo( this.buttons );
 	},
 
 	_drawBranchesBoxes: function() {

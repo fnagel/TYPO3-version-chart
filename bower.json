@@ -1,5 +1,5 @@
 {
-  "name": "TYPO3-version-chart",
+  "name": "typo3-version-chart",
   "homepage": "https://github.com/fnagel/TYPO3-version-chart",
   "authors": [
     "Felix Nagel <info@felixnagel.com>"
@@ -14,8 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "isotope": "~1.5.25",
-    "jquery": "~2",
-    "jquery-ui": "~1.11.4"
+    "isotope": "^1.5",
+    "jquery": "^2.2",
+    "jquery-ui": "^1.12"
   }
 }

@@ -1,4 +1,4 @@
-	/* =Typography
+/* =Typography
 -----------------------------------------------------------------------------*/
 h1 {
 	font-size: 2.5em;
@@ -87,27 +87,25 @@ a:hover {
 	max-width: 90em;
 }
 
-#buttons .ui-buttonset  {
+#buttons .ui-controlgroup  {
 	float: left;
 	margin: 0 1em 1em 1em;
 }
 #buttons .ui-button  {
     font-size: 0.9em;
 }
-#buttons .typo3-branch .ui-button  .ui-icon {
-	margin-top: -10px;
-}
+
 
 /* =JQuery UI Tags
 -----------------------------------------------------------------------------*/
 
-#chart .item  .tags{
+#chart .item  .tags {
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 
-#chart .item  .tags > span{
+#chart .item  .tags > span {
 	float: right;
 	font-size: 0.8em;
 	font-weight: normal;
@@ -120,25 +118,12 @@ a:hover {
 	border-bottom-right-radius: 3px;
 }
 
-#chart .item  .tags span.ui-icon-lightbulb {
-    background-position: -128px -128px;
-}
-#chart .item  .tags span.ui-icon-alert {
-    background-position: 0 -144px;
-}
-#chart .item  .tags span.ui-icon-trash {
-    background-position: -176px -96px;
-}
-#chart .item  .tags span.ui-icon-clock {
-    background-position: -80px -112px;
-}
-#chart .item  .tags span.ui-icon-check {
-    background-position: -64px -144px;
-}
-
 #chart .item.major .ui-state-default {
-	background: none;
+	background: transparent;
 	border: 0;
+	font-size: .8em;
+	margin: 0;
+	padding: 0;
 }
 #chart .item.major .ui-state-default .ui-icon {
 	background-image: url(images/ui-icons_ffffff_256x240.png);
@@ -153,19 +138,15 @@ a:hover {
 /* =JQuery UI Dialog
 -----------------------------------------------------------------------------*/
 
-.ui-dialog  {
-	-webkit-box-shadow: 0 0 30px gray; /* webkit browser*/
-	-moz-box-shadow: 0 0 30px gray; /* firefox */
+.ui-dialog {
+	-webkit-box-shadow: 0 0 30px gray;
 	box-shadow: 0 0 30px gray;
 }
-.ui-dialog .ui-dialog-titlebar {
-    padding: 0.2em 1em;
+
+.ui-dialog .ui-dialog-content .tags > span {
+	padding: 0.05em 0.15em;
 }
 
-#dialog-info .log {
-	font-size: 0.8em;
-	margin-top: 2em;
-}
 
 /* =Responsive
 -----------------------------------------------------------------------------*/
@@ -180,6 +161,3 @@ a:hover {
 		margin: 1em auto;
 	}
 }
-
-/* =Helper
------------------------------------------------------------------------------*/

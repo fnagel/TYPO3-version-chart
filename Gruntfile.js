@@ -51,17 +51,43 @@ module.exports = function (grunt) {
 			},
 			standalone : {
 				src : [
+					// jQuery
 					"bower_components/jquery/dist/jquery.js",
-					"bower_components/jquery-ui/ui/core.js",
+
+					// jQuery UI core
+					"bower_components/jquery-ui/ui/version.js",
+					"bower_components/jquery-ui/ui/focusable.js",
+					"bower_components/jquery-ui/ui/data.js",
+					"bower_components/jquery-ui/ui/disable-selection.js",
+					"bower_components/jquery-ui/ui/form.js",
+					"bower_components/jquery-ui/ui/form-reset-mixin.js",
+					"bower_components/jquery-ui/ui/ie.js",
+					"bower_components/jquery-ui/ui/keycode.js",
+					"bower_components/jquery-ui/ui/labels.js",
+					"bower_components/jquery-ui/ui/plugin.js",
+					"bower_components/jquery-ui/ui/safe-active-element.js",
+					"bower_components/jquery-ui/ui/safe-blur.js",
+					"bower_components/jquery-ui/ui/scroll-parent.js",
+					"bower_components/jquery-ui/ui/tabbable.js",
+					"bower_components/jquery-ui/ui/unique-id.js",
+
 					"bower_components/jquery-ui/ui/widget.js",
 					"bower_components/jquery-ui/ui/position.js",
 					"bower_components/jquery-ui/ui/mouse.js",
 					"bower_components/jquery-ui/ui/draggable.js",
 					"bower_components/jquery-ui/ui/resizable.js",
-					"bower_components/jquery-ui/ui/button.js",
-					"bower_components/jquery-ui/ui/dialog.js",
-					"bower_components/jquery-ui/ui/tooltip.js",
+
+					// jQuery UI widgets
+					"bower_components/jquery-ui/ui/widgets/button.js",
+					"bower_components/jquery-ui/ui/widgets/controlgroup.js",
+					"bower_components/jquery-ui/ui/widgets/checkboxradio.js",
+					"bower_components/jquery-ui/ui/widgets/dialog.js",
+					"bower_components/jquery-ui/ui/widgets/tooltip.js",
+
+					// Isotope
 					"bower_components/isotope/jquery.isotope.js",
+
+					// Project
 					"js/fn.typo3VersionChart.js",
 					"js/fn.typo3VersionChart.buttons.js",
 					"js/fn.typo3VersionChart.typo3data.js"
@@ -87,6 +113,8 @@ module.exports = function (grunt) {
 				src: [
 					"bower_components/jquery-ui/themes/base/core.css",
 					"bower_components/jquery-ui/themes/base/button.css",
+					"bower_components/jquery-ui/themes/base/controlgroup.css",
+					"bower_components/jquery-ui/themes/base/checkboxradio.css",
 					"bower_components/jquery-ui/themes/base/dialog.css",
 					"bower_components/jquery-ui/themes/base/draggable.css",
 					"bower_components/jquery-ui/themes/base/resizable.css",
@@ -119,7 +147,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-contrib-concat");
 
 	grunt.registerTask("test", ["jshint", "csslint"]);
-		
+
 	grunt.registerTask("default", ["jshint", "csslint", "concat", "uglify", "cssmin"]);
 
 };
