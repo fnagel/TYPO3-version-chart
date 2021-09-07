@@ -45,7 +45,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"version": "8.7.42",
 						"date": "2021-08-10 12:00:00 UTC",
 						"elts": true,
-						"type": "security"
+						"type": "security",
 						"breaking_changes": true
 					},
 					"8.7.41": {
@@ -122,7 +122,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"version": "7.6.53",
 						"date": "2021-08-10 12:00:00 UTC",
 						"elts": true,
-						"type": "security"
+						"type": "security",
 						"breaking_changes": true
 					},
 					"7.6.52": {
