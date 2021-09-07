@@ -85,10 +85,11 @@ $(function() {
 				dialogHints.dialog( "open" );
 			},
 			"Show all": function() {
+				chart.typo3VersionChart( "showAll" );
 				dialogInfo.dialog( "close" );
 			},
 			"Show active": function() {
-				chart.typo3VersionChart( "refreshDefaults" );
+				chart.typo3VersionChart( "showActive" );
 				dialogInfo.dialog( "close" );
 			}
 		},
@@ -97,7 +98,7 @@ $(function() {
 			width: 550,
 			modal: true,
 			autoOpen: ( getUrlVar( "dialog" ) ) ? 0 : 1,
-			buttons: [ { 
+			buttons: [ {
 				text: "Loading...",
 				disabled: true
 			} ]

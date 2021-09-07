@@ -61,10 +61,16 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		buttonset.buttonset( "refresh" );
 	},
 
-	refreshDefaults: function() {
+	showActive: function() {
 		this.checkNonOutdatedBranches();
 		this.checkVersionTypes( [ "release", "regular", "security" ] );
 		this.refreshFromButtons();
+	},
+
+	showAll: function() {
+		this.buttons.find( "input:checkbox" ).prop( "checked", true );
+		this.buttons.find( ".ui-controlgroup" ).buttonset( "refresh" );
+		this.chart.isotope({ filter: "" });
 	},
 
 	refreshFromButtons: function() {
@@ -113,9 +119,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			text: "show all",
 			title: "Show all versions (" + this.typo3.versions_total + " releases)",
 			click: function( event ) {
-				that.buttons.find( "input:checkbox" ).prop( "checked", true );
-				that.buttons.find( ".ui-controlgroup" ).buttonset( "refresh" );
-				that.chart.isotope({ filter: "" });
+				that.showAll();
 				event.preventDefault();
 			}
 		})
@@ -128,7 +132,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			text: "show active",
 			title: "Show all non-dev versions of all maintained branches (" + this.typo3.versions_active_total + " releases)",
 			click: function( event ) {
-				that.refreshDefaults();
+				that.showActive();
 				event.preventDefault();
 			}
 		})
