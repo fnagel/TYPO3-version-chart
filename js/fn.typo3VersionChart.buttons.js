@@ -108,7 +108,6 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		return selector.join( "," );
 	},
 
-
 	_drawControlButtons: function() {
 		var that = this,
 			buttonSet = $( "<div>", {
@@ -125,7 +124,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		})
 		.appendTo( buttonSet )
 		.button({
-	        icons: { primary: "ui-icon-bullet" }
+	        icon: "ui-icon-bullet"
         });
 
 		$( "<a>", {
@@ -138,7 +137,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		})
 		.appendTo( buttonSet )
 		.button({
-	        icons: { primary: "ui-icon-radio-on" }
+	        icon: "ui-icon-radio-on"
         });
 
 		$( "<a>", {
@@ -153,7 +152,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		})
 		.appendTo( buttonSet )
 		.button({
-	        icons: { primary: "ui-icon-radio-off" }
+	        icon: "ui-icon-radio-off"
         });
 
 		buttonSet.controlgroup().appendTo( this.buttons );
@@ -166,48 +165,51 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"class": "typo3-major"
 			});
 
-		Object.keys( this.typo3.versions )
-			.sort( function( a, b ) {
-				return that._convertVersion( a ) > that._convertVersion( b );
-			} )
-			.reverse()
-			.forEach(function( branchIndex ) {
-				var majorSort = that._convertVersion( branchIndex, "major" );
+		this._sortByVersion( this.typo3.versions ).forEach(function( branchIndex ) {
+			var majorSort = that._convertVersion( branchIndex, "major" );
 
-				if ( !major[ majorSort ] ) {
-					major[ majorSort ] = true;
+			if ( !major[ majorSort ] ) {
+				major[ majorSort ] = true;
 
-					$( "<a>", {
-						text: majorSort + ".x",
-						click: function( event ) {
-							that.checkMajor( majorSort );
-							that.refresh( that._processForm() );
-							event.preventDefault();
-						}
-					})
-					.appendTo( buttonSet )
-					.button();
-				}
-			});
+				$( "<a>", {
+					text: majorSort + ".x",
+					click: function( event ) {
+						that.checkMajor( majorSort );
+						that.refresh( that._processForm() );
+						event.preventDefault();
+					}
+				})
+				.appendTo( buttonSet )
+				.button();
+			}
+		});
 
 		buttonSet.controlgroup().appendTo( this.buttons );
 	},
 
+	_sortByVersion: function(data) {
+		var that = this;
+
+		return Object.keys( data ).sort( function( a, b ) {
+			return that._convertVersion( a ) > that._convertVersion( b );
+		} ).reverse();
+	},
+
 	_drawBranchesBoxes: function() {
 		var that = this,
-			branches = {};
+			branches = [];
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
 			var branchSort = that._convertVersion( branchIndex ),
-				icon = false;
-
-			// LTS
-			if ( branchSort === 4.5 || branchSort === 6.2 ) {
 				icon = "clock";
-			}
+
 			// Outdated
-			if ( !branchData.active && branchData.stable !== "0.0.0"  ) {
+			if ( !branchData.active && branchData.stable !== "0.0.0" ) {
 				icon = "trash";
+			}
+			// ELTS
+			if ( branchData.elts ) {
+				icon = "locked";
 			}
 
 			branches[ branchSort ] = {
@@ -247,15 +249,17 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 	_renderCheckboxGroup: function( group, name ) {
 		var buttonSet = $( "<div>", {
-			"class": name
-		});
-
-		Object.keys( group )
-			.reverse()
-			.forEach(function( index ) {
+				"class": name
+			}),
+			process = function( index ) {
 				var data = group[ index ],
 					value = name + "-" + index,
-					id = "check-boxgroup-" + value;
+					id = "check-boxgroup-" + value,
+					icon = "";
+
+				if ( data.icon ) {
+					icon = "<span class='ui-icon ui-icon-" + data.icon + "'></span>";
+				}
 
 				$( "<input>", {
 					type: "checkbox",
@@ -266,11 +270,17 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				.addClass( data.css )
 				.addClass( data.icon )
 				.appendTo( buttonSet )
-				.after ( $( "<label for='" + id + "'>" + data.name + "</label>" ) )
-				.button({
-					icons: { secondary: ( data.icon ) ? "ui-icon-" + data.icon : null	}
-				});
-			});
+				.after ( $( "<label for='" + id + "'>" + data.name + icon + "</label>" ) )
+				// Empty options are needed for the checkbox to be rendered (no idea why)
+				.button({});
+			};
+
+		if (name === "typo3-branch") {
+			this._sortByVersion( group ).forEach(process);
+		} else {
+			Object.keys( group ).forEach(process);
+		}
+
 
 		buttonSet.controlgroup().appendTo( this.buttons );
 	}
