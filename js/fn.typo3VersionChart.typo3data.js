@@ -10,6 +10,26 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
 		// additional data to merge with the original json
 		typo3data: {
+			"11": {
+				"releases": {
+					"11.4.0": {
+						"type": "release"
+					},
+					"11.3.0": {
+						"type": "release"
+					},
+					"11.2.0": {
+						"type": "release"
+					},
+					"11.1.0": {
+						"type": "release"
+					},
+					"11.0.0": {
+						"type": "release",
+						"breaking_changes": true
+					}
+				}
+			},
 			"10": {
 				"releases": {
 					"10.4.6": {
@@ -19,6 +39,20 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"breaking_changes": true
 					},
 					"10.4.0": {
+						"breaking_changes": true,
+						"type": "release"
+					},
+					"10.3.0": {
+						"type": "release"
+					},
+					"10.2.0": {
+						"type": "release"
+					},
+					"10.1.0": {
+						"type": "release"
+					},
+					"10.0.0": {
+						"type": "release",
 						"breaking_changes": true
 					}
 				}
@@ -29,6 +63,25 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"breaking_changes": true
 					},
 					"9.5.15": {
+						"breaking_changes": true
+					},
+					"9.5.0": {
+						"type": "release"
+					},
+					"9.4.0": {
+						"type": "release"
+					},
+					"9.3.0": {
+						"type": "release"
+					},
+					"9.2.0": {
+						"type": "release"
+					},
+					"9.1.0": {
+						"type": "release"
+					},
+					"9.0.0": {
+						"type": "release",
 						"breaking_changes": true
 					}
 				}
