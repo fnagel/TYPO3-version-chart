@@ -134,7 +134,7 @@ module.exports = function (grunt) {
 			},
 			styles: {
 				files : ["<%= csslint.files %>"],
-				tasks : ["csslint"]
+				tasks : ["csslint", "cssmin"]
 			}
 		}
 	});
