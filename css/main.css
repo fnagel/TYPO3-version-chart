@@ -89,7 +89,7 @@ a:hover {
 
 #buttons .ui-controlgroup  {
 	float: left;
-	margin: 0 1em 1em 1em;
+	margin: 0 2em 1em 0;
 }
 #buttons .ui-button  {
     font-size: 0.9em;
@@ -145,6 +145,7 @@ a:hover {
 
 .ui-dialog .ui-dialog-content .tags > span {
 	padding: 0.05em 0.15em;
+	margin: 10px 3px 0 0;
 }
 
 

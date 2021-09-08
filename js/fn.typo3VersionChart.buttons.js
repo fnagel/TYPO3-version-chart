@@ -44,7 +44,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	checkMajor: function( version ){
-		var buttonset = this.buttons.find( ".typo3-branch.ui-controlgroup" ),
+		var buttonset = this.buttons.find( ".typo3-branch-index.ui-controlgroup" ),
 			buttons =  buttonset.find( "input" );
 
 		buttons.prop( "checked", false );
@@ -53,7 +53,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	},
 
 	checkNonOutdatedBranches: function() {
-		var buttonset = this.buttons.find( ".typo3-branch.ui-controlgroup" ),
+		var buttonset = this.buttons.find( ".typo3-branch-index.ui-controlgroup" ),
 			buttons =  buttonset.find( "input");
 
 		buttons.prop( "checked", false );
@@ -70,7 +70,17 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	showAll: function() {
 		this.buttons.find( "input:checkbox" ).prop( "checked", true );
 		this.buttons.find( ".ui-controlgroup" ).controlgroup( "refresh" );
-		this.chart.isotope({ filter: "" });
+		this.refresh( "" );
+	},
+
+	showNone: function() {
+		var controlgroups = this.buttons.find( ".ui-controlgroup" );
+
+		controlgroups.filter(":not(.typo3-type)").find( "input:checkbox" ).prop( "checked", false );
+		controlgroups.filter(".typo3-type").find( "input:checkbox" ).prop( "checked", true );
+		controlgroups.controlgroup( "refresh" );
+
+		this.refresh( ".major" );
 	},
 
 	refreshFromButtons: function() {
@@ -90,7 +100,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			if ( buttonset.hasClass( "typo3-type" ) ) {
 				types.push( "." + button.val() );
 			}
-			if ( buttonset.hasClass( "typo3-branch" ) ) {
+			if ( buttonset.hasClass( "typo3-branch-index" ) ) {
 				branches.push( "." + button.val() );
 			}
 		});
@@ -144,9 +154,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			text: "clear",
 			title: "Clear all (show no releases)",
 			click: function( event ) {
-				that.buttons.find( "input:checkbox" ).prop( "checked", false );
-				that.buttons.find( ".ui-controlgroup" ).controlgroup( "refresh" );
-				that.chart.isotope({ filter: ".major" });
+				that.showNone();
 				event.preventDefault();
 			}
 		})
@@ -191,7 +199,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		var that = this;
 
 		return Object.keys( data ).sort( function( a, b ) {
-			return that._convertVersion( a ) > that._convertVersion( b );
+			return that._convertVersion( a ).floatval() > that._convertVersion( b ).floatval();
 		} ).reverse();
 	},
 
@@ -200,8 +208,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			branches = [];
 
 		$.each( this.typo3.versions, function( branchIndex, branchData ){
-			var branchSort = that._convertVersion( branchIndex ),
-				icon = "clock";
+			var icon = false;
 
 			// Outdated
 			if ( !branchData.active && branchData.stable !== "0.0.0" ) {
@@ -212,14 +219,14 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				icon = "locked";
 			}
 
-			branches[ branchSort ] = {
+			branches[ that._formatVersion( branchIndex ) ] = {
 				name: branchIndex,
 				icon: icon,
 				css: "typo3-major-" + that._convertVersion( branchIndex, "major" )
 			};
 		});
 
-		this._renderCheckboxGroup( branches , "typo3-branch" );
+		this._renderCheckboxGroup( branches , "typo3-branch-index" );
 	},
 
 	_drawTypeBoxes: function() {
@@ -275,7 +282,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				.button({});
 			};
 
-		if (name === "typo3-branch") {
+		if (name === "typo3-branch-index") {
 			this._sortByVersion( group ).forEach(process);
 		} else {
 			Object.keys( group ).forEach(process);

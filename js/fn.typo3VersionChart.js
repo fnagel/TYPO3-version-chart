@@ -158,13 +158,17 @@ $.widget( "ui.typo3VersionChart", {
 				if ( branchData.active && releaseData.type !== "development" ) {
 					that.typo3.versions_active_total++;
 				}
+
+				var branch = that._convertVersion( releaseData.version ),
+					type = releaseData.type + ( releaseData.elts ? " typo3-type-elts" : "" );
+
 				// add version item
 				html.push(
 					that._renderItem(
 						branchIndex,
-						"data-version='" + releaseData.version + "'",
-						that._renderItemInfo( branchIndex, releaseData ),
-						"typo3-type-" + releaseData.type + ( releaseData.elts ? " typo3-type-elts" : "" )
+						"data-version='" + releaseData.version + "'" + " data-branch='" + branch + "'",
+						"typo3-type-" + type + " typo3-branch-" + that._formatVersion( branch ),
+						that._renderItemInfo( releaseData )
 					)
 				);
 			});
@@ -174,8 +178,8 @@ $.widget( "ui.typo3VersionChart", {
 				that._renderItem(
 					branchIndex,
 					"",
-					"<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex ),
-					"major ui-widget-header"
+					"major ui-widget-header",
+					"<h3>" + branchIndex + "</h3>" + that._renderBranchTags( branchData, branchIndex )
 				)
 			);
 
@@ -184,20 +188,21 @@ $.widget( "ui.typo3VersionChart", {
 		this.chart.html( html.join( "" ) );
 	},
 
-	_renderItem: function( branchIndex, attributes, content, css ) {
-		attributes += " data-branch='" + branchIndex + "'";
-		attributes += " class='item " + css + " ui-widget-content ui-corner-all typo3-branch-" + this._convertVersion( branchIndex ) +
-		              " typo3-major-" + this._convertVersion( branchIndex, "major") + "'";
+	_renderItem: function( branchIndex, attributes, css, content ) {
+		attributes += " data-branch-index='" + branchIndex + "'";
+		attributes += " class='item ui-widget-content ui-corner-all " + css +
+		              " typo3-major-" + this._convertVersion( branchIndex, "major" ) +
+		              " typo3-branch-index-" + this._formatVersion( branchIndex ) + "'";
 
 		return "<div " + attributes + ">" + content + "</div>";
 	},
 
-	_renderItemInfo: function( branchIndex, releaseData ) {
+	_renderItemInfo: function( releaseData ) {
 		var content = [];
 
 		content.push( "<strong>" + releaseData.version + "</strong>" );
 		content.push( "<p><small>" + this._formatDate( releaseData.date ) + "</small></p>" );
-		content.push( "<div class='tags'>" + this._renderItemTags( releaseData, branchIndex ) + "</div>" );
+		content.push( "<div class='tags'>" + this._renderItemTags( releaseData ) + "</div>" );
 
 		return content.join( "" );
 	},
@@ -232,7 +237,7 @@ $.widget( "ui.typo3VersionChart", {
 	_getGitTagUrl: function( releaseData ) {
 		var version = releaseData.version;
 
-		if ( this._convertVersion( version, "major" ) >= 9 ) {
+		if ( this._convertVersion( version, "major" ).intval() >= 9 ) {
 			version = "v" + version;
 		}
 
@@ -253,7 +258,7 @@ $.widget( "ui.typo3VersionChart", {
 		}
 
 		// Wiki redirects do not work for TYPO3 10
-		if ( this._convertVersion( data.version, "major" ) >= 10 ) {
+		if ( this._convertVersion( data.version, "major" ).intval() >= 10 ) {
 			url = "https://get.typo3.org/release-notes/";
 		}
 
@@ -266,7 +271,12 @@ $.widget( "ui.typo3VersionChart", {
 
 		// outdated branch
 		if ( !branchData.active && branchData.stable !== "0.0.0" && lastVersion ) {
-			tags.push( this._renderTag( "trash", "", "Outdated branch! Deprecated and no longer maintained. Last release: " + lastVersion + " (" + this._formatDate( this.getVersionData( lastVersion, branchIndex ).date ) + ")" ) );
+			tags.push( this._renderTag( "trash", "", "Deprecated branch. Last public release: " + lastVersion + " (" + this._formatDate( this.getVersionData( lastVersion, branchIndex ).date ) + ")" ) );
+		}
+
+		// ELTS branch
+		if ( branchData.elts ) {
+			tags.push( this._renderTag( "locked", "", "Extended Long Time Support version (ELTS, paid support version)" ) );
 		}
 
 		// LTS & End of maintenance
@@ -306,15 +316,15 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "check", "", "Latest stable release" ) );
 				break;
 			case this.typo3.latest.lts:
-				tags.push( this._renderTag( "check", "", "Latest current stable LTS release" ) );
+				tags.push( this._renderTag( "clock", "", "Latest current stable LTS release" ) );
 				break;
 			case this.typo3.latest.oldLts:
-				tags.push( this._renderTag( "check", "", "Latest old stable LTS release" ) );
+				tags.push( this._renderTag( "clock", "", "Latest old stable LTS release" ) );
 				break;
 		}
 
 		if ( releaseData.elts ) {
-			tags.push( this._renderTag( "clock", "typo3-type-" + releaseData.type, "ELTS version" ) );
+			tags.push( this._renderTag( "locked", "typo3-type-" + releaseData.type, "ELTS version" ) );
 		}
 
 		// version type
@@ -360,7 +370,7 @@ $.widget( "ui.typo3VersionChart", {
 			click: function( event ) {
 				var item = $( event.currentTarget ),
 					version = item.attr( "data-version" ),
-					branch =  item.attr( "data-branch" ).replace( /-/g, "." ),
+					branch =  item.attr( "data-branch-index" ),
 					versionData = this.getVersionData( version, branch );
 
 				if( event.altKey ) {
@@ -427,7 +437,7 @@ $.widget( "ui.typo3VersionChart", {
 				},
 				getSortData: {
 					branch: function ( item ) {
-						return item.attr( "data-branch" ).floatval();
+						return item.attr( "data-branch-index" ).floatval();
 					}
 				},
 				sortBy: "branch",
@@ -438,14 +448,18 @@ $.widget( "ui.typo3VersionChart", {
 		);
 	},
 
+	_formatVersion: function( version ) {
+		return ( version + "" ).replace( /\./g, "-" );
+	},
+
 	_convertVersion: function( version, key ) {
-		var value = version.replace( /\./g, "-" );
+		var split = version.split( "." );
 
 		if ( key === "major" ) {
-			value = value.split( "-" )[ 0 ];
+			return split[ 0 ];
 		}
 
-		return value.intval();
+		return ( split[ 0 ] + "." + split[ 1 ] );
 	},
 
 	_getDate: function( value ) {
@@ -494,11 +508,7 @@ $.widget( "ui.typo3VersionChart", {
 
 	_log: function( msg, data ) {
 		if ( this.options.debug ) {
-			if ( data ) {
-				console.log( msg, data );
-			} else {
-				console.log( msg );
-			}
+			console.log( msg, data );
 		}
 	},
 
