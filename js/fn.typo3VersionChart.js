@@ -281,6 +281,9 @@ $.widget( "ui.typo3VersionChart", {
 
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
+			case "11":
+				tags.push( this._renderTag( "clock", "", "TYPO3 v11 LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until October 2024." ) );
+				break;
 			case "10":
 				tags.push( this._renderTag( "clock", "", "TYPO3 v10 LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until April 2023." ) );
 				break;
