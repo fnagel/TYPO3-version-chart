@@ -59,6 +59,7 @@ module.exports = function (grunt) {
 					"bower_components/jquery-ui/ui/focusable.js",
 					"bower_components/jquery-ui/ui/data.js",
 					"bower_components/jquery-ui/ui/disable-selection.js",
+					"bower_components/jquery-ui/ui/escape-selector.js",
 					"bower_components/jquery-ui/ui/form.js",
 					"bower_components/jquery-ui/ui/form-reset-mixin.js",
 					"bower_components/jquery-ui/ui/ie.js",
