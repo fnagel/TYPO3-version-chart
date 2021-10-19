@@ -303,7 +303,7 @@ $.widget( "ui.typo3VersionChart", {
 				tags.push( this._renderTag( "clock", "", "This branch will get full support (bug fixes and security fixes) until October 2013, but will get security fixes until October 2014." ) );
 				break;
 			case "4.5":
-				tags.push( this._renderTag( "clock", "", "The branch will get full branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until March 2015. In addition, there is a paid ELTS (extended LTS) with security and stability fixes (support planned to end on March 31st, 2016)." ) );
+				tags.push( this._renderTag( "clock", "", "The branch will get full support (bug fixes and security fixes) until April 2014. Important and security related fixes will be provided until March 2015. In addition, there is a paid ELTS (extended LTS) with security and stability fixes (support planned to end on March 31st, 2016)." ) );
 				break;
 		}
 
