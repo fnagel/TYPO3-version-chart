@@ -1,15 +1,18 @@
 # TYPO3 version visualization
 
-http://typo3versions.felixnagel.com/
+https://typo3versions.felixnagel.com/
 
 
 ## Installation
 
+	npm install
 	bower install
 	grunt
-	
+
 
 ## ToDo
+
+* Use https://get.typo3.org/api/doc ?
 
 * Use causal.ch API
 
