@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - TYPO3 additional data
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2021 Felix Nagel
+ * Copyright 2013-2022 Felix Nagel
  */
 (function( $ ) {
 
@@ -88,6 +88,18 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"8": {
 				"releases": {
+					"8.7.45": {
+						"version": "8.7.45",
+						"date": "2021-02-22 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.44": {
+						"version": "8.7.44",
+						"date": "2021-11-11 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
 					"8.7.43": {
 						"version": "8.7.43",
 						"date": "2021-08-16 12:00:00 UTC",
@@ -165,6 +177,18 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"7": {
 				"releases": {
+					"7.6.56": {
+						"version": "7.6.56",
+						"date": "2021-02-22 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"7.6.55": {
+						"version": "7.6.55",
+						"date": "2021-11-11 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
 					"7.6.54": {
 						"version": "7.6.54",
 						"date": "2021-08-16 12:00:00 UTC",
