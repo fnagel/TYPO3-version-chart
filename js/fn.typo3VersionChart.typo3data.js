@@ -90,7 +90,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"releases": {
 					"8.7.45": {
 						"version": "8.7.45",
-						"date": "2021-02-22 12:00:00 UTC",
+						"date": "2022-02-22 12:00:00 UTC",
 						"elts": true,
 						"type": "regular"
 					},
@@ -179,7 +179,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 				"releases": {
 					"7.6.56": {
 						"version": "7.6.56",
-						"date": "2021-02-22 12:00:00 UTC",
+						"date": "2022-02-22 12:00:00 UTC",
 						"elts": true,
 						"type": "regular"
 					},
