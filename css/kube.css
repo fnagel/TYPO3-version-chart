@@ -1,10 +1,10 @@
 /*
 	Kube Professional CSS-framework
-	
+
 	Copyright (c) 2012, Imperavi Inc.
 
 	http://imperavi.com/kube/
-	
+
 	License: free
 
 */
@@ -570,7 +570,6 @@ table.bordered .thead-black th {
   color: #999999;
 }
 
-}
 /* =Responsive Mobile
 -----------------------------------------------------------------------------*/
 @media only screen and (max-width: 767px) {
