@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "isotope": "^1.5",
-    "jquery": "^2.2",
-    "jquery.ui": "^1.13"
+    "jquery": "^3.7",
+    "jquery.ui": "^1.14"
   }
 }

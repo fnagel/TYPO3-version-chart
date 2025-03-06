@@ -95,7 +95,7 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 
 		$.each( that.buttons.find( "input:checked" ), function() {
 			var button = $( this ),
-				buttonset = button.parent( ".ui-controlgroup" );
+				buttonset = button.parent( "label" ).parent( ".ui-controlgroup" );
 
 			if ( buttonset.hasClass( "typo3-type" ) ) {
 				types.push( "." + button.val() );
@@ -268,18 +268,22 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					icon = "<span class='ui-icon ui-icon-" + data.icon + "'></span>";
 				}
 
-				$( "<input>", {
+				var input = $( "<input>", {
 					type: "checkbox",
 					name: value,
 					value: value,
 					id: id
 				})
 				.addClass( data.css )
-				.addClass( data.icon )
-				.appendTo( buttonSet )
-				.after ( $( "<label for='" + id + "'>" + data.name + icon + "</label>" ) )
-				// Empty options are needed for the checkbox to be rendered (no idea why)
-				.button({});
+				.addClass( data.icon );
+
+				$( "<label for='" + id + "'>" + data.name + icon + "</label>" )
+					.append(input)
+					.appendTo( buttonSet );
+
+				input.checkboxradio({
+					icon: false
+				});
 			};
 
 		if (name === "typo3-branch-index") {
