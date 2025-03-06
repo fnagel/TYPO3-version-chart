@@ -267,7 +267,10 @@ $.widget( "ui.typo3VersionChart", {
 
 	_renderBranchTags: function( branchData, branchIndex ){
 		var tags = [],
-			lastVersion = branchData.latest || branchData.latestRelease;
+			lastVersion = branchData.latest || branchData.latestRelease,
+			getDefaultText = function(date) {
+				return "TYPO3 v" + branchIndex + " LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until " + date + ".";
+			};
 
 		// outdated branch
 		if ( !branchData.active && branchData.stable !== "0.0.0" && lastVersion ) {
@@ -281,14 +284,20 @@ $.widget( "ui.typo3VersionChart", {
 
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
+			case "13":
+				tags.push( this._renderTag( "clock", "", getDefaultText("December 2027" ) ) );
+				break;
+			case "12":
+				tags.push( this._renderTag( "clock", "", getDefaultText("April 2026" ) ) );
+				break;
 			case "11":
-				tags.push( this._renderTag( "clock", "", "TYPO3 v11 LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until October 2024." ) );
+				tags.push( this._renderTag( "clock", "", getDefaultText("October 2024" ) ) );
 				break;
 			case "10":
-				tags.push( this._renderTag( "clock", "", "TYPO3 v10 LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until April 2023." ) );
+				tags.push( this._renderTag( "clock", "", getDefaultText( "April 2023" ) ) );
 				break;
 			case "9":
-				tags.push( this._renderTag( "clock", "", "The TYPO3 v9 LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until October 2021." ) );
+				tags.push( this._renderTag( "clock", "", getDefaultText( "October 2021" ) ) );
 				break;
 			case "8":
 				tags.push( this._renderTag( "clock", "", "The TYPO3 v8 LTS version will be fully supported until TYPO3 v9 LTS is out, and will be supported with security and critical fixes until March 2020." ) );
