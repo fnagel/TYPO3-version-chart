@@ -84,12 +84,14 @@ a:hover {
 -----------------------------------------------------------------------------*/
 #buttons {
 	margin: 2em 0;
-	max-width: 90em;
 }
 
 #buttons .ui-controlgroup  {
 	float: left;
 	margin: 0 2em 1em 0;
+}
+#buttons .ui-controlgroup.typo3-major  {
+	display: block;
 }
 #buttons .ui-button  {
     font-size: 0.9em;
