@@ -8,10 +8,92 @@
 
 $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
-		// additional data to merge with the original json
+		// Additional data to merge with the original json
 		typo3data: {
+			"13": {
+				"releases": {
+					"13.4.3": {
+						"breaking_changes": true
+					},
+					"13.4.0": {
+						"type": "release"
+					},
+					"13.3.0": {
+						"type": "release"
+					},
+					"13.2.0": {
+						"type": "release"
+					},
+					"13.1.0": {
+						"type": "release"
+					},
+					"13.0.0": {
+						"type": "release",
+						"breaking_changes": true
+					}
+				}
+			},
+			"12": {
+				"releases": {
+					"12.4.18": {
+						"breaking_changes": true
+					},
+					"12.4.15": {
+						"breaking_changes": true
+					},
+					"12.4.12": {
+						"breaking_changes": true
+					},
+					"12.4.0": {
+						"type": "release"
+					},
+					"12.3.0": {
+						"type": "release"
+					},
+					"12.2.0": {
+						"type": "release"
+					},
+					"12.1.0": {
+						"type": "release"
+					},
+					"12.0.0": {
+						"type": "release",
+						"breaking_changes": true
+					}
+				}
+			},
 			"11": {
 				"releases": {
+					"11.5.43": {
+						"version": "11.5.43",
+						"date": "2025-01-21 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"11.5.42": {
+						"version": "11.5.42",
+						"date": "2025-01-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"11.5.35": {
+						"breaking_changes": true
+					},
+					"11.5.23": {
+						"breaking_changes": true
+					},
+					"11.5.18": {
+						"breaking_changes": true
+					},
+					"11.5.14": {
+						"breaking_changes": true
+					},
+					"11.5.11": {
+						"breaking_changes": true
+					},
+					"11.5.0": {
+						"type": "release"
+					},
 					"11.4.0": {
 						"type": "release"
 					},
@@ -32,10 +114,97 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"10": {
 				"releases": {
+					"10.4.49": {
+						"version": "10.4.49",
+						"date": "2025-01-21 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.48": {
+						"version": "10.4.48",
+						"date": "2025-01-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"10.4.47": {
+						"version": "10.4.47",
+						"date": "2024-10-15 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.46": {
+						"version": "10.4.46",
+						"date": "2024-08-19 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"10.4.45": {
+						"version": "10.4.45",
+						"date": "2024-05-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"10.4.44": {
+						"version": "10.4.44",
+						"date": "2024-02-14 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.43": {
+						"version": "10.4.43",
+						"date": "2024-02-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"10.4.42": {
+						"version": "10.4.42",
+						"date": "2023-11-21 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.41": {
+						"version": "10.4.41",
+						"date": "2023-11-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"10.4.40": {
+						"version": "10.4.40",
+						"date": "2023-07-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"10.4.39": {
+						"version": "10.4.39",
+						"date": "2023-07-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"10.4.38": {
+						"version": "10.4.38",
+						"date": "2023-07-04 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.19": {
+						"breaking_changes": true
+					},
+					"10.4.11": {
+						"breaking_changes": true
+					},
+					"10.4.10": {
+						"breaking_changes": true
+					},
 					"10.4.6": {
 						"breaking_changes": true
 					},
 					"10.4.4": {
+						"breaking_changes": true
+					},
+					"10.4.1": {
 						"breaking_changes": true
 					},
 					"10.4.0": {
@@ -59,6 +228,126 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"9": {
 				"releases": {
+					"9.5.50": {
+						"version": "9.5.50",
+						"date": "2025-01-21 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.49": {
+						"version": "9.5.49",
+						"date": "2025-01-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"9.5.48": {
+						"version": "9.5.48",
+						"date": "2024-05-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"9.5.47": {
+						"version": "9.5.47",
+						"date": "2024-02-14 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.46": {
+						"version": "9.5.46",
+						"date": "2024-02-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"9.5.45": {
+						"version": "9.5.45",
+						"date": "2023-11-21 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.44": {
+						"version": "9.5.44",
+						"date": "2023-11-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"9.5.43": {
+						"version": "9.5.43",
+						"date": "2023-07-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"9.5.42": {
+						"version": "9.5.42",
+						"date": "2023-07-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"9.5.41": {
+						"version": "9.5.41",
+						"date": "2023-07-04 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.40": {
+						"version": "9.5.40",
+						"date": "2023-02-07 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"9.5.39": {
+						"version": "9.5.39",
+						"date": "2022-12-15 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.38": {
+						"version": "9.5.38",
+						"date": "2022-12-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"9.5.37": {
+						"version": "9.5.37",
+						"date": "2022-09-12 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"9.5.36": {
+						"version": "9.5.36",
+						"date": "2022-06-15 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.35": {
+						"version": "9.5.35",
+						"date": "2022-06-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"9.5.34": {
+						"version": "9.5.34",
+						"date": "2022-04-12 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.33": {
+						"version": "9.5.33",
+						"date": "2022-02-22 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"9.5.32": {
+						"version": "9.5.32",
+						"date": "2021-11-11 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+
+
 					"9.5.19": {
 						"breaking_changes": true
 					},
@@ -88,6 +377,85 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"8": {
 				"releases": {
+					"8.7.58": {
+						"version": "8.7.58",
+						"date": "2024-02-14 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.57": {
+						"version": "8.7.57",
+						"date": "2024-02-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.56": {
+						"version": "8.7.56",
+						"date": "2023-11-21 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.55": {
+						"version": "8.7.55",
+						"date": "2023-11-14 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.54": {
+						"version": "8.7.54",
+						"date": "2023-07-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.53": {
+						"version": "8.7.53",
+						"date": "2023-07-25 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.52": {
+						"version": "8.7.52",
+						"date": "2022-07-04 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.51": {
+						"version": "8.7.51",
+						"date": "2023-07-02 12:00:00 UTC",
+						"elts": true,
+						"type": "security",
+						"breaking_changes": true
+					},
+					"8.7.50": {
+						"version": "8.7.50",
+						"date": "2022-12-15 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.49": {
+						"version": "8.7.49",
+						"date": "2022-12-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.48": {
+						"version": "8.7.48",
+						"date": "2022-09-12 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"8.7.47": {
+						"version": "8.7.47",
+						"date": "2022-02-22 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"8.7.46": {
+						"version": "8.7.46",
+						"date": "2022-02-22 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
 					"8.7.45": {
 						"version": "8.7.45",
 						"date": "2022-02-22 12:00:00 UTC",
