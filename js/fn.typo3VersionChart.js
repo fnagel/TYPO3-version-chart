@@ -2,13 +2,7 @@
  * jQuery TYPO3 Version Chart
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2021 Felix Nagel
- *
- * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
- *	jquery.ui.dialog.js
- *	jquery.ui.button.js
+ * Copyright 2013-2025 Felix Nagel
  */
 (function( $, undefined ) {
 
