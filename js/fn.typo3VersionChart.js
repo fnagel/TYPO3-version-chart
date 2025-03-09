@@ -209,9 +209,9 @@ $.widget( "ui.typo3VersionChart", {
 
 		if ( releaseData.url ) {
 			content.push( "<p>Download: " );
-			content.push( "<a href='" + this.options.downloadUrl + releaseData.url.tar + "'>tar</a>" );
+			content.push( "<a href='" + this._getDownloadLink( releaseData.url.tar ) + "'>tar</a>" );
 			content.push( " | " );
-			content.push( "<a href='" + this.options.downloadUrl + releaseData.url.zip + "'>zip</a>" );
+			content.push( "<a href='" + this._getDownloadLink( releaseData.url.zip ) + "'>zip</a>" );
 			content.push( "</p>" );
 		}
 
@@ -226,6 +226,15 @@ $.widget( "ui.typo3VersionChart", {
 		content.push( "</div>" );
 
 		return content.join( "" );
+	},
+
+	_getDownloadLink: function( url ) {
+		// Prefix relative download links
+		if ( !url.startsWith( "http" ) ) {
+			url = this.options.downloadUrl + url;
+		}
+
+		return url;
 	},
 
 	_getGitTagUrl: function( releaseData ) {
