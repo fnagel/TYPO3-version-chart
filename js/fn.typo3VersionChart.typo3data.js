@@ -12,6 +12,12 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		typo3data: {
 			"13": {
 				"releases": {
+					"13.4.16": {
+						"type": "security"
+					},
+					"13.4.6": {
+						"breaking_changes": true
+					},
 					"13.4.3": {
 						"breaking_changes": true
 					},
