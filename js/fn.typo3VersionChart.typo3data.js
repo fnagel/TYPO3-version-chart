@@ -12,8 +12,17 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 		typo3data: {
 			"13": {
 				"releases": {
+					"13.4.12": {
+						"breaking_changes": true
+					},
+					"13.4.10": {
+						"breaking_changes": true
+					},
 					"13.4.16": {
 						"type": "security"
+					},
+					"13.4.7": {
+						"breaking_changes": true
 					},
 					"13.4.6": {
 						"breaking_changes": true
@@ -41,6 +50,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"12": {
 				"releases": {
+					"12.4.29": {
+						"breaking_changes": true
+					},
 					"12.4.18": {
 						"breaking_changes": true
 					},
@@ -70,6 +82,36 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"11": {
 				"releases": {
+					"11.4.48": {
+						"version": "11.4.48",
+						"date": "2025-09-09 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"11.4.47": {
+						"version": "11.4.47",
+						"date": "2025-08-14 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"11.4.46": {
+						"version": "11.4.46",
+						"date": "2025-07-08 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"11.4.45": {
+						"version": "11.4.45",
+						"date": "2025-05-27 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"11.4.44": {
+						"version": "11.4.44",
+						"date": "2025-05-20 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"11.5.43": {
 						"version": "11.5.43",
 						"date": "2025-01-21 12:00:00 UTC",
@@ -88,6 +130,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 					"11.5.23": {
 						"breaking_changes": true
 					},
+					"11.5.22": {
+						"breaking_changes": true
+					},
 					"11.5.18": {
 						"breaking_changes": true
 					},
@@ -95,6 +140,9 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"breaking_changes": true
 					},
 					"11.5.11": {
+						"breaking_changes": true
+					},
+					"11.5.10": {
 						"breaking_changes": true
 					},
 					"11.5.0": {
@@ -120,6 +168,36 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"10": {
 				"releases": {
+					"10.4.54": {
+						"version": "10.4.54",
+						"date": "2025-09-09 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
+					"10.4.53": {
+						"version": "10.4.53",
+						"date": "2025-08-14 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.52": {
+						"version": "10.4.52",
+						"date": "2025-07-08 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.51": {
+						"version": "10.4.51",
+						"date": "2025-05-27 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.50": {
+						"version": "10.4.50",
+						"date": "2025-05-20 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"10.4.49": {
 						"version": "10.4.49",
 						"date": "2025-01-21 12:00:00 UTC",
