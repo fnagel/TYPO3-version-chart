@@ -12,7 +12,8 @@
 		"url": "git://github.com/fnagel/TYPO3-version-chart.git"
 	},
 	"scripts": {
-		"test": "grunt"
+		"build": "grunt",
+		"test": "grunt test"
 	},
 	"engines": {
 		"node": ">= 0.8.0"
