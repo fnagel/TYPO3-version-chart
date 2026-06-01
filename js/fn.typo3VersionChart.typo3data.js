@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart - TYPO3 additional data
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2025 Felix Nagel
+ * Copyright 2013-2026 Felix Nagel
  */
 (function( $ ) {
 
@@ -10,6 +10,28 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 	options: {
 		// Additional data to merge with the original json
 		typo3data: {
+			"14": {
+				"releases": {
+					"14.3.1": {
+						"breaking_changes": true
+					},
+					"14.3.0": {
+						"type": "release"
+					},
+					"14.2.0": {
+						"type": "release",
+						"breaking_changes": true
+					},
+					"14.1.0": {
+						"type": "release",
+						"breaking_changes": true
+					},
+					"14.0.0": {
+						"type": "release",
+						"breaking_changes": true
+					}
+				}
+			},
 			"13": {
 				"releases": {
 					"13.4.12": {
@@ -31,7 +53,8 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 						"breaking_changes": true
 					},
 					"13.4.0": {
-						"type": "release"
+						"type": "release",
+						"breaking_changes": true
 					},
 					"13.3.0": {
 						"type": "release"
@@ -82,6 +105,18 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"11": {
 				"releases": {
+					"11.4.50": {
+						"version": "11.4.50",
+						"date": "2026-01-20 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"11.4.49": {
+						"version": "11.4.49",
+						"date": "2026-01-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"11.4.48": {
 						"version": "11.4.48",
 						"date": "2025-09-09 12:00:00 UTC",
@@ -168,6 +203,18 @@ $.widget( "ui.typo3VersionChart", $.ui.typo3VersionChart, {
 			},
 			"10": {
 				"releases": {
+					"10.4.56": {
+						"version": "10.4.56",
+						"date": "2026-01-20 12:00:00 UTC",
+						"elts": true,
+						"type": "regular"
+					},
+					"10.4.55": {
+						"version": "10.4.55",
+						"date": "2026-01-13 12:00:00 UTC",
+						"elts": true,
+						"type": "security"
+					},
 					"10.4.54": {
 						"version": "10.4.54",
 						"date": "2025-09-09 12:00:00 UTC",
