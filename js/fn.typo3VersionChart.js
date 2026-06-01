@@ -2,7 +2,7 @@
  * jQuery TYPO3 Version Chart
  * http://typo3versions.felixnagel.com/
  *
- * Copyright 2013-2025 Felix Nagel
+ * Copyright 2013-2026 Felix Nagel
  */
 (function( $, undefined ) {
 
@@ -275,7 +275,7 @@ $.widget( "ui.typo3VersionChart", {
 				return "TYPO3 v" + branchIndex + " LTS version will be fully supported for 1.5 years, and will be supported with security and critical fixes until " + date + ".";
 			};
 
-		// outdated branch
+		// Outdated branch
 		if ( !branchData.active && branchData.stable !== "0.0.0" && lastVersion ) {
 			tags.push( this._renderTag( "trash", "", "Deprecated branch. Last public release: " + lastVersion + " (" + this._formatDate( this.getVersionData( lastVersion, branchIndex ).date ) + ")" ) );
 		}
@@ -287,6 +287,9 @@ $.widget( "ui.typo3VersionChart", {
 
 		// LTS & End of maintenance
 		switch ( branchIndex ) {
+			case "14":
+				tags.push( this._renderTag( "clock", "", getDefaultText("June 2029" ) ) );
+				break;
 			case "13":
 				tags.push( this._renderTag( "clock", "", getDefaultText("December 2027" ) ) );
 				break;
